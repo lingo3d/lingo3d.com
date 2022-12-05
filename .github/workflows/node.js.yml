@@ -31,13 +31,13 @@ jobs:
         filters: |
           forum-backend:
             - 'forum-backend/**'
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       if: steps.filter.outputs.forum-backend == 'true'
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'yarn'
-#         cache-dependency-path: './forum-backend/yarn.lock'
+    - name: Use Node.js ${{ matrix.node-version }}
+      if: steps.filter.outputs.forum-backend == 'true'
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+        cache-dependency-path: './forum-backend/yarn.lock'
     - name: create env file
       run: |
               touch .env
@@ -83,13 +83,13 @@ jobs:
         filters: |
           frontend:
             - 'frontend/**'
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       if: steps.filter.outputs.frontend == 'true'
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'yarn'
-#         cache-dependency-path: './frontend/yarn.lock'
+    - name: Use Node.js ${{ matrix.node-version }}
+      if: steps.filter.outputs.frontend == 'true'
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+        cache-dependency-path: './frontend/yarn.lock'
     - name: create env file
       run: |
               touch .env.local
