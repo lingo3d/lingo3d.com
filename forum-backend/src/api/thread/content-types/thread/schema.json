@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "threads",
+  "info": {
+    "singularName": "thread",
+    "pluralName": "threads",
+    "displayName": "thread",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "username": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "announcements",
+        "general discussion",
+        "general coding",
+        "react api",
+        "vue api",
+        "animation",
+        "asset management",
+        "material",
+        "networking",
+        "physics"
+      ]
+    },
+    "answers": {
+      "type": "json"
+    },
+    "tags": {
+      "type": "json"
+    }
+  }
+}
