@@ -5,7 +5,7 @@ const Error500 = () => {
                 500 - Server error
             </h1>
             <h1 className="textColor2 text-center text-3xl">
-                Please try again.
+                Please try again
             </h1>
         </div>
     )
