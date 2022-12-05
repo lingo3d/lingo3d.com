@@ -57,7 +57,7 @@ jobs:
       run: NODE_ENV=production yarn build
     - name: turn on app
       if: steps.filter.outputs.forum-backend == 'true'
-      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 start yarn --name backend -- start
+      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 restart backend
 #       run: pm2 start yarn --name backend -- start
     
   build_frontend:
@@ -106,5 +106,5 @@ jobs:
       run: yarn build
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
-      run: pm2 start yarn --name frontent -- start
+      run: pm2 restart frontend
 #       run: pm2 start yarn --name "frontend" -- start
