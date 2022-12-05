@@ -38,6 +38,17 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         cache-dependency-path: './forum-backend/yarn.lock'
+    - name: create env file
+      run: |
+              touch .env
+              echo HOST=${{ secrets.HOST }} >> .env.local
+              echo PORT=${{ secrets.PORT }} >> .env.local
+              echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env.local
+              echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env.local
+              echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env.local
+              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env.local
+              echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env.local
+              echo AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} >> .env.local
     - name: install deps
       if: steps.filter.outputs.forum-backend == 'true'
       run: yarn install --frozen-lockfile
@@ -46,7 +57,7 @@ jobs:
       run: NODE_ENV=production yarn build
     - name: turn on app
       if: steps.filter.outputs.forum-backend == 'true'
-      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 restart backend --update-env
+      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 start backend
 #       run: pm2 start yarn --name backend -- start
     
   build_frontend:
@@ -95,5 +106,5 @@ jobs:
       run: yarn build
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
-      run: pm2 restart frontend --update-env
+      run: pm2 start frontend
 #       run: pm2 start yarn --name "frontend" -- start
