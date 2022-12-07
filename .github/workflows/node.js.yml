@@ -93,7 +93,7 @@ jobs:
 #         cache: 'yarn'
 #         cache-dependency-path: './frontend/yarn.lock'
     - name: remove existing env file
-      run:  rm .env
+      run:  rm .env.local
     - name: create env file
       run: |
               touch .env.local
