@@ -62,7 +62,7 @@ jobs:
       run: pm2 del backend
     - name: turn on app
       if: steps.filter.outputs.forum-backend == 'true'
-      run: NODE_ENV=production pm2 start yarn --name "backend" -- start
+      run: pm2 startOrRestart ecosystem.config.js
     
   build_frontend:
     name: build_frontend
@@ -115,4 +115,4 @@ jobs:
       run: pm2 del frontend
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
-      run: pm2 restart frontend
+      run: pm2 startOrRestart ecosystem.config.js
