@@ -28,7 +28,12 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
         <Box className="flex justify-between items-stretch borderTop py-2 textColor2">
             <Box className="flex justify-center items-center">
                 <div className="w-[40px] h-[40px]">
-                    <Image src={profilePic} width="100%" height="100%" className="rounded" />
+                    <Image
+                        src={profilePic}
+                        fill
+                        className="rounded"
+                        alt="profile image"
+                    />
                 </div>
             </Box>
             <Box className="flex flex-col flex-1 px-2">
@@ -36,12 +41,13 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                     key={data.id}
                     href={`${process.env.NEXT_PUBLIC_BASE_URL}thread/${data.id}/${data.attributes.title}`}
                     replace
-                    as={`${process.env.NEXT_PUBLIC_BASE_URL}thread/${data.id}/${data.attributes.title.replace(
-                        / /g,
-                        "-"
-                    )}`}
+                    as={`${process.env.NEXT_PUBLIC_BASE_URL}thread/${
+                        data.id
+                    }/${data.attributes.title.replace(/ /g, "-")}`}
                 >
-                    <div className="textColor2 text-[18px] cursor-pointer">{data?.attributes.title}</div>
+                    <div className="textColor2 text-[18px] cursor-pointer">
+                        {data?.attributes.title}
+                    </div>
                 </Link>
 
                 <div className="flex justify-start items-center gap-x-2 text-[13px] textColor1">
@@ -49,12 +55,24 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                     {windowWidth! > 639 && (
                         <Box className="flex flex-wrap items-center gap-x-1">
                             {data.attributes.tags && (
-                                <LocalOfferIcon fontSize="small" sx={{ width: "10px", height: "10px" }} />
+                                <LocalOfferIcon
+                                    fontSize="small"
+                                    sx={{ width: "10px", height: "10px" }}
+                                />
                             )}
                             {data.attributes.tags &&
                                 data.attributes.tags.map((m, i) => (
-                                    <Link key={m} href={`${process.env.NEXT_PUBLIC_BASE_URL}tags/${m}`}>
-                                        <div className={query === m ? "italic font-bold" : "non-italic cursor-pointer"}>
+                                    <Link
+                                        key={m}
+                                        href={`${process.env.NEXT_PUBLIC_BASE_URL}tags/${m}`}
+                                    >
+                                        <div
+                                            className={
+                                                query === m
+                                                    ? "italic font-bold"
+                                                    : "non-italic cursor-pointer"
+                                            }
+                                        >
                                             {m}
                                         </div>
                                     </Link>
@@ -70,12 +88,18 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                 </div> */}
                 <div className="flex justify-center items-center">
                     <CommentIcon className="text-[13px] sm:text-[16px] lg:text-[18px]" />
-                    <div className="px-1">{data.attributes.answers ? data.attributes.answers.length : 0}</div>
+                    <div className="px-1">
+                        {data.attributes.answers
+                            ? data.attributes.answers.length
+                            : 0}
+                    </div>
                 </div>
                 {windowWidth! > 639 && (
                     <div className="flex justify-center items-center">
                         <AccessTimeIcon className="text-[13px] sm:text-[16px] lg:text-[18px]" />
-                        <div className="px-1">{data?.attributes.updatedAt.split("T")[0]}</div>
+                        <div className="px-1">
+                            {data?.attributes.updatedAt.split("T")[0]}
+                        </div>
                     </div>
                 )}
                 {/* {windowWidth > 639 && (

@@ -21,7 +21,9 @@ const ButtonAppBar: React.FC = () => {
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
-    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
         setAnchorEl(event.currentTarget)
     }
     const handleClose = () => {
@@ -31,12 +33,20 @@ const ButtonAppBar: React.FC = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{ background: "black" }}>
-                <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Toolbar
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                >
                     <>
-                        <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
                             <MenuIcon />
                         </IconButton>
-                        <Image src={logo} width="100px" height="20px" />
+                        <Image src={logo} width={100} height={20} alt="logo" />
                         {!user && (
                             <>
                                 <Button
@@ -70,7 +80,9 @@ const ButtonAppBar: React.FC = () => {
                                         "aria-labelledby": "basic-button"
                                     }}
                                 >
-                                    <MenuItem onClick={() => logout()}>Logout</MenuItem>
+                                    <MenuItem onClick={() => logout()}>
+                                        Logout
+                                    </MenuItem>
                                 </Menu>
                             </>
                         )}

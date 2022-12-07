@@ -117,9 +117,9 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                 <div className="w-[58px] h-[58px]">
                     <Image
                         src={profilePic}
-                        width="100%"
-                        height="100%"
+                        fill
                         className="rounded"
+                        alt="profile image"
                     />
                 </div>
                 <div className="flex flex-col mx-[8px]">

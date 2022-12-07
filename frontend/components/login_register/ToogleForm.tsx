@@ -12,7 +12,12 @@ type ToogleFormProps = {
     setDisplayRegister: (display: boolean) => void
 }
 
-const Form = ({ show, handleClose, displayRegister, setDisplayRegister }: ToogleFormProps) => {
+const Form = ({
+    show,
+    handleClose,
+    displayRegister,
+    setDisplayRegister
+}: ToogleFormProps) => {
     return show ? (
         <Dialog
             onClose={handleClose}
@@ -20,9 +25,13 @@ const Form = ({ show, handleClose, displayRegister, setDisplayRegister }: Toogle
             className='className="w-screen h-screen absolute top-0 left-0 flex justify-center items-center"'
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4">
-                <Image src={logo} width="120px" height="22px" />
+                <Image src={logo} width={120} height={22} alt="logo" />
 
-                {displayRegister ? <Register /> : <Login setDisplayRegister={setDisplayRegister} />}
+                {displayRegister ? (
+                    <Register />
+                ) : (
+                    <Login setDisplayRegister={setDisplayRegister} />
+                )}
             </Box>
         </Dialog>
     ) : null
