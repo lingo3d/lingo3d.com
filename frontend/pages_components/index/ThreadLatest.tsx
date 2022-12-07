@@ -13,7 +13,7 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
                 <div className="w-[40px] h-[40px]">
                     <Image
                         src={profilePic}
-                        fill
+                        // fill
                         className="rounded"
                         alt="profile"
                     />

@@ -96,7 +96,7 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
                 <div className="w-[58px] h-[58px]">
                     <Image
                         src={profilePic}
-                        fill
+                        // fill
                         className="rounded"
                         alt="profile image"
                     />

@@ -30,7 +30,7 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                 <div className="w-[40px] h-[40px]">
                     <Image
                         src={profilePic}
-                        fill
+                        // fill
                         className="rounded"
                         alt="profile image"
                     />

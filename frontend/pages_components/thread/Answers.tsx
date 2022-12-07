@@ -117,7 +117,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                 <div className="w-[58px] h-[58px]">
                     <Image
                         src={profilePic}
-                        fill
+                        // fill
                         className="rounded"
                         alt="profile image"
                     />
