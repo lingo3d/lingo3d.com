@@ -57,10 +57,12 @@ jobs:
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
       run: NODE_ENV=production yarn build
+    - name: kill app
+      if: steps.filter.outputs.forum-backend == 'true'
+      run: pm2 del backend
     - name: turn on app
       if: steps.filter.outputs.forum-backend == 'true'
-      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 restart backend
-#       run: pm2 start yarn --name backend -- start
+      run: NODE_ENV=production pm2 start yarn --name "backend" -- start
     
   build_frontend:
     name: build_frontend
@@ -108,7 +110,9 @@ jobs:
     - name: build app
       if: steps.filter.outputs.frontend == 'true'
       run: yarn build
+    - name: kill app
+      if: steps.filter.outputs.forum-frontend == 'true'
+      run: pm2 del frontend
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
       run: pm2 restart frontend
-#       run: pm2 start yarn --name "frontend" -- start
