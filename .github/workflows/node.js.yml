@@ -81,8 +81,6 @@ jobs:
     - name: install deps --frozen-lockfile
       if: steps.filter.outputs.frontend == 'true'
       run: yarn install
-    - name: remove existing env file
-      run:  rm .env.local
     - name: create env file
       run: |
               touch .env.local
@@ -97,3 +95,5 @@ jobs:
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
       run: pm2 startOrReload ecosystem.config.js
+    - name: remove existing env file
+      run:  rm .env.local
