@@ -81,6 +81,16 @@ jobs:
     - name: install deps --frozen-lockfile
       if: steps.filter.outputs.frontend == 'true'
       run: yarn install
+    - name: remove existing env file
+      run:  rm .env.local
+    - name: create env file
+      run: |
+              touch .env.local
+              echo NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }} >> .env.local
+              echo NEXT_PUBLIC_GOOGLE_CLIENT=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT }} >> .env.local
+              echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
+              echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
+              echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
     - name: build app
       if: steps.filter.outputs.frontend == 'true'
       run: yarn build
