@@ -24,9 +24,13 @@ const Tags = () => {
     }
 
     return (
-        <Box className="flex flex-wrap gap-x-4 sm:gap-y-2 lg:gap-y-4 textColor1 my-[25px] text-2xl">
+        <Box className="flex flex-wrap gap-x-4 sm:gap-y-2 lg:gap-y-4 my-[25px] text-2xl">
             {tags.map((m) => (
-                <span key={m} className="cursor-pointer" onClick={(e) => handleChangeRoute(m)}>
+                <span
+                    key={m}
+                    className="cursor-pointer text-[#86A1D8] hover:text-[#F4F4F9]"
+                    onClick={(e) => handleChangeRoute(m)}
+                >
                     {m}
                 </span>
             ))}
