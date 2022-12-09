@@ -1,6 +1,7 @@
 import { NextPage } from "next"
 import { useState } from "react"
 import { useUser } from "../context/user"
+import Cookies from "js-cookie"
 import Link from "next/link"
 import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
@@ -24,12 +25,16 @@ const UploadThread: NextPage = () => {
         setTags(newTags)
     }
 
-    async function sendData(e: any) {
+    async function postThread(e: any) {
         e.preventDefault()
+
+        const token = Cookies.get("jwt")
+
         const postQuestion = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 data: {
@@ -116,7 +121,7 @@ const UploadThread: NextPage = () => {
                         </ul>
                     </Box>
                     <Button
-                        onClick={(e) => sendData(e)}
+                        onClick={(e) => postThread(e)}
                         disabled={title && category && description ? false : true}
                         variant="contained"
                         sx={{

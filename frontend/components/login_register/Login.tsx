@@ -7,28 +7,23 @@ import GoogleIcon from "@mui/icons-material/Google"
 import { signIn as googleSignIn } from "next-auth/react"
 import { setToken } from "../../pages/api/auth/js-cookie"
 
-const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
-    setDisplayRegister
-}) => {
+const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({ setDisplayRegister }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [show, setShow] = useState(false)
     const [serverError, setServerError] = useState("")
 
     async function loginUser() {
-        const res = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
-            {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    password: password,
-                    identifier: username
-                })
-            }
-        )
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`, {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                password: password,
+                identifier: username
+            })
+        })
         const data = await res.json()
 
         if (data.error) {
@@ -44,29 +39,10 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
         <>
             <div className="text-[22px]">Welcome</div>
             <div>Log in so you can participate in the forum</div>
-            <TextField
-                fullWidth
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                label="Username"
-            />
-            <TextField
-                fullWidth
-                required
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            {show ? (
-                <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">
-                    {serverError}
-                </span>
-            ) : null}
-            <div className="w-full text-[#293ab9] cursor-pointer">
-                Forgot password?
-            </div>
+            <TextField fullWidth required value={username} onChange={(e) => setUsername(e.target.value)} label="Username" />
+            <TextField fullWidth required label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            {show ? <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">{serverError}</span> : null}
+            <div className="w-full text-[#293ab9] cursor-pointer">Forgot password?</div>
 
             <Button
                 fullWidth
@@ -82,10 +58,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
             </Button>
             <div className="w-full">
                 Don't have an account?{" "}
-                <span
-                    onClick={() => setDisplayRegister(true)}
-                    className="pointer-cursor text-[#293ab9] font-bold cursor-pointer"
-                >
+                <span onClick={() => setDisplayRegister(true)} className="pointer-cursor text-[#293ab9] font-bold cursor-pointer">
                     Sign up
                 </span>
             </div>

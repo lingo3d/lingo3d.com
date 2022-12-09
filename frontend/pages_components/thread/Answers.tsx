@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { flushSync } from "react-dom"
 import { useRouter } from "next/router"
 import Image from "next/image"
+import Cookies from "js-cookie"
 import { ThreadOptions, ThreadAnswer, User } from "../../types"
 import profilePic from "../../public/avatar2.png"
 import PostReply from "./PostReply"
@@ -71,20 +72,20 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
         }
         allAnswers.splice(index, 1, editedAnswer)
 
-        fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${data.data.id}`,
-            {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    data: {
-                        answers: allAnswers
-                    }
-                })
-            }
-        )
+        const token = Cookies.get("jwt")
+
+        fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${data.data.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                data: {
+                    answers: allAnswers
+                }
+            })
+        })
             .then((res) => res.json())
             .then(() => {
                 setEditMode(false)
@@ -102,10 +103,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
     }
 
     return (
-        <Box
-            sx={{ marginTop: "25px" }}
-            className="mt-[25px] textColor2 borderBottom pb-4"
-        >
+        <Box sx={{ marginTop: "25px" }} className="mt-[25px] textColor2 borderBottom pb-4">
             <div className="flex justify-between items-center textColor1 bg-[#081F4B] p-2">
                 <div>cnone</div>
                 <div className="flex">
@@ -123,9 +121,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                     />
                 </div>
                 <div className="flex flex-col mx-[8px]">
-                    <div className="font-bold text-[15px] my-1">
-                        {answer.username}
-                    </div>
+                    <div className="font-bold text-[15px] my-1">{answer.username}</div>
                     {/* <div className="text-[12px]">Supreme member</div> */}
                 </div>
                 {/* <div className="flex flex-col flex-1 items-end">
@@ -133,12 +129,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                     <div className="text-[12px]">Reaction score: 913</div>
                 </div> */}
             </div>
-            {answer.replied && (
-                <PostReply
-                    user={answer.userToReply}
-                    text={answer.textToReply}
-                />
-            )}
+            {answer.replied && <PostReply user={answer.userToReply} text={answer.textToReply} />}
             {editMode ? (
                 <textarea
                     value={editAnswer}
@@ -148,30 +139,19 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                     className="w-full bg-transparent mt-[5px] border-[1px] border-[#F4F4F9]"
                 />
             ) : (
-                <div className="mt-[10px] whitespace-pre-wrap">
-                    {answer.answer}
-                </div>
+                <div className="mt-[10px] whitespace-pre-wrap">{answer.answer}</div>
             )}
 
             <div className="flex justify-end items-center mt-[20px]">
                 {user?.username === answer.username && (
-                    <div
-                        onClick={() => handleEditClick()}
-                        className="flex justify-center items-center"
-                    >
+                    <div onClick={() => handleEditClick()} className="flex justify-center items-center">
                         {editMode ? (
                             <div className="flex gap-x-2">
-                                <div
-                                    className="flex cursor-pointer"
-                                    onClick={(e) => saveEdit(e)}
-                                >
+                                <div className="flex cursor-pointer" onClick={(e) => saveEdit(e)}>
                                     <SaveIcon className="mx-[5px]" />
                                     <div>Save</div>
                                 </div>
-                                <div
-                                    className="flex cursor-pointer"
-                                    onClick={(e) => cancelEdit(e)}
-                                >
+                                <div className="flex cursor-pointer" onClick={(e) => cancelEdit(e)}>
                                     <ClearIcon />
                                     <div>Cancel</div>
                                 </div>
@@ -187,12 +167,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                 {/* <ShareIcon className="mx-[5px]" />
                 <ThumbUpIcon className="mx-[5px]" />
                 <BookmarkIcon className="mx-[5px]" /> */}
-                <ReplyIcon
-                    className="mx-[5px] cursor-pointer"
-                    onClick={() =>
-                        activateReply(answer.answer, answer.username)
-                    }
-                />
+                <ReplyIcon className="mx-[5px] cursor-pointer" onClick={() => activateReply(answer.answer, answer.username)} />
             </div>
             {/* <div className="flex mt-[20px]">
                 <ThumbUpIcon className="w-[16px] h-[16px] mr-[5px]" />
