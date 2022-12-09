@@ -38,97 +38,70 @@ export default function NavSection() {
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
                             <Link href="/">
-                                <div
-                                    className={`${
-                                        active === "categories"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Categories
-                                </div>
+                                <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
                             </Link>
                             <Link href="/latest">
-                                <div
-                                    className={`${
-                                        active === "latest"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Latest
-                                </div>
+                                <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
                             </Link>
                             <Link href="/top">
-                                <div
-                                    className={`${
-                                        active === "top"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Top
-                                </div>
+                                <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
                             </Link>
                         </>
                     )}
                 </Box>
                 <Box className="flex justify-end w-full mt-[20px]">
-                    <Button
-                        variant="contained"
-                        endIcon={<AddIcon />}
-                        disabled={user ? false : true}
-                        sx={{
-                            margin: 0,
-                            textTransform: "none",
-                            fontSize: "16px",
-                            cursor: "pointer",
-                            padding:
-                                windowWidth! < 640 ? "2px 12px" : "5px 20px",
-                            color: "#F4F4F9",
-                            "&.MuiButton-contained": {
-                                backgroundColor: "#86A1D8"
-                            }
-                        }}
-                    >
-                        <Link href="/post-question">New</Link>
-                    </Button>
+                    {user ? (
+                        <Link href="/post-question">
+                            <Button
+                                variant="contained"
+                                endIcon={<AddIcon />}
+                                sx={{
+                                    margin: 0,
+                                    textTransform: "none",
+                                    fontSize: "16px",
+                                    cursor: "pointer",
+                                    padding: windowWidth! < 640 ? "2px 12px" : "5px 20px",
+                                    color: "#F4F4F9",
+                                    "&.MuiButton-contained": {
+                                        backgroundColor: "#86A1D8"
+                                    }
+                                }}
+                            >
+                                New
+                            </Button>
+                        </Link>
+                    ) : (
+                        <Button
+                            variant="contained"
+                            endIcon={<AddIcon />}
+                            disabled
+                            sx={{
+                                margin: 0,
+                                textTransform: "none",
+                                fontSize: "16px",
+                                cursor: "pointer",
+                                padding: windowWidth! < 640 ? "2px 12px" : "5px 20px",
+                                color: "#F4F4F9",
+                                "&.MuiButton-contained": {
+                                    backgroundColor: "#86A1D8"
+                                }
+                            }}
+                        >
+                            New
+                        </Button>
+                    )}
                 </Box>
                 {windowWidth! < 639 && (
                     <>
                         <Box className="flex justify-end w-full mt-[15px] gap-x-4">
                             <Link href="/">
-                                <div
-                                    className={`${
-                                        active === "categories"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Categories
-                                </div>
+                                <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
                             </Link>
                             <Link href="/latest">
-                                <div
-                                    className={`${
-                                        active === "latest"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Latest
-                                </div>
+                                <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
                             </Link>
                             <Link href="/top">
-                                <div
-                                    className={`${
-                                        active === "top"
-                                            ? "textColor2"
-                                            : "textColor1"
-                                    } cursor-pointer`}
-                                >
-                                    Top
-                                </div>
+                                <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
                             </Link>
                         </Box>
                     </>
