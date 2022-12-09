@@ -20,7 +20,7 @@ const Tags = () => {
 
     const handleChangeRoute = (tag: string) => {
         let param = tag.substring(1).toLocaleLowerCase().replaceAll(" ", "-")
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}tags/${param}`)
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${param}`)
     }
 
     return (

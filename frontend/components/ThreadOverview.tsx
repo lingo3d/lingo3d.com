@@ -39,9 +39,9 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
             <Box className="flex flex-col flex-1 px-2">
                 <Link
                     key={data.id}
-                    href={`${process.env.NEXT_PUBLIC_BASE_URL}thread/${data.id}/${data.attributes.title}`}
+                    href={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.id}/${data.attributes.title}`}
                     replace
-                    as={`${process.env.NEXT_PUBLIC_BASE_URL}thread/${
+                    as={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${
                         data.id
                     }/${data.attributes.title.replace(/ /g, "-")}`}
                 >
@@ -64,7 +64,7 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                                 data.attributes.tags.map((m, i) => (
                                     <Link
                                         key={m}
-                                        href={`${process.env.NEXT_PUBLIC_BASE_URL}tags/${m}`}
+                                        href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
                                     >
                                         <div
                                             className={

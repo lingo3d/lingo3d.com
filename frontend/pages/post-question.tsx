@@ -51,7 +51,7 @@ const UploadThread: NextPage = () => {
             alert(data.error.message)
         } else {
             //@ts-ignore
-            window.location = `${process.env.NEXT_PUBLIC_BASE_URL}thread/${data.data.id}/${data.data.attributes.title}`
+            window.location = `${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.data.id}/${data.data.attributes.title}`
         }
     }
 

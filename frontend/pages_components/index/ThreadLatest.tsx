@@ -48,7 +48,7 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
                         data.attributes.tags.map((m, i) => (
                             <Link
                                 key={m}
-                                href={`${process.env.NEXT_PUBLIC_BASE_URL}tags/${m}`}
+                                href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
                             >
                                 <span key={i} className="cursor-pointer">
                                     {m}
