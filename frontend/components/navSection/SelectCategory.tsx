@@ -6,9 +6,7 @@ import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 import Link from "next/link"
 
-const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
-    windowWidth
-}) => {
+const SelectCategory: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) => {
     const [category, setCategory] = useState<string>("Categories")
     const router = useRouter()
 
@@ -17,8 +15,8 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
         if (currentCategory) {
             //@ts-ignore
             setCategory(
-                currentCategory.charAt(0).toUpperCase() +
-                    currentCategory.slice(1)
+                //@ts-ignore
+                currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)
             )
             //@ts-ignore
             document.activeElement.blur()
@@ -26,17 +24,8 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
     }, [router.asPath])
 
     const handleChange = (category: string) => {
-        router.push(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
-        )
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}categories/${category}`)
     }
-
-    // const changeRoute = (category) => {
-    //     return (
-    //         <Link  href-''>
-    //         </Link>
-    //     )
-    // }
 
     return (
         <FormControl
@@ -45,10 +34,7 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
                 minWidth: 120,
                 backgroundColor: windowWidth! > 639 ? "#86A1D8" : "transparent",
                 padding: 0,
-                borderBottom:
-                    windowWidth! > 639
-                        ? "transparent"
-                        : "0.5px solid #F4F4F9!important",
+                borderBottom: windowWidth! > 639 ? "transparent" : "0.5px solid #F4F4F9!important",
                 margin: 0,
                 ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
                     color: "#F4F4F9"
@@ -57,10 +43,7 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
             className="sm:rounded-md"
             size="small"
         >
-            <InputLabel
-                id="demo-select-small"
-                sx={{ color: "#F4F4F9", fontSize: "14px" }}
-            >
+            <InputLabel id="demo-select-small" sx={{ color: "#F4F4F9", fontSize: "14px" }}>
                 {category}
             </InputLabel>
             <Select
@@ -73,9 +56,7 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
                 }}
             >
                 <MenuItem value="announcements">Announcements</MenuItem>
-                <MenuItem value="general discussion">
-                    General discussion
-                </MenuItem>
+                <MenuItem value="general discussion">General discussion</MenuItem>
                 <MenuItem value="general coding">General coding</MenuItem>
                 <MenuItem value="react api">React api</MenuItem>
                 <MenuItem value="vue api">Vue api</MenuItem>
