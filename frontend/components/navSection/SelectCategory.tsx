@@ -24,7 +24,7 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({ windowWidth 
     }, [router.asPath])
 
     const handleChange = (category: string) => {
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`)
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/forum/categories/${category}`)
     }
 
     return (

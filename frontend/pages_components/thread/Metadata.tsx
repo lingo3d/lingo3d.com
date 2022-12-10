@@ -17,9 +17,7 @@ const Metadata: React.FC<{
                     <PersonIcon />
                     <div className="text-[13px] ml-[4px]">{username}</div>
                 </div>
-                <div className="flex justify-center items-center mx-[6px]">
-                    .
-                </div>
+                <div className="flex justify-center items-center mx-[6px]">.</div>
                 <div className="flex justify-start items-end">
                     <AccessTimeIcon sx={{ width: "20px", height: "20px" }} />
                     <div className="text-[13px] ml-[4px]">{createdAt}</div>
@@ -29,14 +27,8 @@ const Metadata: React.FC<{
                 <div className="flex flex-wrap justify-start items-end mt-[10px]">
                     <LocalOfferIcon sx={{ width: "20px", height: "20px" }} />
                     {tags?.map((m, i) => (
-                        <Link
-                            key={m}
-                            href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
-                        >
-                            <div
-                                key={i}
-                                className="text-[13px] ml-[4px] cursor-pointer"
-                            >
+                        <Link key={m} href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum/tags/${m}`}>
+                            <div key={i} className="text-[13px] ml-[4px] cursor-pointer">
                                 {m}
                             </div>
                         </Link>

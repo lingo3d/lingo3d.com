@@ -1,18 +1,15 @@
 import { useState, useEffect } from "react"
 import { NextPage, GetServerSideProps } from "next"
-import { Response } from "../../types"
-import NavSection from "../../components/navSection"
-import ThreadOverview from "../../components/ThreadOverview"
+import { Response } from "../../../types"
+import NavSection from "../../../components/navSection"
+import ThreadOverview from "../../../components/ThreadOverview"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import Pagination from "@mui/material/Pagination"
 import Box from "@mui/material/Box"
 import { useRouter } from "next/router"
 // import { Breadcrumbs } from "@mui/material"
 
-const Home: NextPage<{ data: Response; category: string }> = ({
-    data,
-    category
-}) => {
+const Home: NextPage<{ data: Response; category: string }> = ({ data, category }) => {
     const [threadsData, setThreadsData] = useState<Response>()
     const [pageIndex, setPageIndex] = useState(1)
     const router = useRouter()
@@ -46,10 +43,9 @@ const Home: NextPage<{ data: Response; category: string }> = ({
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
@@ -57,10 +53,7 @@ const Home: NextPage<{ data: Response; category: string }> = ({
             <Box className="mt-[25px]">
                 <div className="textColor2 text-[18px]  mb-[5px]">
                     {data.data.length > 0
-                        ? data.data[0]?.attributes.category
-                              .charAt(0)
-                              .toUpperCase() +
-                          data.data[0]?.attributes.category.slice(1)
+                        ? data.data[0]?.attributes.category.charAt(0).toUpperCase() + data.data[0]?.attributes.category.slice(1)
                         : "Category empty"}
                 </div>
                 <div className="borderTop borderBottom ">
@@ -81,10 +74,9 @@ const Home: NextPage<{ data: Response; category: string }> = ({
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
@@ -125,9 +117,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
     const category = context.params.category
-    let response = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[category][$eq]=${category}`
-    )
+    let response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[category][$eq]=${category}`)
     let data = await response.json()
 
     return {

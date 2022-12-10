@@ -1,29 +1,31 @@
+import { NextPage, GetServerSideProps } from "next"
 import { useState, useEffect } from "react"
-import { NextPage, GetStaticProps } from "next"
-import { Response } from "../types"
-import ThreadOverview from "../components/ThreadOverview"
-import NavSection from "../components/navSection"
-import { Box } from "@mui/material"
+import { Response } from "../../../types"
+import ThreadOverview from "../../../components/ThreadOverview"
+import NavSection from "../../../components/navSection"
 import Pagination from "@mui/material/Pagination"
+import { Box } from "@mui/material"
+import { useRouter } from "next/router"
 
-const Latest: NextPage<{ data: Response }> = ({ data }) => {
-    const [latestData, setLatestData] = useState<Response>()
+const Tag: NextPage<{ data: Response; tag: string }> = ({ data, tag }) => {
+    const [tagsData, setTagsData] = useState<Response>()
     const [pageIndex, setPageIndex] = useState(1)
+    const router = useRouter()
 
     useEffect(() => {
-        setLatestData(data)
+        setTagsData(data)
         return () => {
             setPageIndex(1)
         }
-    }, [])
+    }, [router.asPath])
 
     const handlePaginationChange = async (_: any, page: number) => {
         let fetchPaginationPage = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=${page}&sort=updatedAt%3Adesc`
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[tags][$contains]=${tag}&pagination[page]=${page}`
         )
         const response = await fetchPaginationPage.json()
         setPageIndex(page)
-        setLatestData(response)
+        setTagsData(response)
     }
 
     return (
@@ -37,18 +39,17 @@ const Latest: NextPage<{ data: Response }> = ({ data }) => {
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
             )}
             <Box className="mt-[25px]">
-                <div className="textColor2 text-[18px]  mb-[5px]">Latest</div>
-                {latestData?.data.map((m) => (
-                    <ThreadOverview key={m.id} data={m} />
+                <div className="textColor2 text-[18px]  mb-[5px]">Tag: {tag} </div>
+                {tagsData?.data.map((m) => (
+                    <ThreadOverview key={m.id} data={m} query={tag} />
                 ))}
             </Box>
             {data.meta?.pagination.pageCount > 1 && (
@@ -59,10 +60,9 @@ const Latest: NextPage<{ data: Response }> = ({ data }) => {
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
@@ -71,18 +71,18 @@ const Latest: NextPage<{ data: Response }> = ({ data }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-    let response = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=1&sort=updatedAt%3Adesc`
-    )
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+    //@ts-ignore
+    const tag = params.tag
+    let response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[tags][$containsi]=${tag}`)
     let data = await response.json()
 
     return {
         props: {
-            data
-        },
-        revalidate: 30
+            data,
+            tag
+        }
     }
 }
 
-export default Latest
+export default Tag

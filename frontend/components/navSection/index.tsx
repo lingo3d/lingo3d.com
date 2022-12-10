@@ -19,10 +19,10 @@ export default function NavSection() {
 
     useEffect(() => {
         setWindowWidth(width)
-        if (router.pathname.startsWith("/top")) setActive("top")
-        if (router.pathname.startsWith("/latest")) setActive("latest")
-        if (router.pathname.startsWith("/categories")) setActive("categories")
-        if (router.pathname === "/") setActive("categories")
+        if (router.pathname.startsWith("/forum/top")) setActive("top")
+        if (router.pathname.startsWith("/forum/latest")) setActive("latest")
+        if (router.pathname.startsWith("/forum/categories")) setActive("categories")
+        if (router.pathname === "/forum") setActive("categories")
     }, [router.asPath])
 
     return (
@@ -37,13 +37,13 @@ export default function NavSection() {
                     {windowWidth! > 639 && (
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
-                            <Link href="/">
+                            <Link href="/forum">
                                 <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
                             </Link>
-                            <Link href="/latest">
+                            <Link href="/forum/latest">
                                 <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
                             </Link>
-                            <Link href="/top">
+                            <Link href="/forum/top">
                                 <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
                             </Link>
                         </>
@@ -51,7 +51,7 @@ export default function NavSection() {
                 </Box>
                 <Box className="flex justify-end w-full mt-[20px]">
                     {user ? (
-                        <Link href="/post-question">
+                        <Link href="/forum/post-question">
                             <Button
                                 variant="contained"
                                 endIcon={<AddIcon />}
@@ -94,13 +94,13 @@ export default function NavSection() {
                 {windowWidth! < 639 && (
                     <>
                         <Box className="flex justify-end w-full mt-[15px] gap-x-4">
-                            <Link href="/">
+                            <Link href="/forum">
                                 <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
                             </Link>
-                            <Link href="/latest">
+                            <Link href="/forum/latest">
                                 <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
                             </Link>
-                            <Link href="/top">
+                            <Link href="/forum/top">
                                 <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
                             </Link>
                         </Box>

@@ -9,11 +9,10 @@ const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link href={`categories/${data[0]?.attributes.category}`}>
+                <Link href={`forum/categories/${data[0]?.attributes.category}`}>
                     <Box className="flex justify-between items-center py-2">
                         <div className="textColor2 text-[22px] cursor-pointer">
-                            {data[0]?.attributes.category.charAt(0).toUpperCase() +
-                                data[0]?.attributes.category.slice(1)}
+                            {data[0]?.attributes.category.charAt(0).toUpperCase() + data[0]?.attributes.category.slice(1)}
                         </div>
                         <div className="textColor1">
                             <span className="font-bold">{data.length}</span> / total

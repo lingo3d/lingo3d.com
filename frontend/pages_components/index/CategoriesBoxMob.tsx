@@ -11,11 +11,10 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({ data }) =>
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link href={`categories/${data[0]?.attributes.category}`}>
+                <Link href={`forum/categories/${data[0]?.attributes.category}`}>
                     <div className="flex justify-between items-center py-2">
                         <div className="textColor2 text-[22px]">
-                            {data[0]?.attributes.category.charAt(0).toUpperCase() +
-                                data[0]?.attributes.category.slice(1)}
+                            {data[0]?.attributes.category.charAt(0).toUpperCase() + data[0]?.attributes.category.slice(1)}
                         </div>
                         <CommentIcon className="textColor2" />
                     </div>
@@ -24,8 +23,8 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({ data }) =>
                 {top3.map((m, i) => (
                     <Link
                         key={m.id}
-                        href={`thread/${m.id}/${m.attributes.title}`}
-                        as={`thread/${m.id}/${m.attributes.title.replace(/ /g, "-")}`}
+                        href={`forum/thread/${m.id}/${m.attributes.title}`}
+                        as={`forum/thread/${m.id}/${m.attributes.title.replace(/ /g, "-")}`}
                     >
                         <div key={m.id} className="borderTop flex justify-between items-stretch py-2">
                             <div className="text-[16px] textColor1 flex flex-1 pr-2">

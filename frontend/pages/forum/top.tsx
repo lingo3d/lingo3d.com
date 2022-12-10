@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { NextPage, GetStaticProps } from "next"
-import { Response } from "../types"
-import ThreadOverview from "../components/ThreadOverview"
-import NavSection from "../components/navSection"
+import { Response } from "../../types"
+import ThreadOverview from "../../components/ThreadOverview"
+import NavSection from "../../components/navSection"
 import { Box } from "@mui/material"
 import Pagination from "@mui/material/Pagination"
 
@@ -37,10 +37,9 @@ const Top: NextPage<{ data: Response }> = ({ data }) => {
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
@@ -59,10 +58,9 @@ const Top: NextPage<{ data: Response }> = ({ data }) => {
                     sx={{
                         maxWidth: "max-content",
                         marginTop: "25px",
-                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary":
-                            {
-                                color: "#F4F4F9"
-                            }
+                        "&.MuiPaginationItem-textSecondary, .MuiPaginationItem-textSecondary": {
+                            color: "#F4F4F9"
+                        }
                     }}
                     page={pageIndex}
                 />
@@ -72,9 +70,7 @@ const Top: NextPage<{ data: Response }> = ({ data }) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    let response = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=1&sort=answers%3Adesc&`
-    )
+    let response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=1&sort=answers%3Adesc&`)
     let data = await response.json()
 
     return {
