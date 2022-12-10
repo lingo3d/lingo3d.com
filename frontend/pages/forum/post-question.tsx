@@ -1,6 +1,6 @@
 import { NextPage } from "next"
 import { useState } from "react"
-import { useUser } from "../context/user"
+import { useUser } from "../../context/user"
 import Cookies from "js-cookie"
 import Link from "next/link"
 import Button from "@mui/material/Button"

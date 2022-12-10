@@ -15,7 +15,7 @@ import Box from "@mui/material/Box"
 import EditIcon from "@mui/icons-material/Edit"
 import SaveIcon from "@mui/icons-material/Save"
 import ClearIcon from "@mui/icons-material/Clear"
-import { ActivateReply } from "../../pages/thread/[...id]"
+import { ActivateReply } from "../../pages/forum/thread/[...id]"
 
 type Data = {
     data: ThreadOptions
