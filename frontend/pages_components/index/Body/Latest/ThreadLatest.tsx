@@ -1,8 +1,8 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { ThreadOptions } from "../../types"
-import profilePic from "../../public/avatar2.png"
+import { ThreadOptions } from "../../../../types"
+import profilePic from "../../../../public/avatar2.png"
 import Box from "@mui/material/Box"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
 

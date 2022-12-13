@@ -89,43 +89,45 @@ const viewThread: NextPage<{
 
     return (
         <>
-            {/* <Box sx={{ marginTop: "25px" }}>
+            <Box>
+                {/* <Box sx={{ marginTop: "25px" }}>
                 <Breadcrumbs />
             </Box> */}
-            <Box sx={{ marginTop: "25px" }}>
-                <Title title={data.data.attributes.title} />
-                <Metadata
-                    username={data.data.attributes.username}
-                    createdAt={data.data.attributes.createdAt.split("T")[0]}
-                    tags={data.data.attributes.tags}
-                />
-            </Box>
-            <TopPost data={data} user={user} activateReply={activateReply} />
-            {/* <Box sx={{ marginTop: "25px" }}>
+                <Box>
+                    <Title title={data.data.attributes.title} />
+                    <Metadata
+                        username={data.data.attributes.username}
+                        createdAt={data.data.attributes.createdAt.split("T")[0]}
+                        tags={data.data.attributes.tags}
+                    />
+                </Box>
+                <TopPost data={data} user={user} activateReply={activateReply} />
+                {/* <Box sx={{ marginTop: "25px" }}>
                 <Pagination count={5} color="secondary" />
             </Box> */}
-            {data.data.attributes.answers &&
-                data.data.attributes.answers.map((m, i) => (
-                    <Box key={i}>
-                        <Answers answer={m} index={i} data={data} user={user} activateReply={activateReply} />
-                    </Box>
-                ))}
-            {replyArea && (
-                <div ref={replyareaRef} className="border-[1px] border-[#F4F4F9] rounded textColor2 mt-[25px] p-2 text-[13px] relative">
-                    <div>
-                        Reply to: <span className="italic">{userToReply}</span>
+                {data.data.attributes.answers &&
+                    data.data.attributes.answers.map((m, i) => (
+                        <Box key={i}>
+                            <Answers answer={m} index={i} data={data} user={user} activateReply={activateReply} />
+                        </Box>
+                    ))}
+                {replyArea && (
+                    <div ref={replyareaRef} className="border-[1px] border-[#F4F4F9] rounded textColor2 mt-[25px] p-2 text-[13px] relative">
+                        <div>
+                            Reply to: <span className="italic">{userToReply}</span>
+                        </div>
+                        <div>
+                            Text: <span className="italic whitespace-pre-line">{textToReply}</span>{" "}
+                        </div>
+                        <CloseIcon className="absolute right-2 top-2 cursor-pointer" onClick={() => cancelReply()} />
                     </div>
-                    <div>
-                        Text: <span className="italic whitespace-pre-line">{textToReply}</span>{" "}
-                    </div>
-                    <CloseIcon className="absolute right-2 top-2 cursor-pointer" onClick={() => cancelReply()} />
-                </div>
-            )}
-            {user && <AddComment setAnswer={setAnswer} submitAnswer={submitAnswer} answer={answer} />}
+                )}
+                {user && <AddComment setAnswer={setAnswer} submitAnswer={submitAnswer} answer={answer} />}
 
-            {/* <Box sx={{ marginTop: "25px" }}>
+                {/* <Box sx={{ marginTop: "25px" }}>
                 <RichTextEditor />
             </Box> */}
+            </Box>
         </>
     )
 }

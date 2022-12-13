@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <NavBar />
                 {loading && <Loader />}
                 <ErrorBoundary>
-                    <div className="px-[35px] md:px-[70px] lg:px-[220px]">
+                    <div className="px-[35px] md:px-[70px] lg:px-[220px] mt-[94px]">
                         <Component className="px-[35px]" {...pageProps} />
                     </div>
                 </ErrorBoundary>

@@ -1,8 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useUser } from "../context/user"
 import { unsetToken as logout } from "../pages/api/auth/js-cookie"
 import Image from "next/image"
+import Link from "next/link"
+import { useWindowWidth } from "@react-hook/window-size"
 import logo from "../public/logo.png"
+import logo_short from "../public/logo_short.png"
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -18,43 +21,54 @@ const ButtonAppBar: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
     const [displayRegister, setDisplayRegister] = useState<boolean>(false)
     const user = useUser()
+    const [windowWidth, setWindowWidth] = useState<number | undefined>()
+    const width = useWindowWidth()
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
-    const handleClick = (
-        event: React.MouseEvent<HTMLDivElement, MouseEvent>
-    ) => {
+
+    useEffect(() => {
+        setWindowWidth(width)
+    }, [])
+
+    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setAnchorEl(event.currentTarget)
     }
+
     const handleClose = () => {
         setAnchorEl(null)
     }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" sx={{ background: "black" }}>
-                <Toolbar
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                >
-                    <>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Image src={logo} width={100} height={20} alt="logo" />
+            <AppBar className="bg-[rgba(0,0,0,0.5)] backdrop-blur-xl">
+                <Toolbar sx={{ display: "flex", justifyContent: "space-between", width: "100%", maxWidth: "1088px", margin: "auto" }}>
+                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum`}>
+                        <Box sx={{ display: "flex", flexDirection: "row" }}>
+                            {windowWidth! > 600 ? (
+                                <Image src={logo} width={127} height={24} alt="logo" />
+                            ) : (
+                                <Image src={logo} width={90} height={16} alt="logo" />
+                            )}
+
+                            <div className="bg-[#293ab9] px-2 rounded flex justify-center items-center ml-2">
+                                <span className="text-xs font-medium">FORUM</span>
+                            </div>
+                        </Box>
+                    </Link>
+
+                    <Box>
                         {!user && (
                             <>
                                 <Button
                                     onClick={() => setShowModal(true)}
                                     sx={{
-                                        background: "#293ab9 !important",
+                                        background: "rgb(42, 58, 185) !important",
                                         color: "#F4F4F9",
-                                        padding: "8px 16px 8px 16px"
+                                        padding: "4px 16px",
+                                        outline: "transparent",
+                                        borderRadius: "2px",
+                                        border: "1px solid rgb(138, 136, 134)"
                                     }}
                                 >
                                     Login
@@ -62,15 +76,17 @@ const ButtonAppBar: React.FC = () => {
                             </>
                         )}
                         {user && (
-                            <>
+                            <Box className="flex justify-center items-center gap-x-2">
+                                {/* <IconButton edge="start" color="inherit" aria-label="menu">
+                                    <MenuIcon className="cursor-pointer w-[35px] h-[35px] sm:w-[40px] sm:h-[40px]" />
+                                </IconButton> */}
                                 <Avatar
                                     onClick={(e) => handleClick(e)}
-                                    sx={{ bgcolor: "deepOrange[500]" }}
-                                    variant="rounded"
-                                    className="cursor-pointer"
-                                >
-                                    OP
-                                </Avatar>
+                                    // sx={{ width: "30px", height: "30px" }}
+                                    // variant="rounded"
+                                    className="cursor-pointer w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
+                                />
+
                                 <Menu
                                     id="basic-menu"
                                     anchorEl={anchorEl}
@@ -80,13 +96,13 @@ const ButtonAppBar: React.FC = () => {
                                         "aria-labelledby": "basic-button"
                                     }}
                                 >
-                                    <MenuItem onClick={() => logout()}>
+                                    <MenuItem sx={{ paddingTop: "0", paddingBottom: "0" }} onClick={() => logout()}>
                                         Logout
                                     </MenuItem>
                                 </Menu>
-                            </>
+                            </Box>
                         )}
-                    </>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <Modal

@@ -1,5 +1,5 @@
 import React from "react"
-import { ThreadOptions } from "../../types"
+import { ThreadOptions } from "../../../../../types"
 import Link from "next/link"
 import CommentIcon from "@mui/icons-material/Comment"
 import Box from "@mui/material/Box"

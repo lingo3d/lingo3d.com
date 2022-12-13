@@ -60,11 +60,6 @@ const UploadThread: NextPage = () => {
 
     return (
         <>
-            <div className="flex justify-end textColor2 mt-[20px]">
-                <Link href="/forum">
-                    <button>Home</button>
-                </Link>
-            </div>
             <div className="mt-[30px]">
                 <Box className="flex flex-col justify-center items-center">
                     <input
