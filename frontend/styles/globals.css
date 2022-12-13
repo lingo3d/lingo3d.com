@@ -52,6 +52,10 @@ body {
 .Mui-selected {
     background: #081F4B !important;
 }
+.appBar {
+    backdrop-filter: blur(24px);
+    background: rgba(0, 0, 0, 0.5);
+}
 
 /* LOST IN BUILD PROCESS */
 /* .MuiPaginationItem-text, .MuiPaginationItem-textSecondary {
