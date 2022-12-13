@@ -82,9 +82,7 @@ const ButtonAppBar: React.FC = () => {
                                 </IconButton> */}
                                 <Avatar
                                     onClick={(e) => handleClick(e)}
-                                    // sx={{ width: "30px", height: "30px" }}
-                                    // variant="rounded"
-                                    className="cursor-pointer w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"
+                                    className="cursor-pointer w-[30px] h-[30px] sm:w-[35px] sm:h-[35px]"
                                 />
 
                                 <Menu
