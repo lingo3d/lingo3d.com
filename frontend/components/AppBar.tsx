@@ -41,7 +41,7 @@ const ButtonAppBar: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar className="appBar">
+            <AppBar sx={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(24px)" }}>
                 <Toolbar sx={{ display: "flex", justifyContent: "space-between", width: "100%", maxWidth: "1088px", margin: "auto" }}>
                     <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum`}>
                         <Box sx={{ display: "flex", flexDirection: "row" }}>
