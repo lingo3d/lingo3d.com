@@ -5,6 +5,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './pages_components/**/*.{js,ts,jsx,tsx}',
   ],
+  safelist: [
+    'bg-[rgba(0,0,0,0.5)]',
+    'backdrop-blur-xl'
+  ],
   theme: {
     extend: {},
   },
