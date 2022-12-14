@@ -6,6 +6,7 @@ import Link from "next/link"
 import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 import CloseIcon from "@mui/icons-material/Close"
+import Input from "@mui/material/Input"
 
 const UploadThread: NextPage = () => {
     const [title, setTitle] = useState("")
@@ -63,9 +64,9 @@ const UploadThread: NextPage = () => {
             <div className="mt-[30px]">
                 <Box className="flex flex-col justify-center items-center">
                     <input
-                        type="text"
                         value={title}
-                        onChange={(e) => setTitle(e.target.value.replace(/[^\w\s]/gi, ""))}
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value.replace("\\", "").replace("//", ""))}
                         placeholder="Enter your title"
                         maxLength={74}
                         className="w-full p-1 border-2"
