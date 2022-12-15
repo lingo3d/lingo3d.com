@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import SelectCategory from "./SelectCategory"
 import SelectTags from "./SelectTags"
+import SelectSection from "./SelectSection"
 import Button from "@mui/material/Button"
 import AddIcon from "@mui/icons-material/Add"
 import Box from "@mui/material/Box"
@@ -27,14 +28,15 @@ export default function NavSection() {
 
     return (
         <>
-            <Box className="flex flex-wrap justify-between items-center">
-                <Box
-                    sx={{ marginTop: "25px" }}
-                    className="flex flex-wrap w-full justify-between sm:justify-start items-center sm:gap-x-8 lg:gap-x-12 gap-y-6 "
-                >
-                    <SelectCategory windowWidth={windowWidth} />
-                    <SelectTags windowWidth={windowWidth} />
-                    {windowWidth! > 639 && (
+            {windowWidth! > 629 && (
+                <Box className="flex flex-wrap justify-between items-center">
+                    <Box
+                        sx={{ marginTop: "25px" }}
+                        className="flex flex-wrap w-full justify-between sm:justify-start items-center sm:gap-x-8 lg:gap-x-12 gap-y-6 "
+                    >
+                        <SelectCategory windowWidth={windowWidth} />
+                        <SelectTags windowWidth={windowWidth} />
+
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
                             <Link href="/forum">
@@ -47,13 +49,12 @@ export default function NavSection() {
                                 <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
                             </Link>
                         </>
-                    )}
-                </Box>
-                <Box className="flex justify-end w-full mt-[20px]">
-                    {user ? (
-                        <Link href="/forum/post-question">
+                    </Box>
+                    <Box className="flex justify-end w-full mt-[20px]">
+                        <Link href="/forum/post-question" className={user ? "" : "pointer-events-none"}>
                             <Button
                                 variant="contained"
+                                disabled={user ? false : true}
                                 endIcon={<AddIcon />}
                                 sx={{
                                     margin: 0,
@@ -70,43 +71,14 @@ export default function NavSection() {
                                 New
                             </Button>
                         </Link>
-                    ) : (
-                        <Button
-                            variant="contained"
-                            endIcon={<AddIcon />}
-                            disabled
-                            sx={{
-                                margin: 0,
-                                textTransform: "none",
-                                fontSize: "16px",
-                                cursor: "pointer",
-                                padding: windowWidth! < 640 ? "2px 12px" : "5px 20px",
-                                color: "#F4F4F9",
-                                "&.MuiButton-contained": {
-                                    backgroundColor: "#86A1D8"
-                                }
-                            }}
-                        >
-                            New
-                        </Button>
-                    )}
+                    </Box>
                 </Box>
-                {windowWidth! < 639 && (
-                    <>
-                        <Box className="flex justify-end w-full mt-[15px] gap-x-4">
-                            <Link href="/forum">
-                                <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
-                            </Link>
-                            <Link href="/forum/latest">
-                                <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
-                            </Link>
-                            <Link href="/forum/top">
-                                <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
-                            </Link>
-                        </Box>
-                    </>
-                )}
-            </Box>
+            )}
+            {windowWidth! < 630 && (
+                <Box className="flex flex-wrap justify-between items-center">
+                    <SelectSection />
+                </Box>
+            )}
         </>
     )
 }

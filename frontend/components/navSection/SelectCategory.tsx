@@ -4,7 +4,6 @@ import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
-import Link from "next/link"
 
 const SelectCategory: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) => {
     const [category, setCategory] = useState<string>("Categories")
@@ -29,18 +28,18 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({ windowWidth 
 
     return (
         <FormControl
-            variant={windowWidth! > 639 ? "outlined" : "standard"}
+            variant="outlined"
             sx={{
                 minWidth: 120,
-                backgroundColor: windowWidth! > 639 ? "#86A1D8" : "transparent",
+                backgroundColor: "#86A1D8",
                 padding: 0,
-                borderBottom: windowWidth! > 639 ? "transparent" : "0.5px solid #F4F4F9!important",
+                borderBottom: "transparent",
                 margin: 0,
                 ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
                     color: "#F4F4F9"
                 }
             }}
-            className="sm:rounded-md"
+            className="rounded-md"
             size="small"
         >
             <InputLabel id="demo-select-small" sx={{ color: "#F4F4F9", fontSize: "14px" }}>
