@@ -90,9 +90,6 @@ const viewThread: NextPage<{
     return (
         <>
             <Box>
-                {/* <Box sx={{ marginTop: "25px" }}>
-                <Breadcrumbs />
-            </Box> */}
                 <Box>
                     <Title title={data.data.attributes.title} />
                     <Metadata

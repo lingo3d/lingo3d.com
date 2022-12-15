@@ -78,14 +78,23 @@ export default function NavSection() {
                 </Box>
             )}
             {windowWidth! < 630 && (
-                <Box className="flex flex-wrap justify-between items-center">
-                    {displayExtraMenus && (
-                        <Box className="w-full flex justify-between mb-[20px]">
-                            <SelectCategory windowWidth={windowWidth} />
-                            <SelectTags windowWidth={windowWidth} />
+                <Box>
+                    <Box className="w-full flex flex-col justify-between items-center">
+                        {displayExtraMenus && (
+                            <Box className="w-full flex justify-between mb-[20px]">
+                                <SelectCategory windowWidth={windowWidth} />
+                                <SelectTags windowWidth={windowWidth} />
+                            </Box>
+                        )}
+                        <Box className="w-full flex justify-between items-center">
+                            <SelectSection />
+                            {user && (
+                                <AddIcon
+                                    sx={{ color: "#F4F4F9", background: "#86A1D8", width: "30px", height: "30px", borderRadius: "4px" }}
+                                />
+                            )}
                         </Box>
-                    )}
-                    <SelectSection />
+                    </Box>
                 </Box>
             )}
         </>
