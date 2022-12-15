@@ -1,21 +1,26 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import InputLabel from "@mui/material/InputLabel"
-import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
+import MenuItem from "@mui/material/MenuItem"
+import SelectCategory from "./SelectCategory"
+import SelectTags from "./SelectTags"
+import { useWindowWidth } from "@react-hook/window-size"
 
 const SelectSection: React.FC = () => {
     const [section, setSection] = useState<string>("Categories")
-    const [displayExtraMenus, setDisplayExtraMenus] = useState(false)
+
     const router = useRouter()
+    const [windowWidth, setWindowWidth] = useState<number | null>(null)
+    const width = useWindowWidth()
 
     useEffect(() => {
+        setWindowWidth(width)
         if (router.pathname.startsWith("/forum/top")) setSection("Top")
         if (router.pathname.startsWith("/forum/latest")) setSection("Latest")
         if (router.pathname.startsWith("/forum/categories")) setSection("Categories")
-
-        if (router.pathname.startsWith("/forum/tags") || router.pathname.startsWith("/forum/categories")) setDisplayExtraMenus(true)
+        if (router.pathname.startsWith("/forum/tags")) setSection("Tags")
     }, [router.asPath])
 
     const handleChange = (section: string) => {

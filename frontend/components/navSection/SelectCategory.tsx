@@ -28,18 +28,18 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({ windowWidth 
 
     return (
         <FormControl
-            variant="outlined"
+            variant={windowWidth! > 639 ? "outlined" : "standard"}
             sx={{
                 minWidth: 120,
-                backgroundColor: "#86A1D8",
+                backgroundColor: windowWidth! > 639 ? "#86A1D8" : "transparent",
                 padding: 0,
-                borderBottom: "transparent",
+                borderBottom: windowWidth! > 639 ? "transparent" : "0.5px solid #F4F4F9!important",
                 margin: 0,
                 ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
                     color: "#F4F4F9"
                 }
             }}
-            className="rounded-md"
+            className="sm:rounded-md"
             size="small"
         >
             <InputLabel id="demo-select-small" sx={{ color: "#F4F4F9", fontSize: "14px" }}>

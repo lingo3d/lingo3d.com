@@ -15,7 +15,6 @@ body {
 :root {
     --primaryText: #86A1D8;
     --secondaryText: #F4F4F9;
-    --CallToAction: #86A1D8;
     --borderLine: 0.1px solid #86A1D8;
     --pagination: #081F4B;
 }
@@ -25,9 +24,6 @@ body {
 }
 .textColor2 {
     color: var( --secondaryText)
-}
-.ctaColor {
-    color: var(--CallToAction)
 }
 .borderTop {
     border-top: 0.5px solid rgba(134, 161, 216, 0.3);

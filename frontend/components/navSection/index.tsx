@@ -13,6 +13,7 @@ import { useUser } from "../../context/user"
 
 export default function NavSection() {
     const [windowWidth, setWindowWidth] = useState<number | null>(null)
+    const [displayExtraMenus, setDisplayExtraMenus] = useState(false)
     const [active, setActive] = useState("")
     const width = useWindowWidth()
     const user = useUser()
@@ -24,6 +25,8 @@ export default function NavSection() {
         if (router.pathname.startsWith("/forum/latest")) setActive("latest")
         if (router.pathname.startsWith("/forum/categories")) setActive("categories")
         if (router.pathname === "/forum") setActive("categories")
+
+        if (router.pathname.startsWith("/forum/tags") || router.pathname.startsWith("/forum/categories")) setDisplayExtraMenus(true)
     }, [router.asPath])
 
     return (
@@ -76,6 +79,12 @@ export default function NavSection() {
             )}
             {windowWidth! < 630 && (
                 <Box className="flex flex-wrap justify-between items-center">
+                    {displayExtraMenus && (
+                        <Box className="w-full flex justify-between mb-[20px]">
+                            <SelectCategory windowWidth={windowWidth} />
+                            <SelectTags windowWidth={windowWidth} />
+                        </Box>
+                    )}
                     <SelectSection />
                 </Box>
             )}
