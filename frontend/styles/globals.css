@@ -53,6 +53,10 @@ body {
     background: rgba(0, 0, 0, 0.5);
 }
 
+.ql-container {
+    min-height: 300px;
+}
+
 /* LOST IN BUILD PROCESS */
 /* .MuiPaginationItem-text, .MuiPaginationItem-textSecondary {
     color: #F4F4F9;

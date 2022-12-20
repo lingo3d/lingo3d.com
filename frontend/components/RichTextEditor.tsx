@@ -17,11 +17,7 @@ const modules = {
         ],
         [{ script: "sub" }, { script: "super" }],
         ["link", "image"]
-    ],
-    clipboard: {
-        // toggle to add extra line breaks when pasting HTML:
-        matchVisual: false
-    }
+    ]
 }
 
 const formats = [
@@ -41,23 +37,20 @@ const formats = [
     "video"
 ]
 
-const RichTextEditor: React.FC = () => {
-    const [value, setValue] = useState("")
+type changeFunction = (smth: any) => void
 
+const RichTextEditor: React.FC<{ handleChange: changeFunction }> = ({
+    handleChange
+}) => {
     return (
-        <div className="absolute bottom-0 left-0 right-0 h-screen w-screen">
-            <div>
-                <ReactQuill
-                    theme="snow"
-                    modules={modules}
-                    formats={formats}
-                    value={value}
-                    onChange={setValue}
-                    placeholder={"Write something awesome..."}
-                    className=" bg-white h-[80%] w-[50%] absolute bottom-0 "
-                />
-            </div>
-        </div>
+        <ReactQuill
+            theme="snow"
+            modules={modules}
+            formats={formats}
+            onChange={handleChange}
+            placeholder={"Enter thread text..."}
+            className=" bg-white w-full mt-[20px] rounded-sm"
+        />
     )
 }
 

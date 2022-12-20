@@ -7,10 +7,14 @@ import Button from "@mui/material/Button"
 import Box from "@mui/material/Box"
 import CloseIcon from "@mui/icons-material/Close"
 import Input from "@mui/material/Input"
+import ReactQuill from "react-quill"
+import "react-quill/dist/quill.snow.css"
+import RichTextEditor from "../../components/RichTextEditor"
 
 const UploadThread: NextPage = () => {
     const [title, setTitle] = useState("")
-    const [description, setDescription] = useState("")
+    // const [description, setDescription] = useState("")
+    const [richTextValue, setRichTextValue] = useState("")
     const [category, setCategory] = useState("")
     const [tags, setTags] = useState<Array<string>>([])
     const user = useUser()
@@ -26,28 +30,36 @@ const UploadThread: NextPage = () => {
         setTags(newTags)
     }
 
+    const handleChange = (smth: any) => {
+        console.log(smth)
+        setRichTextValue(smth)
+    }
+
     async function postThread(e: any) {
         e.preventDefault()
 
         const token = Cookies.get("jwt")
 
-        const postQuestion = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                data: {
-                    title,
-                    category,
-                    description,
-                    //@ts-ignore
-                    username: user.username,
-                    tags: tags.length === 0 ? null : tags
-                }
-            })
-        })
+        const postQuestion = await fetch(
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    data: {
+                        title,
+                        category,
+                        description: richTextValue,
+                        //@ts-ignore
+                        username: user.username,
+                        tags: tags.length === 0 ? null : tags
+                    }
+                })
+            }
+        )
 
         const data = await postQuestion.json()
 
@@ -61,81 +73,100 @@ const UploadThread: NextPage = () => {
 
     return (
         <>
-            <div className="mt-[30px]">
-                <Box className="flex flex-col justify-center items-center">
-                    <input
-                        value={title}
-                        type="text"
-                        onChange={(e) => setTitle(e.target.value.replace("\\", "").replace("//", ""))}
-                        placeholder="Enter your title"
-                        maxLength={74}
-                        className="w-full p-1 border-2"
-                    />
-                    <Box className="flex gap-x-4">
-                        <select onChange={(e) => setCategory(e.target.value)} className="mt-[20px]">
-                            <option>Choose category</option>
-                            <option value="announcements">Announcements</option>
-                            <option value="general discussion">General discussion</option>
-                            <option value="general coding">General coding</option>
-                            <option value="react api">React api</option>
-                            <option value="vue api">Vue api</option>
-                            <option value="animation">Animation</option>
-                            <option value="material">Material</option>
-                            <option value="networking">Networking</option>
-                            <option value="physics">Physics</option>
-                        </select>
-                        <select onChange={(e) => addTags(e)} className="mt-[20px]">
-                            <option>Choose tags</option>
-                            <option value="math">math</option>
-                            <option value="buffergeometry">buffergeometry</option>
-                            <option value="shadow">shadow</option>
-                            <option value="getting-started">getting-started</option>
-                            <option value="lights">lights</option>
-                            <option value="editor">editor</option>
-                            <option value="instanced-mesh">instanced-mesh</option>
-                            <option value="camera-controls">camera-controls</option>
-                            <option value="modules">modules</option>
-                            <option value="mesh">mesh</option>
-                        </select>
-                    </Box>
-                    <textarea
+            <Box className="flex flex-col justify-center items-center mt-[30px] bg-[#F4F4F9] p-4 rounded">
+                <input
+                    value={title}
+                    type="text"
+                    onChange={(e) =>
+                        setTitle(
+                            e.target.value.replace("\\", "").replace("//", "")
+                        )
+                    }
+                    placeholder="Thread title"
+                    maxLength={74}
+                    className="w-full p-1 rounded-sm"
+                />
+
+                <RichTextEditor handleChange={handleChange} />
+                {/* <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         className="w-full p-1 border-2 mt-[20px]"
                         placeholder="Enter your description"
                         rows={8}
-                    />
-                    <Box className="w-full bg-white mt-[25px] p-2 flex">
-                        <div className="mr-[5px]">Tags Chosen:</div>
-                        <ul className="flex flex-wrap gap-x-2">
-                            {tags.map((m, i) => (
-                                <li key={i} className="bg-[#E9E9E9] text-[#646464] flex justify-between items-center rounded">
-                                    <div className="px-2">{m}</div>
-                                    <CloseIcon onClick={() => removeTags(i)} fontSize="small" className="cursor-pointer" />
-                                </li>
-                            ))}
-                        </ul>
-                    </Box>
-                    <Button
-                        onClick={(e) => postThread(e)}
-                        disabled={title && category && description ? false : true}
-                        variant="contained"
-                        sx={{
-                            padding: "10px",
-                            marginTop: "40px",
-                            textTransform: "none",
-                            fontSize: "16px",
-                            color: "#F4F4F9",
-                            "&.MuiButton-contained": {
-                                backgroundColor: "#86A1D8",
-                                width: "100%"
-                            }
-                        }}
+                    /> */}
+                <Box className="w-full flex justify-start gap-x-4">
+                    <select
+                        onChange={(e) => setCategory(e.target.value)}
+                        className="mt-[20px] w-[50%] p-2 rounded-sm"
                     >
-                        Submit Question
-                    </Button>
+                        <option>Choose category</option>
+                        <option value="announcements">Announcements</option>
+                        <option value="general discussion">
+                            General discussion
+                        </option>
+                        <option value="general coding">General coding</option>
+                        <option value="react api">React api</option>
+                        <option value="vue api">Vue api</option>
+                        <option value="animation">Animation</option>
+                        <option value="material">Material</option>
+                        <option value="networking">Networking</option>
+                        <option value="physics">Physics</option>
+                    </select>
+                    <select
+                        onChange={(e) => addTags(e)}
+                        className="mt-[20px] w-[50%] p-2 rounded-sm"
+                    >
+                        <option>Choose tags</option>
+                        <option value="math">math</option>
+                        <option value="buffergeometry">buffergeometry</option>
+                        <option value="shadow">shadow</option>
+                        <option value="getting-started">getting-started</option>
+                        <option value="lights">lights</option>
+                        <option value="editor">editor</option>
+                        <option value="instanced-mesh">instanced-mesh</option>
+                        <option value="camera-controls">camera-controls</option>
+                        <option value="modules">modules</option>
+                        <option value="mesh">mesh</option>
+                    </select>
                 </Box>
-            </div>
+                <Box className="w-full bg-white mt-[25px] p-2 flex rounded-sm">
+                    <div className="mr-[5px]">Tags Chosen:</div>
+                    <ul className="flex flex-wrap gap-x-2">
+                        {tags.map((m, i) => (
+                            <li
+                                key={i}
+                                className="bg-[#E9E9E9] text-[#646464] flex justify-between items-center rounded"
+                            >
+                                <div className="px-2">{m}</div>
+                                <CloseIcon
+                                    onClick={() => removeTags(i)}
+                                    fontSize="small"
+                                    className="cursor-pointer"
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </Box>
+                <Button
+                    onClick={(e) => postThread(e)}
+                    // disabled={title && category && description ? false : true}
+                    variant="contained"
+                    sx={{
+                        padding: "10px",
+                        marginTop: "20px",
+                        textTransform: "none",
+                        fontSize: "16px",
+                        color: "#F4F4F9",
+                        "&.MuiButton-contained": {
+                            backgroundColor: "#86A1D8",
+                            width: "100%"
+                        }
+                    }}
+                >
+                    Submit Question
+                </Button>
+            </Box>
         </>
     )
 }
