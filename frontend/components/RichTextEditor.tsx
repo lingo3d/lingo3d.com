@@ -54,7 +54,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             value={value}
             formats={formats}
             placeholder={"Enter thread text..."}
-            className=" bg-white w-full mt-[20px] rounded-sm"
+            className=" bg-white w-full mt-[20px] rounded-sm text-black"
         />
     )
 }

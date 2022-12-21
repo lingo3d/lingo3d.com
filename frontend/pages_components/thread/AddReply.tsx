@@ -1,21 +1,16 @@
 import Button from "@mui/material/Button"
+import RichTextEditor from "../../components/RichTextEditor"
 
-type AddCommentProps = {
-    setAnswer: (value: string) => void
+type AddReplyProps = {
+    handleChange: (value: string) => void
+    value: string
     submitAnswer: () => void
-    answer: string | undefined
 }
 
-const AddComment = ({ setAnswer, submitAnswer, answer }: AddCommentProps) => {
+const AddReply = ({ handleChange, value, submitAnswer }: AddReplyProps) => {
     return (
         <>
-            <textarea
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                className="w-full p-1 border-2 mt-[20px]"
-                placeholder="Enter your answer"
-                rows={8}
-            />
+            <RichTextEditor handleChange={handleChange} value={value} />
             <Button
                 onClick={() => {
                     submitAnswer()
@@ -39,4 +34,4 @@ const AddComment = ({ setAnswer, submitAnswer, answer }: AddCommentProps) => {
     )
 }
 
-export default AddComment
+export default AddReply

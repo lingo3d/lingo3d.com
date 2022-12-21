@@ -8,7 +8,7 @@ import { ThreadAnswer, SingleThread } from "../../../types"
 import TopPost from "../../../pages_components/thread/TopPost"
 import Title from "../../../pages_components/thread/Title"
 import Metadata from "../../../pages_components/thread/Metadata"
-import AddComment from "../../../pages_components/thread/AddComment"
+import AddReply from "../../../pages_components/thread/AddReply"
 import Answers from "../../../pages_components/thread/Answers"
 import Box from "@mui/material/Box"
 import CloseIcon from "@mui/icons-material/Close"
@@ -20,12 +20,16 @@ const viewThread: NextPage<{
     formerArray: ThreadAnswer[] | []
 }> = ({ data, formerArray }) => {
     const router = useRouter()
-    const [answer, setAnswer] = useState<undefined | string>()
+    const [answer, setAnswer] = useState<string>("")
     const [replyArea, setReplyArea] = useState<boolean>(false)
     const [userToReply, setUserToReply] = useState<string | null>(null)
     const [textToReply, setTextToReply] = useState<string | null>(null)
     const replyareaRef = useRef<null | HTMLDivElement>(null)
     const user: any = useUser()
+
+    const handleChange = (output: string) => {
+        setAnswer(output)
+    }
 
     const submitAnswer = () => {
         if (!answer) return alert("empty")
@@ -143,16 +147,12 @@ const viewThread: NextPage<{
                     </div>
                 )}
                 {user && (
-                    <AddComment
-                        setAnswer={setAnswer}
+                    <AddReply
+                        handleChange={handleChange}
+                        value={answer}
                         submitAnswer={submitAnswer}
-                        answer={answer}
                     />
                 )}
-
-                {/* <Box sx={{ marginTop: "25px" }}>
-                <RichTextEditor />
-            </Box> */}
             </Box>
         </>
     )
