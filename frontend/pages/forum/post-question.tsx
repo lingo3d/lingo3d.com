@@ -145,7 +145,7 @@ const UploadThread: NextPage = () => {
                 </Box>
                 <Button
                     onClick={(e) => postThread(e)}
-                    // disabled={title && category && description ? false : true}
+                    disabled={title && category && richTextValue ? false : true}
                     variant="contained"
                     sx={{
                         padding: "10px",
