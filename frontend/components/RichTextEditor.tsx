@@ -37,17 +37,22 @@ const formats = [
     "video"
 ]
 
-type changeFunction = (smth: any) => void
+type RichTextEditorProps = {
+    handleChange: (output: string) => void
+    value: string
+}
 
-const RichTextEditor: React.FC<{ handleChange: changeFunction }> = ({
-    handleChange
+const RichTextEditor: React.FC<RichTextEditorProps> = ({
+    handleChange,
+    value
 }) => {
     return (
         <ReactQuill
             theme="snow"
             modules={modules}
-            formats={formats}
             onChange={handleChange}
+            value={value}
+            formats={formats}
             placeholder={"Enter thread text..."}
             className=" bg-white w-full mt-[20px] rounded-sm"
         />

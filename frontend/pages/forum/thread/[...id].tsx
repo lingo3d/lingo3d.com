@@ -32,27 +32,30 @@ const viewThread: NextPage<{
 
         const token = Cookies.get("jwt")
 
-        fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${data.data.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                data: {
-                    answers: [
-                        ...formerArray,
-                        {
-                            answer,
-                            username: user.username,
-                            replied: replyArea,
-                            userToReply,
-                            textToReply
-                        }
-                    ]
-                }
-            })
-        })
+        fetch(
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${data.data.id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    data: {
+                        answers: [
+                            ...formerArray,
+                            {
+                                answer,
+                                username: user.username,
+                                replied: replyArea,
+                                userToReply,
+                                textToReply
+                            }
+                        ]
+                    }
+                })
+            }
+        )
             .then((res) => res.json())
             .then(() => {
                 setAnswer("")
@@ -98,28 +101,54 @@ const viewThread: NextPage<{
                         tags={data.data.attributes.tags}
                     />
                 </Box>
-                <TopPost data={data} user={user} activateReply={activateReply} />
+                <TopPost
+                    data={data}
+                    user={user}
+                    activateReply={activateReply}
+                />
                 {/* <Box sx={{ marginTop: "25px" }}>
                 <Pagination count={5} color="secondary" />
             </Box> */}
                 {data.data.attributes.answers &&
                     data.data.attributes.answers.map((m, i) => (
                         <Box key={i}>
-                            <Answers answer={m} index={i} data={data} user={user} activateReply={activateReply} />
+                            <Answers
+                                answer={m}
+                                index={i}
+                                data={data}
+                                user={user}
+                                activateReply={activateReply}
+                            />
                         </Box>
                     ))}
                 {replyArea && (
-                    <div ref={replyareaRef} className="border-[1px] border-[#F4F4F9] rounded textColor2 mt-[25px] p-2 text-[13px] relative">
+                    <div
+                        ref={replyareaRef}
+                        className="border-[1px] border-[#F4F4F9] rounded textColor2 mt-[25px] p-2 text-[13px] relative"
+                    >
                         <div>
-                            Reply to: <span className="italic">{userToReply}</span>
+                            Reply to:{" "}
+                            <span className="italic">{userToReply}</span>
                         </div>
                         <div>
-                            Text: <span className="italic whitespace-pre-line">{textToReply}</span>{" "}
+                            Text:{" "}
+                            <span className="italic whitespace-pre-line">
+                                {textToReply}
+                            </span>{" "}
                         </div>
-                        <CloseIcon className="absolute right-2 top-2 cursor-pointer" onClick={() => cancelReply()} />
+                        <CloseIcon
+                            className="absolute right-2 top-2 cursor-pointer"
+                            onClick={() => cancelReply()}
+                        />
                     </div>
                 )}
-                {user && <AddComment setAnswer={setAnswer} submitAnswer={submitAnswer} answer={answer} />}
+                {user && (
+                    <AddComment
+                        setAnswer={setAnswer}
+                        submitAnswer={submitAnswer}
+                        answer={answer}
+                    />
+                )}
 
                 {/* <Box sx={{ marginTop: "25px" }}>
                 <RichTextEditor />
@@ -129,9 +158,13 @@ const viewThread: NextPage<{
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }: any) => {
+export const getServerSideProps: GetServerSideProps = async ({
+    params
+}: any) => {
     const id = params.id[0]
-    let response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${id}`)
+    let response = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads/${id}`
+    )
     let data = await response.json()
     let formerArray = data.data.attributes.answers || []
 

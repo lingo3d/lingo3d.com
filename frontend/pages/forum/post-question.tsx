@@ -30,9 +30,8 @@ const UploadThread: NextPage = () => {
         setTags(newTags)
     }
 
-    const handleChange = (smth: any) => {
-        console.log(smth)
-        setRichTextValue(smth)
+    const handleChange = (output: string) => {
+        setRichTextValue(output)
     }
 
     async function postThread(e: any) {
@@ -87,7 +86,10 @@ const UploadThread: NextPage = () => {
                     className="w-full p-1 rounded-sm"
                 />
 
-                <RichTextEditor handleChange={handleChange} />
+                <RichTextEditor
+                    handleChange={handleChange}
+                    value={richTextValue}
+                />
                 <Box className="w-full flex justify-start gap-x-4">
                     <select
                         onChange={(e) => setCategory(e.target.value)}

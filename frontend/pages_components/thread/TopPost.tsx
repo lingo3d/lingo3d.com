@@ -14,6 +14,7 @@ import Box from "@mui/material/Box"
 import EditIcon from "@mui/icons-material/Edit"
 import SaveIcon from "@mui/icons-material/Save"
 import ClearIcon from "@mui/icons-material/Clear"
+import RichTextEditor from "../../components/RichTextEditor"
 
 import { ActivateReply } from "../../pages/forum/thread/[...id]"
 
@@ -27,7 +28,6 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
     const [editMode, setEditMode] = useState(false)
     const [initialDescription, setInitialDescription] = useState("")
     const [editDescription, setEditDescription] = useState("")
-    const textareaRef = useRef<HTMLTextAreaElement | null>(null)
     const router = useRouter()
 
     useEffect(() => {
@@ -35,17 +35,12 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
         setEditDescription(data.data.attributes.description)
     }, [editMode])
 
+    const handleChange = (output: string) => {
+        setEditDescription(output)
+    }
+
     const handleEditClick = () => {
-        flushSync(() => {
-            setEditMode(true)
-        })
-        const textArea = textareaRef.current
-        if (!textArea) return
-        textArea.style.height = "auto"
-        textArea.style.height = textArea.scrollHeight + "px"
-        textArea.setSelectionRange(textArea.value.length, textArea.value.length)
-        //correct bottom line
-        // textArea.scrollTop = textArea.scrollHeight
+        setEditMode(true)
     }
 
     const saveEdit = (e: any) => {
@@ -118,15 +113,11 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
             </div>
             {/* <PostReply /> */}
             {editMode ? (
-                <textarea
+                <RichTextEditor
                     value={editDescription}
-                    onChange={(e) => setEditDescription(e.target.value)}
-                    ref={textareaRef}
-                    autoFocus
-                    className="w-full bg-transparent mt-[5px] border-[1px] border-[#F4F4F9]"
+                    handleChange={handleChange}
                 />
             ) : (
-                // <div className="mt-[10px] whitespace-pre-wrap">{data.data.attributes.description}</div>
                 <div
                     dangerouslySetInnerHTML={{
                         __html: data.data.attributes.description
