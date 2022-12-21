@@ -88,13 +88,6 @@ const UploadThread: NextPage = () => {
                 />
 
                 <RichTextEditor handleChange={handleChange} />
-                {/* <textarea
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="w-full p-1 border-2 mt-[20px]"
-                        placeholder="Enter your description"
-                        rows={8}
-                    /> */}
                 <Box className="w-full flex justify-start gap-x-4">
                     <select
                         onChange={(e) => setCategory(e.target.value)}
