@@ -1,6 +1,8 @@
 import React, { useMemo, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import "react-quill/dist/quill.snow.css"
+import hljs from "highlight.js"
+import "highlight.js/styles/night-owl.css"
 import Loader from "./Loader"
 import Snackbar from "./Snackbar"
 
@@ -21,6 +23,10 @@ const ReactQuill = dynamic(
         ssr: false
     }
 )
+
+hljs.configure({
+    languages: ["javascript", "ruby", "python", "rust", "typescript"]
+})
 
 const RichTextEditor: React.FC<RichTextEditorProps> = ({
     handleChange,
@@ -80,6 +86,9 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
 
     const modules = useMemo(
         () => ({
+            syntax: {
+                highlight: (text) => hljs.highlightAuto(text).value
+            },
             toolbar: {
                 handlers: { image: imageHandler },
                 container: [
