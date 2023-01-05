@@ -13,7 +13,6 @@ import RichTextEditor from "../../components/RichTextEditor"
 
 const UploadThread: NextPage = () => {
     const [title, setTitle] = useState("")
-    // const [description, setDescription] = useState("")
     const [richTextValue, setRichTextValue] = useState("")
     const [category, setCategory] = useState("")
     const [tags, setTags] = useState<Array<string>>([])
