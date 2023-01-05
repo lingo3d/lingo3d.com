@@ -12,6 +12,7 @@ import AddReply from "../../../pages_components/thread/AddReply"
 import Answers from "../../../pages_components/thread/Answers"
 import Box from "@mui/material/Box"
 import CloseIcon from "@mui/icons-material/Close"
+import RichTextEditor from "../../../components/RichTextEditor"
 
 export type ActivateReply = (description: string, username: string) => void
 
@@ -130,15 +131,19 @@ const viewThread: NextPage<{
                         ref={replyareaRef}
                         className="border-[1px] border-[#F4F4F9] rounded textColor2 mt-[25px] p-2 text-[13px] relative"
                     >
-                        <div>
-                            Reply to:{" "}
+                        <div className="mb-2 text-[#fecc00]">
+                            Reply to post from{" "}
                             <span className="italic">{userToReply}</span>
                         </div>
                         <div>
-                            Text:{" "}
-                            <span className="italic whitespace-pre-line">
+                            {/* <span className="italic whitespace-pre-line">
                                 {textToReply}
-                            </span>{" "}
+                            </span>{" "} */}
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: textToReply
+                                }}
+                            />
                         </div>
                         <CloseIcon
                             className="absolute right-2 top-2 cursor-pointer"

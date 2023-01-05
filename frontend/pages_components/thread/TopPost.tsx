@@ -90,7 +90,7 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
                     {/* <MoreVertIcon /> */}
                 </div>
             </div>
-            <div className="flex justify-start items-center">
+            <div className="flex justify-start items-center my-2">
                 <div className="w-[58px] h-[58px]">
                     <Image
                         src={profilePic}

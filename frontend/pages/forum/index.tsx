@@ -25,7 +25,7 @@ const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     let backendData = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?sort=updatedAt%3Adesc&pagination[limit]=-1`
+        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?sort=updatedAt%3Adesc&pagination[page]=1&pagination[pageSize]=1`
     )
     let latestPosts = await backendData.json()
 
