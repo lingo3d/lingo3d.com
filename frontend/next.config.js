@@ -1,13 +1,21 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  basePath: '/forum',
   async redirects() {
-    return [
-      {
-        source: '/categories',
-        destination: '/',
-        permanent: true,
-      },
-    ]
-  }
-}
+      return [
+          {
+              source: '/',
+              destination: '/forum',
+              basePath: false,
+              permanent: false
+          },
+          {
+            source: '/forum/categories',
+            destination: '/forum',
+            basePath: false,
+            permanent: true,
+          },
+      ]
+  },
+
+};
