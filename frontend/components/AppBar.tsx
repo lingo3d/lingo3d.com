@@ -31,7 +31,9 @@ const ButtonAppBar: React.FC = () => {
         setWindowWidth(width)
     }, [])
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const handleClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
         setAnchorEl(event.currentTarget)
     }
 
@@ -41,18 +43,43 @@ const ButtonAppBar: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar sx={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(24px)" }}>
-                <Toolbar sx={{ display: "flex", justifyContent: "space-between", width: "100%", maxWidth: "1088px", margin: "auto" }}>
-                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum`}>
+            <AppBar
+                sx={{
+                    background: "rgba(0, 0, 0, 0.5)",
+                    backdropFilter: "blur(24px)"
+                }}
+            >
+                <Toolbar
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
+                        maxWidth: "1088px",
+                        margin: "auto"
+                    }}
+                >
+                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                         <Box sx={{ display: "flex", flexDirection: "row" }}>
                             {windowWidth! > 600 ? (
-                                <Image src={logo} width={127} height={24} alt="logo" />
+                                <Image
+                                    src={logo}
+                                    width={127}
+                                    height={24}
+                                    alt="logo"
+                                />
                             ) : (
-                                <Image src={logo} width={90} height={16} alt="logo" />
+                                <Image
+                                    src={logo}
+                                    width={90}
+                                    height={16}
+                                    alt="logo"
+                                />
                             )}
 
                             <div className="bg-[#293ab9] px-2 rounded flex justify-center items-center ml-2">
-                                <span className="text-xs font-medium">FORUM</span>
+                                <span className="text-xs font-medium">
+                                    FORUM
+                                </span>
                             </div>
                         </Box>
                     </Link>
@@ -63,7 +90,8 @@ const ButtonAppBar: React.FC = () => {
                                 <Button
                                     onClick={() => setShowModal(true)}
                                     sx={{
-                                        background: "rgb(42, 58, 185) !important",
+                                        background:
+                                            "rgb(42, 58, 185) !important",
                                         color: "#F4F4F9",
                                         padding: "4px 16px",
                                         outline: "transparent",
@@ -94,7 +122,13 @@ const ButtonAppBar: React.FC = () => {
                                         "aria-labelledby": "basic-button"
                                     }}
                                 >
-                                    <MenuItem sx={{ paddingTop: "0", paddingBottom: "0" }} onClick={() => logout()}>
+                                    <MenuItem
+                                        sx={{
+                                            paddingTop: "0",
+                                            paddingBottom: "0"
+                                        }}
+                                        onClick={() => logout()}
+                                    >
                                         Logout
                                     </MenuItem>
                                 </Menu>

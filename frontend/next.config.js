@@ -4,8 +4,8 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/forum/categories',
-        destination: '/forum',
+        source: '/categories',
+        destination: '/',
         permanent: true,
       },
     ]

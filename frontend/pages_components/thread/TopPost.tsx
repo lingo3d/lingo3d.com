@@ -15,7 +15,7 @@ import SaveIcon from "@mui/icons-material/Save"
 import ClearIcon from "@mui/icons-material/Clear"
 import RichTextEditor from "../../components/RichTextEditor"
 
-import { ActivateReply } from "../../pages/forum/thread/[...id]"
+import { ActivateReply } from "../../pages/thread/[...id]"
 
 type TopPostProps = {
     data: SingleThread

@@ -8,15 +8,17 @@ import Button from "@mui/material/Button"
 const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
     return (
         <Box className="flex flex-col items-start flex-1">
-            <Link href="/forum/latest">
-                <div className="text-[18px] textColor2 mt-[25px] mb-[10px] cursor-pointer">Latest</div>
+            <Link href="/latest">
+                <div className="text-[18px] textColor2 mt-[25px] mb-[10px] cursor-pointer">
+                    Latest
+                </div>
             </Link>
             <Box className="w-full ">
                 {latestPosts.data.slice(0, 15).map((m) => (
                     <ThreadLatest key={m.id} data={m} />
                 ))}
             </Box>
-            <Link href="/forum/latest" className="self-end mt-[20px]">
+            <Link href="/latest" className="self-end mt-[20px]">
                 <Button
                     variant="contained"
                     sx={{

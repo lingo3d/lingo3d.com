@@ -29,7 +29,7 @@ const Metadata: React.FC<{
                     {tags?.map((m, i) => (
                         <Link
                             key={m}
-                            href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum/tags/${m}`}
+                            href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
                         >
                             <div
                                 key={i}

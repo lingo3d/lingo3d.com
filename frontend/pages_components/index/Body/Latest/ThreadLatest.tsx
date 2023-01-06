@@ -21,10 +21,15 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
                 <div className="flex-1 px-2 textColor1">
                     <Link
                         key={data.id}
-                        href={`forum/thread/${data.id}/${data.attributes.title}`}
-                        as={`forum/thread/${data.id}/${data.attributes.title.replace(/ /g, "-")}`}
+                        href={`thread/${data.id}/${data.attributes.title}`}
+                        as={`thread/${data.id}/${data.attributes.title.replace(
+                            / /g,
+                            "-"
+                        )}`}
                     >
-                        <div className="text-[16px] cursor-pointer">{data?.attributes.title}</div>
+                        <div className="text-[16px] cursor-pointer">
+                            {data?.attributes.title}
+                        </div>
                     </Link>
                 </div>
             </Box>
@@ -41,7 +46,10 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
                     )}
                     {data.attributes.tags &&
                         data.attributes.tags.map((m, i) => (
-                            <Link key={m} href={`${process.env.NEXT_PUBLIC_BASE_URL}/forum/tags/${m}`}>
+                            <Link
+                                key={m}
+                                href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
+                            >
                                 <span key={i} className="cursor-pointer">
                                     {m}
                                 </span>

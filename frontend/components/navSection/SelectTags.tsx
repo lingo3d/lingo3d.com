@@ -5,7 +5,9 @@ import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 
-const SelectTags: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) => {
+const SelectTags: React.FC<{ windowWidth: number | null }> = ({
+    windowWidth
+}) => {
     const [tag, setTag] = useState("All tags")
     const router = useRouter()
 
@@ -20,7 +22,7 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) =
     })
 
     const handleChange = (tag: string) => {
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/forum/tags/${tag}`)
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`)
     }
 
     return (
@@ -30,7 +32,10 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) =
                 width: 120,
                 backgroundColor: windowWidth! > 639 ? "#86A1D8" : "transparent",
                 margin: 0,
-                borderBottom: windowWidth! > 639 ? "transparent" : "0.5px solid #F4F4F9!important",
+                borderBottom:
+                    windowWidth! > 639
+                        ? "transparent"
+                        : "0.5px solid #F4F4F9!important",
                 ".css-hfutr2-MuiSvgIcon-root-MuiSelect-icon": {
                     color: "#F4F4F9"
                 }
@@ -38,7 +43,10 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({ windowWidth }) =
             className="sm:rounded-md"
             size="small"
         >
-            <InputLabel id="demo-select-small" sx={{ color: "#F4F4F9", fontSize: "14px" }}>
+            <InputLabel
+                id="demo-select-small"
+                sx={{ color: "#F4F4F9", fontSize: "14px" }}
+            >
                 {tag}
             </InputLabel>
             <Select

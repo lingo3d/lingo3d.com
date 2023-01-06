@@ -21,12 +21,16 @@ export default function NavSection() {
 
     useEffect(() => {
         setWindowWidth(width)
-        if (router.pathname.startsWith("/forum/top")) setActive("top")
-        if (router.pathname.startsWith("/forum/latest")) setActive("latest")
-        if (router.pathname.startsWith("/forum/categories")) setActive("categories")
-        if (router.pathname === "/forum") setActive("categories")
+        if (router.pathname.startsWith("/top")) setActive("top")
+        if (router.pathname.startsWith("/latest")) setActive("latest")
+        if (router.pathname.startsWith("/categories")) setActive("categories")
+        if (router.pathname === "/") setActive("categories")
 
-        if (router.pathname.startsWith("/forum/tags") || router.pathname.startsWith("/forum/categories")) setDisplayExtraMenus(true)
+        if (
+            router.pathname.startsWith("/tags") ||
+            router.pathname.startsWith("/categories")
+        )
+            setDisplayExtraMenus(true)
     }, [router.asPath])
 
     return (
@@ -42,19 +46,46 @@ export default function NavSection() {
 
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
-                            <Link href="/forum">
-                                <div className={`${active === "categories" ? "textColor2" : "textColor1"} cursor-pointer`}>Categories</div>
+                            <Link href="/">
+                                <div
+                                    className={`${
+                                        active === "categories"
+                                            ? "textColor2"
+                                            : "textColor1"
+                                    } cursor-pointer`}
+                                >
+                                    Categories
+                                </div>
                             </Link>
-                            <Link href="/forum/latest">
-                                <div className={`${active === "latest" ? "textColor2" : "textColor1"} cursor-pointer`}>Latest</div>
+                            <Link href="/latest">
+                                <div
+                                    className={`${
+                                        active === "latest"
+                                            ? "textColor2"
+                                            : "textColor1"
+                                    } cursor-pointer`}
+                                >
+                                    Latest
+                                </div>
                             </Link>
-                            <Link href="/forum/top">
-                                <div className={`${active === "top" ? "textColor2" : "textColor1"} cursor-pointer`}>Top</div>
+                            <Link href="/top">
+                                <div
+                                    className={`${
+                                        active === "top"
+                                            ? "textColor2"
+                                            : "textColor1"
+                                    } cursor-pointer`}
+                                >
+                                    Top
+                                </div>
                             </Link>
                         </>
                     </Box>
                     <Box className="flex justify-end w-full mt-[20px]">
-                        <Link href="/forum/post-question" className={user ? "" : "pointer-events-none"}>
+                        <Link
+                            href="/post-question"
+                            className={user ? "" : "pointer-events-none"}
+                        >
                             <Button
                                 variant="contained"
                                 disabled={user ? false : true}
@@ -64,7 +95,10 @@ export default function NavSection() {
                                     textTransform: "none",
                                     fontSize: "16px",
                                     cursor: "pointer",
-                                    padding: windowWidth! < 640 ? "2px 12px" : "5px 20px",
+                                    padding:
+                                        windowWidth! < 640
+                                            ? "2px 12px"
+                                            : "5px 20px",
                                     color: "#F4F4F9",
                                     "&.MuiButton-contained": {
                                         backgroundColor: "#86A1D8"
@@ -90,7 +124,13 @@ export default function NavSection() {
                             <SelectSection />
                             {user && (
                                 <AddIcon
-                                    sx={{ color: "#F4F4F9", background: "#86A1D8", width: "30px", height: "30px", borderRadius: "4px" }}
+                                    sx={{
+                                        color: "#F4F4F9",
+                                        background: "#86A1D8",
+                                        width: "30px",
+                                        height: "30px",
+                                        borderRadius: "4px"
+                                    }}
                                 />
                             )}
                         </Box>

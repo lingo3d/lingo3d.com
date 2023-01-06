@@ -4,18 +4,25 @@ import Link from "next/link"
 import CommentIcon from "@mui/icons-material/Comment"
 import Box from "@mui/material/Box"
 
-const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({ data, desc }) => {
+const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
+    data,
+    desc
+}) => {
     if (data.length === 0) return <></>
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link href={`forum/categories/${data[0]?.attributes.category}`}>
+                <Link href={`categories/${data[0]?.attributes.category}`}>
                     <Box className="flex justify-between items-center py-2">
                         <div className="textColor2 text-[22px] cursor-pointer">
-                            {data[0]?.attributes.category.charAt(0).toUpperCase() + data[0]?.attributes.category.slice(1)}
+                            {data[0]?.attributes.category
+                                .charAt(0)
+                                .toUpperCase() +
+                                data[0]?.attributes.category.slice(1)}
                         </div>
                         <div className="textColor1">
-                            <span className="font-bold">{data.length}</span> / total
+                            <span className="font-bold">{data.length}</span> /
+                            total
                         </div>
                     </Box>
                 </Link>

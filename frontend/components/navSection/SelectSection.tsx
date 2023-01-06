@@ -17,14 +17,14 @@ const SelectSection: React.FC = () => {
 
     useEffect(() => {
         setWindowWidth(width)
-        if (router.pathname.startsWith("/forum/top")) setSection("Top")
-        if (router.pathname.startsWith("/forum/latest")) setSection("Latest")
-        if (router.pathname.startsWith("/forum/categories")) setSection("Categories")
-        if (router.pathname.startsWith("/forum/tags")) setSection("Tags")
+        if (router.pathname.startsWith("/top")) setSection("Top")
+        if (router.pathname.startsWith("/latest")) setSection("Latest")
+        if (router.pathname.startsWith("/categories")) setSection("Categories")
+        if (router.pathname.startsWith("/tags")) setSection("Tags")
     }, [router.asPath])
 
     const handleChange = (section: string) => {
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/forum/${section}`)
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/${section}`)
     }
 
     return (
@@ -44,7 +44,10 @@ const SelectSection: React.FC = () => {
                 className="rounded-md"
                 size="small"
             >
-                <InputLabel id="demo-select-small" sx={{ color: "#F4F4F9", fontSize: "14px" }}>
+                <InputLabel
+                    id="demo-select-small"
+                    sx={{ color: "#F4F4F9", fontSize: "14px" }}
+                >
                     {section}
                 </InputLabel>
                 <Select
