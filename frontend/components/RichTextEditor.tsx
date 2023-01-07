@@ -92,17 +92,10 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             toolbar: {
                 handlers: { image: imageHandler },
                 container: [
-                    [{ header: [1, 2, false] }],
-                    ["bold", "italic", "underline", "strike", "blockquote"],
-                    [
-                        { list: "ordered" },
-                        { list: "bullet" },
-                        // { list: "numbered" },
-                        { indent: "-1" },
-                        { indent: "+1" }
-                    ],
-                    ["link", "image"],
-                    ["code-block"]
+                    ["bold", "italic", "underline", "strike"],
+                    ["blockquote", "code-block"],
+                    [{ list: "ordered" }, { list: "bullet" }, { indent: "+1" }],
+                    ["link", "image"]
                     // ["clean"]
                 ]
             },
@@ -128,7 +121,6 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         "indent",
         "link",
         "image",
-        "video",
         "code-block"
         // "clean"
     ]

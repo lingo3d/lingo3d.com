@@ -51,7 +51,8 @@ export default async function upload(
             })
 
             res.json({
-                response: response
+                response: response,
+                message: "success"
             })
         } catch (err) {
             return res.json({ err: err, message: "error" })
