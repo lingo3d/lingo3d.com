@@ -36,8 +36,20 @@ export default async function upload(
                 public_id: req.cookies.id,
                 upload_preset: upload_preset,
                 use_filename: true,
-                unique_filename: false
+                unique_filename: false,
+                responsive_breakpoints: {
+                    create_derived: true,
+                    bytes_step: 20000,
+                    min_width: 200,
+                    max_width: 1024,
+                    transformation: {
+                        crop: "fill",
+                        aspect_ratio: "16:9",
+                        gravity: "auto"
+                    }
+                }
             })
+
             res.json({
                 response: response
             })

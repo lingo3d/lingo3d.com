@@ -62,7 +62,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
                     formData.append("upload_preset", "post_images")
 
                     try {
-                        const res = await fetch("/api/image_upload", {
+                        const res = await fetch("/forum/api/image_upload", {
                             method: "POST",
                             body: formData
                         })
