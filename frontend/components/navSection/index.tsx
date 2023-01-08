@@ -123,15 +123,17 @@ export default function NavSection() {
                         <Box className="w-full flex justify-between items-center">
                             <SelectSection />
                             {user && (
-                                <AddIcon
-                                    sx={{
-                                        color: "#F4F4F9",
-                                        background: "#86A1D8",
-                                        width: "30px",
-                                        height: "30px",
-                                        borderRadius: "4px"
-                                    }}
-                                />
+                                <Link href="/post-question">
+                                    <AddIcon
+                                        sx={{
+                                            color: "#F4F4F9",
+                                            background: "#86A1D8",
+                                            width: "30px",
+                                            height: "30px",
+                                            borderRadius: "4px"
+                                        }}
+                                    />
+                                </Link>
                             )}
                         </Box>
                     </Box>

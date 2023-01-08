@@ -18,6 +18,7 @@ const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
     return (
         <>
             <NavSection />
+            {/* {windowWidth! > 639 && <Tags />} */}
             {windowWidth! > 639 && <Tags />}
             <Body latestPosts={latestPosts} />
         </>

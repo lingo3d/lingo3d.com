@@ -2,9 +2,20 @@ import React from "react"
 import CategoriesBox from "./CategoriesBox"
 import { getCategory } from "../../../../../lib/getCategory"
 import { Response } from "../../../../../types"
-import { randomText } from "../../../../../lib/categoryDescription"
+import { announcementsDesc } from "../../../../../lib/categoryDescription"
+import { generalCodingDesc } from "../../../../../lib/categoryDescription"
+import { generalDiscussionDesc } from "../../../../../lib/categoryDescription"
+import { physicsDesc } from "../../../../../lib/categoryDescription"
+import { reactApiDesc } from "../../../../../lib/categoryDescription"
+import { vueApiDesc } from "../../../../../lib/categoryDescription"
+import { assetManagementDesc } from "../../../../../lib/categoryDescription"
+import { materialDesc } from "../../../../../lib/categoryDescription"
+import { animationDesc } from "../../../../../lib/categoryDescription"
+import { networkingDesc } from "../../../../../lib/categoryDescription"
 
-const CategoriesSectionMobile: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
+const CategoriesSectionMobile: React.FC<{ latestPosts: Response }> = ({
+    latestPosts
+}) => {
     const announcementsCategory = getCategory(latestPosts, "announcements")
     const codingCategory = getCategory(latestPosts, "general coding")
     const discussionCategory = getCategory(latestPosts, "general discussion")
@@ -18,16 +29,25 @@ const CategoriesSectionMobile: React.FC<{ latestPosts: Response }> = ({ latestPo
 
     return (
         <>
-            <CategoriesBox data={announcementsCategory} desc={randomText} />
-            <CategoriesBox data={codingCategory} desc={randomText} />
-            <CategoriesBox data={discussionCategory} desc={randomText} />
-            <CategoriesBox data={physicsCategory} desc={randomText} />
-            <CategoriesBox data={reactAPICategory} desc={randomText} />
-            <CategoriesBox data={vueAPICategory} desc={randomText} />
-            <CategoriesBox data={assetManagementCategory} desc={randomText} />
-            <CategoriesBox data={materialCategory} desc={randomText} />
-            <CategoriesBox data={animationCategory} desc={randomText} />
-            <CategoriesBox data={networkingCategory} desc={randomText} />
+            <CategoriesBox
+                data={announcementsCategory}
+                desc={announcementsDesc}
+            />
+            <CategoriesBox data={codingCategory} desc={generalCodingDesc} />
+            <CategoriesBox
+                data={discussionCategory}
+                desc={generalDiscussionDesc}
+            />
+            <CategoriesBox data={physicsCategory} desc={physicsDesc} />
+            <CategoriesBox data={reactAPICategory} desc={reactApiDesc} />
+            <CategoriesBox data={vueAPICategory} desc={vueApiDesc} />
+            <CategoriesBox
+                data={assetManagementCategory}
+                desc={assetManagementDesc}
+            />
+            <CategoriesBox data={materialCategory} desc={materialDesc} />
+            <CategoriesBox data={animationCategory} desc={animationDesc} />
+            <CategoriesBox data={networkingCategory} desc={networkingDesc} />
         </>
     )
 }

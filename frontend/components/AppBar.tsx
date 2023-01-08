@@ -77,7 +77,7 @@ const ButtonAppBar: React.FC = () => {
                             )}
 
                             <div className="bg-[#293ab9] px-2 rounded flex justify-center items-center ml-2">
-                                <span className="text-xs font-medium">
+                                <span className="text-xs font-medium h-[20px] md:h-[23px] flex justify-center items-center">
                                     FORUM
                                 </span>
                             </div>

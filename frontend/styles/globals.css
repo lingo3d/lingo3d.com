@@ -62,6 +62,8 @@ body {
     padding: 5px 10px 5px 10px;
     border-radius: 2px;
     font-size: 13px;
+    word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .MuiSvgIcon-root, .MuiSvgIcon-fontSizeInherit, .css-1vooibu-MuiSvgIcon-root {
