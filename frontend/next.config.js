@@ -1,21 +1,20 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  basePath: '/forum',
+  // basePath: '/forum',
   async redirects() {
       return [
+          // {
+          //     source: '/',
+          //     destination: '/forum',
+          //     basePath: false,
+          //     permanent: false
+          // },
           {
-              source: '/',
-              destination: '/forum',
-              basePath: false,
-              permanent: false
-          },
-          {
-            source: '/forum/categories',
-            destination: '/forum',
+            source: '/categories',
+            destination: '/',
             basePath: false,
             permanent: true,
           },
       ]
   },
-
 };
