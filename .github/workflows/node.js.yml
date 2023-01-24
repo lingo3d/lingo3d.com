@@ -89,6 +89,10 @@ jobs:
               echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
               echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
               echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
+              echo CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }} >> .env.local
+              echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env.local
+              echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env.local
+              echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env.local
     - name: build app
       if: steps.filter.outputs.frontend == 'true'
       run: yarn build
