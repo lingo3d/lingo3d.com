@@ -141,6 +141,7 @@ const viewThread: NextPage<{
                             </span>{" "} */}
                             <div
                                 dangerouslySetInnerHTML={{
+                                    //@ts-ignore
                                     __html: textToReply
                                 }}
                             />

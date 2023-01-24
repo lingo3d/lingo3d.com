@@ -27,8 +27,11 @@ export default async function upload(
                 resolve({ fields, files })
             })
         })
+        //@ts-ignore
         const filePath = data?.files?.file.filepath
+        //@ts-ignore
         const fileName = data.files.file.originalFilename
+        //@ts-ignore
         const upload_preset = data?.fields?.upload_preset
 
         try {

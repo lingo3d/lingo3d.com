@@ -15,6 +15,7 @@ const ReactQuill = dynamic(
     async () => {
         const { default: RQ } = await import("react-quill")
 
+        //@ts-ignore
         return ({ forwardedRef, ...props }) => (
             <RQ ref={forwardedRef} {...props} />
         )
@@ -41,9 +42,11 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         setOpen(false)
     }
 
-    const imageHandler = (a) => {
+    const imageHandler = (a: any) => {
         if (quillRef.current) {
+            //@ts-ignore
             const editor = quillRef.current.getEditor()
+            //@ts-ignore
             const range = quillRef.current.getEditor().getSelection(true)
             const input = document.createElement("input")
             input.setAttribute("type", "file")
@@ -53,6 +56,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             input.onchange = async () => {
                 setLoading(true)
 
+                //@ts-ignore
                 const file = input.files[0]
 
                 // file type is only image.
@@ -87,7 +91,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
     const modules = useMemo(
         () => ({
             syntax: {
-                highlight: (text) => hljs.highlightAuto(text).value
+                highlight: (text: any) => hljs.highlightAuto(text).value
             },
             toolbar: {
                 handlers: { image: imageHandler },
@@ -130,6 +134,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
             {loading && <Loader />}
             <Snackbar open={open} handleClose={handleClose} errMsg={errMsg} />
             <ReactQuill
+                //@ts-ignore
                 theme="snow"
                 modules={modules}
                 onChange={handleChange}
