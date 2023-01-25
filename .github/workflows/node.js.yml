@@ -44,9 +44,9 @@ jobs:
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
       run: NODE_ENV=production yarn build
-    - name: turn on app
-      if: steps.filter.outputs.forum-backend == 'true'
-      run: pm2 startOrReload ecosystem.config.js
+#     - name: turn on app
+#       if: steps.filter.outputs.forum-backend == 'true'
+#       run: pm2 startOrReload ecosystem.config.js
     
   build_frontend:
     name: build_frontend
@@ -84,8 +84,6 @@ jobs:
     - name: create env file
       run: |
               touch .env.local
-              echo NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }} >> .env.local
-              echo NEXT_PUBLIC_GOOGLE_CLIENT=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT }} >> .env.local
               echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
               echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
               echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
@@ -93,11 +91,11 @@ jobs:
               echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env.local
               echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env.local
               echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env.local
-    - name: build app
-      if: steps.filter.outputs.frontend == 'true'
-      run: yarn build
-    - name: start app
-      if: steps.filter.outputs.frontend == 'true'
-      run: pm2 startOrReload ecosystem.config.js
-    - name: remove existing env file
-      run:  rm .env.local
+#     - name: build app
+#       if: steps.filter.outputs.frontend == 'true'
+#       run: yarn build
+#     - name: start app
+#       if: steps.filter.outputs.frontend == 'true'
+#       run: pm2 startOrReload ecosystem.config.js
+#     - name: remove existing env file
+#       run:  rm .env.local
