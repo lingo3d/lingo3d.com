@@ -16,17 +16,19 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
     const [serverError, setServerError] = useState("")
 
     async function loginUser() {
-        // const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`, {
-        const res = await fetch(`http://localhost:1337/api/auth/local`, {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                password: password,
-                identifier: username
-            })
-        })
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    password: password,
+                    identifier: username
+                })
+            }
+        )
         const data = await res.json()
 
         if (data.error) {
