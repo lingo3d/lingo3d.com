@@ -48,6 +48,7 @@ jobs:
               echo PORT=${{ secrets.PORT }} >> .env.local
               echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
               echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
+              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
               echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
