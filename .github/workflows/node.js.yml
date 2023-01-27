@@ -40,8 +40,10 @@ jobs:
 #         cache-dependency-path: './forum-backend/yarn.lock'
     - name: install deps
       if: steps.filter.outputs.forum-backend == 'true'
-      run: yarn install --frozen-lockfile
+#       run: yarn install --frozen-lockfile
+      run: yarn install
     - name: create env file
+      if: steps.filter.outputs.forum-backend == 'true'
       run: |
               touch .env
               echo HOST=${{ secrets.HOST }} >> .env
