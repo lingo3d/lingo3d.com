@@ -41,12 +41,25 @@ jobs:
     - name: install deps
       if: steps.filter.outputs.forum-backend == 'true'
       run: yarn install --frozen-lockfile
+    - name: create env file
+      run: |
+              touch .env
+              echo HOST=${{ secrets.HOST }} >> .env.local
+              echo PORT=${{ secrets.PORT }} >> .env.local
+              echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env.local
+              echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env.local
+              echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env.local
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
       run: NODE_ENV=production yarn build
+    - name: start app
+      if: steps.filter.outputs.forum-backend == 'true'
+      run: NODE_ENV=production yarn start
 #     - name: turn on app
 #       if: steps.filter.outputs.forum-backend == 'true'
 #       run: pm2 startOrReload ecosystem.config.js
+    - name: remove existing env file
+      run:  rm .env
     
   build_frontend:
     name: build_frontend
@@ -81,21 +94,24 @@ jobs:
     - name: install deps --frozen-lockfile
       if: steps.filter.outputs.frontend == 'true'
       run: yarn install
-#     - name: create env file
-#       run: |
-#               touch .env.local
-#               echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
-#               echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
-#               echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
-#               echo CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }} >> .env.local
-#               echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env.local
-#               echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env.local
-#               echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env.local
-#     - name: build app
-#       if: steps.filter.outputs.frontend == 'true'
-#       run: yarn build
+    - name: create env file
+      run: |
+              touch .env.local
+              echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
+              echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
+              echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
+              echo CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }} >> .env.local
+              echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env.local
+              echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env.local
+              echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env.local
+    - name: build app
+      if: steps.filter.outputs.frontend == 'true'
+      run: yarn build
 #     - name: start app
 #       if: steps.filter.outputs.frontend == 'true'
 #       run: pm2 startOrReload ecosystem.config.js
-#     - name: remove existing env file
-#       run:  rm .env.local
+    - name: start app
+      if: steps.filter.outputs.frontend == 'true'
+      run: pm2 startOrReload ecosystem.config.js
+    - name: remove existing env file
+      run:  rm .env.local
