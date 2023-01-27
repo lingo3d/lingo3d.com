@@ -46,9 +46,9 @@ jobs:
               touch .env
               echo HOST=${{ secrets.HOST }} >> .env.local
               echo PORT=${{ secrets.PORT }} >> .env.local
-              echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env.local
-              echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env.local
-              echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env.local
+              echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
+              echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
+              echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
       run: NODE_ENV=production yarn build
