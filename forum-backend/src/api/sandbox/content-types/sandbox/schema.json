@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sandboxes",
+  "info": {
+    "singularName": "sandbox",
+    "pluralName": "sandboxes",
+    "displayName": "Sandbox"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "uuid": {
+      "type": "string",
+      "required": true
+    },
+    "modified": {
+      "type": "datetime"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "owners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "sandboxes"
+    },
+    "starred_by": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "starred_sandboxes"
+    },
+    "fields": {
+      "type": "json"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "React",
+        "React Typescript",
+        "Vue 3",
+        "Vue 3 Typescript",
+        "JavaScript",
+        "TypeScript",
+        "Python"
+      ]
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
