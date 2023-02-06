@@ -95,6 +95,7 @@ jobs:
       if: steps.filter.outputs.frontend == 'true'
       run: yarn install --frozen-lockfile
     - name: create env file
+      if: steps.filter.outputs.frontend == 'true'
       run: |
               touch .env.local
               echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
