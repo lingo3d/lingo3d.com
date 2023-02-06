@@ -58,6 +58,7 @@ jobs:
       if: steps.filter.outputs.forum-backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
     - name: remove existing env file
+      if: steps.filter.outputs.forum-backend == 'true'
       run:  rm .env
     
   build_frontend:
@@ -110,4 +111,5 @@ jobs:
       if: steps.filter.outputs.frontend == 'true'
       run: pm2 startOrReload ecosystem.config.js
     - name: remove existing env file
-      run:  rm .env.local
+      if: steps.filter.outputs.frontend == 'true'
+      run: rm .env.local
