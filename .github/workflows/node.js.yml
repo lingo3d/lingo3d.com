@@ -40,8 +40,7 @@ jobs:
 #         cache-dependency-path: './forum-backend/yarn.lock'
     - name: install deps
       if: steps.filter.outputs.forum-backend == 'true'
-#       run: yarn install --frozen-lockfile
-      run: yarn install
+      run: yarn install --frozen-lockfile
     - name: create env file
       if: steps.filter.outputs.forum-backend == 'true'
       run: |
@@ -55,12 +54,9 @@ jobs:
     - name: build app
       if: steps.filter.outputs.forum-backend == 'true'
       run: NODE_ENV=production yarn build
-    - name: start app
+    - name: turn on app
       if: steps.filter.outputs.forum-backend == 'true'
-      run: NODE_ENV=production yarn start
-#     - name: turn on app
-#       if: steps.filter.outputs.forum-backend == 'true'
-#       run: pm2 startOrReload ecosystem.config.js
+      run: pm2 startOrReload ecosystem.config.js
     - name: remove existing env file
       run:  rm .env
     
@@ -96,7 +92,7 @@ jobs:
 #         cache-dependency-path: './frontend/yarn.lock'
     - name: install deps --frozen-lockfile
       if: steps.filter.outputs.frontend == 'true'
-      run: yarn install
+      run: yarn install --frozen-lockfile
     - name: create env file
       run: |
               touch .env.local
@@ -110,9 +106,6 @@ jobs:
     - name: build app
       if: steps.filter.outputs.frontend == 'true'
       run: yarn build
-#     - name: start app
-#       if: steps.filter.outputs.frontend == 'true'
-#       run: pm2 startOrReload ecosystem.config.js
     - name: start app
       if: steps.filter.outputs.frontend == 'true'
       run: pm2 startOrReload ecosystem.config.js
