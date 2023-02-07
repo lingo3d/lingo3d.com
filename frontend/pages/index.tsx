@@ -12,7 +12,6 @@ const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
 
     useEffect(() => {
         setWindowWidth(width)
-        console.log(latestPosts)
     })
 
     return (

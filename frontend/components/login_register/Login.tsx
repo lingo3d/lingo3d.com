@@ -1,4 +1,5 @@
 import React from "react"
+import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
@@ -7,16 +8,30 @@ import GoogleIcon from "@mui/icons-material/Google"
 import { signIn as googleSignIn } from "next-auth/react"
 import { setToken } from "../../pages/api/auth/js-cookie"
 
+type Inputs = {
+    username: string
+    password: string
+}
+
 const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
     setDisplayRegister
 }) => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
     const [show, setShow] = useState(false)
     const [serverError, setServerError] = useState("")
 
-    async function loginUser() {
-        const res = await fetch(
+    const {
+        control,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
+        defaultValues: {
+            username: "",
+            password: ""
+        }
+    })
+
+    const loginUser: SubmitHandler<Inputs> = async (data: Inputs) => {
+        const submitData = await fetch(
             `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
             {
                 headers: {
@@ -24,41 +39,61 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                 },
                 method: "POST",
                 body: JSON.stringify({
-                    password: password,
-                    identifier: username
+                    password: data.password,
+                    identifier: data.username
                 })
             }
         )
-        const data = await res.json()
+        const res = await submitData.json()
 
-        if (data.error) {
+        if (res.error) {
             setShow(true)
-            setServerError(data.error.message)
+            setServerError(res.error.message)
             return
         }
 
-        setToken(data)
+        setToken(res)
     }
 
     return (
         <>
             <div className="text-[22px]">Welcome</div>
             <div>Log in so you can participate in the forum</div>
-            <TextField
-                fullWidth
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                label="Username"
+            <Controller
+                control={control}
+                name="username"
+                rules={{ required: true }}
+                render={({ field: { onChange, value, ref } }) => (
+                    <TextField
+                        fullWidth
+                        inputRef={ref}
+                        value={value}
+                        onChange={onChange}
+                        label="Username"
+                        error={!!errors.username}
+                    />
+                )}
             />
-            <TextField
-                fullWidth
-                required
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            {errors.username && <span>{errors.username.message}</span>}
+            <Controller
+                control={control}
+                name="password"
+                rules={{ required: true, minLength: 6 }}
+                render={({ field: { onChange, value, ref } }) => (
+                    <TextField
+                        fullWidth
+                        inputRef={ref}
+                        label="Password"
+                        type="password"
+                        value={value}
+                        onChange={onChange}
+                        error={!!errors.password}
+                    />
+                )}
             />
+            {errors.password && errors.password.type === "minLength" && (
+                <span>Minimum password length is 6 charachters</span>
+            )}
             {show ? (
                 <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">
                     {serverError}
@@ -70,7 +105,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
 
             <Button
                 fullWidth
-                onClick={() => loginUser()}
+                onClick={handleSubmit(loginUser)}
                 sx={{
                     background: "#293ab9",
                     color: "#F4F4F9",
