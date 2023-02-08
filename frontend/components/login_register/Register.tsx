@@ -149,18 +149,12 @@ export default function SignUp() {
                     {serverError}
                 </span>
             ) : null}
-            <Button
+            <button
+                className="bg-[#293ab9] text-[#F4F4F9] px-4 py-3 w-full rounded"
                 onClick={handleSubmit(registerUser)}
-                fullWidth
-                sx={{
-                    background: "#293ab9",
-                    color: "#F4F4F9",
-                    paddingLeft: "16px",
-                    paddingRight: "16px"
-                }}
             >
                 SIGN UP
-            </Button>
+            </button>
         </>
     )
 }

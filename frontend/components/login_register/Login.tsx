@@ -103,18 +103,12 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                 Forgot password?
             </div>
 
-            <Button
-                fullWidth
+            <button
+                className="bg-[#293ab9] text-[#F4F4F9] px-4 py-3 w-full rounded"
                 onClick={handleSubmit(loginUser)}
-                sx={{
-                    background: "#293ab9",
-                    color: "#F4F4F9",
-                    paddingLeft: "16px",
-                    paddingRight: "16px"
-                }}
             >
                 LOG IN
-            </Button>
+            </button>
             <div className="w-full">
                 Don't have an account?{" "}
                 <span

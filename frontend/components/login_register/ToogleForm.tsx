@@ -22,7 +22,7 @@ const Form = ({
         <Dialog
             onClose={handleClose}
             open={show}
-            className='className="w-screen h-screen absolute top-0 left-0 flex justify-center items-center"'
+            className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4">
                 <Image src={logo} width={120} height={22} alt="logo" />

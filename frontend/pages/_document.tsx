@@ -3,7 +3,9 @@ import { Html, Head, Main, NextScript } from "next/document"
 export default function Document() {
     return (
         <Html>
-            <Head />
+            <Head>
+                <title>Lingo3D forum</title>
+            </Head>
             <body className="bg-[#1E1E1E]">
                 <Main />
                 <NextScript />
