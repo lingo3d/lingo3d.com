@@ -6,40 +6,57 @@ export default function Home() {
 
     useEffect(() => {
         let slider = sliderRef.current
-        if (slider) {
-            let isDown = false
-            let startX
-            let scrollLeft
+        if (!slider) return
 
-            slider.addEventListener("mousedown", (e) => {
-                isDown = true
-                slider?.classList.add("active")
-                startX = e.pageX - slider?.offsetLeft
-                scrollLeft = slider?.scrollLeft
-            })
+        let isDown = false
+        let startX
+        let scrollLeft
 
-            slider.addEventListener("mouseleave", () => {
-                isDown = false
-                slider?.classList.remove("active")
-            })
-            slider.addEventListener("mouseup", () => {
-                isDown = false
-                slider?.classList.remove("active")
-            })
-            slider.addEventListener("mousemove", (e) => {
-                if (!isDown) return
-                e.preventDefault()
-                const x = e.pageX - slider.offsetLeft
-                const walk = (x - startX) * 3 //scroll-fast
-                slider.scrollLeft = scrollLeft - walk
-                console.log(walk)
-            })
+        const handleMouseDown = (e) => {
+            isDown = true
+            slider?.classList.add("active")
+            startX = e.pageX - slider?.offsetLeft
+            scrollLeft = slider?.scrollLeft
+        }
+
+        const handleMouseMove = (e) => {
+            if (!isDown) return
+            e.preventDefault()
+            const x = e.pageX - slider.offsetLeft
+            const walk = x - startX
+            slider.scrollLeft = scrollLeft - walk
+        }
+
+        const handleMouseLeave = () => {
+            isDown = false
+            slider?.classList.remove("active")
+        }
+
+        const handleMouseUp = () => {
+            isDown = false
+            slider?.classList.remove("active")
+        }
+
+        slider.addEventListener("mousedown", handleMouseDown)
+        slider.addEventListener("mousemove", handleMouseMove)
+        slider.addEventListener("mouseleave", handleMouseLeave)
+        slider.addEventListener("mouseup", handleMouseUp)
+
+        return () => {
+            slider.removeEventListener("mousedown", handleMouseDown)
+            slider.removeEventListener("mousedown", handleMouseMove)
+            slider.removeEventListener("mouseleave", handleMouseLeave)
+            slider.removeEventListener("mouseup", handleMouseUp)
         }
     })
 
     return (
         <main className="relative h-[4000px] bg-black">
             <section className="relative h-screen z-10">
+                <h1 className="absolute text-white z-30 top-1/4 md:top-1/3 px-4 lg:pl-10 lg:w-[63%] text-[40px] md:text-[90px] font-[100] leading-[42px] md:leading-[105px]">
+                    We help ambitious companies scale up at every stage of
+                    growth
+                </h1>
                 <div
                     className="relative top-0 left-0 w-full h-screen"
                     id="video-container"

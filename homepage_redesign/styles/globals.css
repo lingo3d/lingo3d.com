@@ -7,12 +7,16 @@ html {
     font-size: 1.8rem;
     line-height: 2.4rem;
     box-sizing: border-box;
-    font-family: graphie;
+}
+
+@layer base {
+    html {
+        font-family: graphie, Proxima Nova, system-ui, sans-serif;
+    }
 }
 
 .items {
     overflow-x: scroll;
-    /* white-space: nowrap; */
     transition: all 0.2s;
     will-change: transform;
     user-select: none;
@@ -22,9 +26,11 @@ html {
 .items.active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
-    /* transform: scale(1); */
 }
 
 .item {
     display: inline-block;
+}
+.hero_title {
+    font-size: clamp;
 }
