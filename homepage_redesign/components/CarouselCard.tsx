@@ -9,7 +9,7 @@ export const CarouselCard = () => {
             }}
             transition={{ duration: 0.4 }}
         >
-            <div className="w-[170px] md:min-w-[240px] h-[750px] relative">
+            <div className="w-[170px] md:min-w-[240px] h-[500px] md:h-[650px] lg:h-[750px] relative">
                 <img
                     src="/monday.png"
                     className="absolute top-0, z-50 text-white px-4 mt-2"

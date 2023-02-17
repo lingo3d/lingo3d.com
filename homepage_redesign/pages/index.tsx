@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export default function Home() {
     return (
-        <main className="relative h-[4000px] bg-black">
+        <main className="relative">
             <motion.div
                 initial={{ y: 80 }}
                 animate={{ y: 0 }}

@@ -52,7 +52,7 @@ const CarouselSection = () => {
 
     return (
         <section className="carousel-section relative z-50 w-full">
-            <div className="w-full flex justify-center items-center absolute top-[-120px]">
+            <div className="w-full flex justify-center items-center absolute top-[-320px] md:top-[-200px] lg:top-[-140px]">
                 <div
                     ref={sliderRef}
                     className="w-[90%] py-10 flex justify-start items-center gap-x-3 items bg-transparent"

@@ -12,6 +12,7 @@ export default function Nav() {
         <Box sx={{ display: "flex" }}>
             <AppBar
                 component="nav"
+                elevation={0}
                 sx={{
                     background: "transparent",
                     paddingX: "45px",
