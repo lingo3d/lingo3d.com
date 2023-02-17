@@ -18,6 +18,9 @@ export default function Home() {
                 <VideoSection />
                 <CarouselSection />
             </motion.div>
+            <section>
+                <div className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px] h-[700px]"></div>
+            </section>
         </main>
     )
 }
