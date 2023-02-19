@@ -35,7 +35,7 @@ export default function FullScreenDialog() {
     }
 
     return (
-        <div className="fixed w-full z-[999]">
+        <div className="fixed w-full z-50">
             <Box
                 sx={{
                     display: "flex",

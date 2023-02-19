@@ -2,7 +2,7 @@ import Navigation from "@/layouts/Navigation/index"
 import VideoSection from "@/components/VideoSection"
 import CarouselSection from "@/components/CarouselSection"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -38,6 +38,17 @@ const useBounds = () => {
     }, [el])
 
     return [bounds, setEl] as const
+}
+
+const useBoundsVideo = () => {
+    const [elVideo, setElVideo] = useState<HTMLVideoElement | null>(null)
+    const [boundsVideo, setBoundsVideo] = useState<DOMRect>()
+
+    useEffect(() => {
+        setBoundsVideo(elVideo?.getBoundingClientRect())
+    }, [elVideo])
+
+    return [setElVideo, boundsVideo, elVideo] as const
 }
 
 const mapRange = (
@@ -77,7 +88,38 @@ export default function Home() {
     const bottom = bounds?.bottom ?? 1
     const scrollNormalized = mapRange(scrollY + 80, top, bottom, 0.75, 1, true)
 
-    console.log(scrollNormalized)
+    const [setElVideo, boundsVideo, elVideo] = useBoundsVideo()
+
+    const [parallaxStartY, setParallaxStartY] = useState<number | undefined>(
+        undefined
+    )
+    const [status, setStatus] = useState<"before" | "started" | "after">(
+        "before"
+    )
+
+    const [displayText, setDisplayText] = useState<"off" | "on">("off")
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            console.log(scrollY)
+            console.log(window.scrollY)
+
+            const videoElTop = boundsVideo?.top
+            if (videoElTop <= window.scrollY) {
+                setParallaxStartY(window.scrollY - 100)
+                setStatus("started")
+            }
+            if (window.scrollY <= parallaxStartY) {
+                setStatus("before")
+            }
+
+            if (window.scrollY > 2000 && window.scrollY < 3000) {
+                setDisplayText("on")
+            } else {
+                setDisplayText("off")
+            }
+        })
+    })
 
     return (
         <main className="relative">
@@ -93,15 +135,65 @@ export default function Home() {
                 <VideoSection />
                 <CarouselSection />
             </motion.div>
+
             <section>
-                <div
-                    className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px] h-[700px]"
-                    ref={setEl}
-                >
+                <div className="h-[6000px] relative">
                     <div
-                        className="w-full h-full bg-yellow-600"
-                        style={{ transform: `scale(${scrollNormalized})` }}
-                    ></div>
+                        className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px] h-[700px] pt-[50px] w-full "
+                        ref={setEl}
+                    >
+                        <div
+                            className="transition-all duration-1000 w-[90%]"
+                            style={{
+                                opacity: displayText === "on" ? 1 : 0,
+                                position: "fixed",
+                                top: "200px",
+                                left: "100px",
+                                zIndex: 898
+                            }}
+                        >
+                            <div
+                                className="text-4xl lg:text-6xl font-bold text-yellow-300"
+                                style={{ fontFamily: "graphie" }}
+                            >
+                                MindMap
+                            </div>
+                            <div
+                                className="text-white"
+                                style={{ fontFamily: "graphie" }}
+                            >
+                                Don&apos;t know how to code? No problem! Lingo3d
+                                empowers your imagination through MindMap: a
+                                drag-and-drop tool that lets you build advanced
+                                programs with simple logic trees.
+                            </div>
+                        </div>
+                        <video
+                            muted
+                            playsInline
+                            loop
+                            autoPlay
+                            className="h-full w-full object-cover"
+                            style={{
+                                transform: `scale(${scrollNormalized})`,
+                                width:
+                                    status === "started" ? "100%" : undefined,
+                                height:
+                                    status === "started" ? "100vh" : undefined,
+                                position:
+                                    status === "started" ? "fixed" : "static",
+                                top: status === "started" ? 0 : undefined,
+                                left: status === "started" ? 0 : undefined,
+                                zIndex: status === "started" ? 800 : 799,
+                                transition:
+                                    status === "started"
+                                        ? "all 0.3s ease-in-out"
+                                        : undefined
+                            }}
+                            src="city.mp4"
+                            ref={setElVideo}
+                        />
+                    </div>
                 </div>
             </section>
         </main>
