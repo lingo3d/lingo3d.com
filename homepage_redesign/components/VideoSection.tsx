@@ -13,7 +13,7 @@ const VideoSection = () => {
                     playsInline
                     loop
                     autoPlay
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover opacity-50"
                     src="tech.mp4"
                 />
             </div>

@@ -98,10 +98,11 @@ export default function Home() {
     )
 
     const [displayText, setDisplayText] = useState<"off" | "on">("off")
+    const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
+    const [opacityLevel, setOpacityLevel] = useState<number>(0)
 
     useEffect(() => {
         window.addEventListener("scroll", () => {
-            console.log(scrollY)
             console.log(window.scrollY)
 
             const videoElTop = boundsVideo?.top
@@ -114,6 +115,19 @@ export default function Home() {
             }
 
             if (window.scrollY > 2000 && window.scrollY < 3000) {
+                setDisplayText("on")
+            } else {
+                setDisplayText("off")
+            }
+
+            if (window.scrollY >= 1650 && window.scrollY <= 2000) {
+                setOpacityLevel(((window.scrollY - 1650) / 600) * 0.8)
+                setDisplayOverlay(890)
+            } else if (window.scrollY >= 4000 && window.scrollY <= 4500) {
+                setOpacityLevel(((4500 - window.scrollY) / 600) * 0.8)
+            }
+
+            if (window.scrollY > 2300 && window.scrollY < 3700) {
                 setDisplayText("on")
             } else {
                 setDisplayText("off")
@@ -168,6 +182,20 @@ export default function Home() {
                                 programs with simple logic trees.
                             </div>
                         </div>
+                        <div
+                            style={{
+                                position: "fixed",
+                                top: 0,
+                                left: 0,
+                                width: "100%",
+                                height: "100vh",
+                                backgroundColor: "black",
+                                opacity: opacityLevel,
+                                transition: "opacity 0.5s ease-in-out",
+                                zIndex: dispayOverlay
+                            }}
+                        ></div>
+
                         <video
                             muted
                             playsInline
