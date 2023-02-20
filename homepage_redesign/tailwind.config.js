@@ -5,7 +5,11 @@ module.exports = {
         "./components/**/*.{js,ts,jsx,tsx}"
     ],
     theme: {
-        extend: {}
+        extend: {
+            fontFamily: {
+                sans: ["Graphie", "sans-serif"]
+            }
+        }
     },
     variants: {
         height: ["responsive", "hover", "focus"]

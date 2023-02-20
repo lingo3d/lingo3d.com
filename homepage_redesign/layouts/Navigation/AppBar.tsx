@@ -38,7 +38,7 @@ export default function Nav() {
                                 key={item}
                                 sx={{
                                     color: "#fff",
-                                    fontFamily: "graphie",
+                                    // fontFamily: "graphie",
                                     paddingRight: "30px",
                                     fontSize: "14px"
                                 }}
