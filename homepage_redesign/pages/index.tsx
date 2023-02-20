@@ -3,6 +3,8 @@ import VideoSection from "@/components/VideoSection"
 import CarouselSection from "@/components/CarouselSection"
 import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
+import { TextOverlay } from "@/components/TextOverlay"
+import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -98,12 +100,23 @@ export default function Home() {
     )
 
     const [displayText, setDisplayText] = useState<"off" | "on">("off")
+
     const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
 
+    const [offsetTop, setOffsetTop] = useState<string | null>(null)
+
+    const footerRef = useRef<HTMLElement | null>(null)
+
     useEffect(() => {
+        if (!footerRef.current) return
+
         window.addEventListener("scroll", () => {
-            console.log(window.scrollY)
+            const footerOffsetHeight = footerRef?.current.offsetHeight
+            const windowHeight = window.innerHeight
+            const footerTop =
+                footerRef?.current.getBoundingClientRect().top + window.scrollY
+            const transitionStart = footerTop - windowHeight
 
             const videoElTop = boundsVideo?.top
             if (videoElTop <= window.scrollY) {
@@ -113,6 +126,15 @@ export default function Home() {
             if (window.scrollY <= parallaxStartY) {
                 setStatus("before")
             }
+
+            if (window.scrollY >= transitionStart) {
+                setStatus("after")
+                setOffsetTop(`${footerTop} - ${footerOffsetHeight}px`)
+            }
+
+            // if (window.scrollY >= 4700) {
+            //     setStatus("after")
+            // }
 
             if (window.scrollY > 2000 && window.scrollY < 3000) {
                 setDisplayText("on")
@@ -151,70 +173,16 @@ export default function Home() {
             </motion.div>
 
             <section>
-                <div className="h-[6000px] relative">
+                <div className="h-[4700px] relative">
                     <div
-                        className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px] h-[700px] pt-[50px] w-full "
+                        className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px]  pt-[50px] w-full "
                         ref={setEl}
                     >
-                        <div
-                            className="transition-all duration-1000 w-[90%] md:w-[60%] lg:w-[50%]"
-                            style={{
-                                opacity: displayText === "on" ? 1 : 0,
-                                position: "fixed",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                zIndex: 898
-                            }}
-                        >
-                            <div
-                                className="leading-[48px] md:leading-[66px] lg:leading-[81px] font-[100] text-[40px] md:text-[54px] lg:text-[72px]"
-                                style={{
-                                    color: "white",
-                                    marginBottom: "20px"
-                                }}
-                            >
-                                <div className="flex flex-col flex-wrap lg:flex-nowrap">
-                                    <div className="lg:flex-grow">
-                                        We scale ambition
-                                    </div>
-                                    <div className="lg:flex-grow">
-                                        at every stage
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="text-white text-[18px] font-[300] leading-[24px] lg:leading-[36px] lg:text-[24px]">
-                                <div className="mb-2">
-                                    For over{" "}
-                                    <span className="font-[600]">25 years</span>
-                                    , Insight Partners has helped leaders turn
-                                    their vision into reality faster and more
-                                    seamlessly than would be possible alone.
-                                </div>
-                                <div className="lg:leading-[30px]">
-                                    As the trusted partner for more than 600
-                                    transformative companies, our deeply
-                                    experienced software operators, and our
-                                    flexible capital across every stage of
-                                    growth, provides everything leaders need to
-                                    fly faster and further.
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                position: "fixed",
-                                top: 0,
-                                left: 0,
-                                width: "100%",
-                                height: "100vh",
-                                backgroundColor: "black",
-                                opacity: opacityLevel,
-                                transition: "opacity 0.5s ease-in-out",
-                                zIndex: dispayOverlay
-                            }}
-                        ></div>
-
+                        <TextOverlay displayText={displayText} />
+                        <ParallaxBlackOverlay
+                            opacityLevel={opacityLevel}
+                            dispayOverlay={dispayOverlay}
+                        />
                         <video
                             muted
                             playsInline
@@ -228,13 +196,24 @@ export default function Home() {
                                 height:
                                     status === "started" ? "100vh" : undefined,
                                 position:
-                                    status === "started" ? "fixed" : "static",
-                                top: status === "started" ? 0 : undefined,
+                                    status === "started"
+                                        ? "fixed"
+                                        : status === "after"
+                                        ? "absolute"
+                                        : undefined,
+                                top:
+                                    status === "started"
+                                        ? 0
+                                        : status === "after"
+                                        ? offsetTop
+                                        : undefined,
                                 left: status === "started" ? 0 : undefined,
                                 zIndex: status === "started" ? 800 : 799,
                                 transition:
                                     status === "started"
                                         ? "all 0.3s ease-in-out"
+                                        : status === "after"
+                                        ? "top 0.5s ease-out"
                                         : undefined
                             }}
                             src="city.mp4"
@@ -243,6 +222,21 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+            <footer ref={footerRef} className="z-[999]">
+                <section className="bg-red-800">
+                    <h1>
+                        Hello i am some very long text. Hello i am some very
+                        long text. Hello i am some very long text. Hello i am
+                        some very long text.
+                    </h1>
+                    <div className="h-[200px] bg-sky-500" />
+                    <h1>
+                        Hello i am some very long text. Hello i am some very
+                        long text. Hello i am some very long text. Hello i am
+                        some very long text.
+                    </h1>
+                </section>
+            </footer>
         </main>
     )
 }
