@@ -12,7 +12,6 @@ export default function Nav() {
     const fadeStart = 100
     const logo1Ref = useRef<HTMLElement | undefined>(undefined)
     const logo2Ref = useRef<HTMLElement | undefined>(undefined)
-
     const [logo1Opacity, setLogo1Opacity] = useState<number>(1)
     const [logo2Opacity, setLogo2Opacity] = useState<number>(0)
 
@@ -32,9 +31,8 @@ export default function Nav() {
         if (!logo2Ref.current) return
 
         if (scrollY > fadeStart) {
-            const opacity = (scrollY - fadeStart) / 100
-            setLogo1Opacity(1 - opacity)
-            setLogo2Opacity(opacity)
+            setLogo1Opacity(0)
+            setLogo2Opacity(1)
         } else {
             setLogo1Opacity(1)
             setLogo2Opacity(0)
@@ -49,7 +47,6 @@ export default function Nav() {
                 sx={{
                     background: "transparent",
                     paddingX: "45px"
-                    // paddingTop: "40px"
                 }}
             >
                 <Toolbar
@@ -77,7 +74,8 @@ export default function Nav() {
                                 top: "50%",
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
-                                opacity: logo1Opacity
+                                opacity: logo1Opacity,
+                                transition: "opacity 0.5s ease-in-out"
                             }}
                         />
                         <Image
@@ -91,7 +89,8 @@ export default function Nav() {
                                 top: "50%",
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
-                                opacity: logo2Opacity
+                                opacity: logo2Opacity,
+                                transition: "opacity 0.5s ease-in-out"
                             }}
                         />
                     </Box>
