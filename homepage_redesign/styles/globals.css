@@ -87,3 +87,7 @@ html {
 .hero_title {
     font-size: clamp;
 }
+
+.borderTop {
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+}

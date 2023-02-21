@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
 import { TextOverlay } from "@/components/TextOverlay"
 import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
+import Image from "next/legacy/image"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -222,19 +223,42 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <footer ref={footerRef} className="z-[999]">
-                <section className="bg-red-800">
-                    <h1>
-                        Hello i am some very long text. Hello i am some very
-                        long text. Hello i am some very long text. Hello i am
-                        some very long text.
-                    </h1>
-                    <div className="h-[200px] bg-sky-500" />
-                    <h1>
-                        Hello i am some very long text. Hello i am some very
-                        long text. Hello i am some very long text. Hello i am
-                        some very long text.
-                    </h1>
+            <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
+                <section className="w-full h-full flex justify-center items-center relative">
+                    <div className="upperColor absolute top-0 w-full h-[50%] bg-[#e5e5e5]" />
+                    <div className="bottomColor absolute bottom-0 w-full h-[50%] bg-[#434343]" />
+                    <div className="image-container w-full h-[470px] md:h-[387px] lg:h-[591px] mx-[30px] lg:mx-[90px] 2xl:mx-[225px]  my-[115px] bg-[#969696] z-[100]">
+                        <picture className="w-full h-full">
+                            <source
+                                media="(min-width: 768px)"
+                                srcSet="/brands_horizontal.png"
+                                className="w-full h-full"
+                            />
+                            <img
+                                src="/brands_vertical.png"
+                                alt="Logo"
+                                className="w-full h-full"
+                            />
+                        </picture>
+                    </div>
+                </section>
+                <section className="icp-section h-[50px] bg-[#434343]">
+                    <div className="h-full flex justify-between items-center text-white text-sm borderTop mx-">
+                        <div className="text-[12px]">
+                            上海薛来网络科技有限公司
+                        </div>
+
+                        <div>
+                            <a
+                                href="https://beian.miit.gov.cn/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-[12px]"
+                            >
+                                沪ICP备19039915号-1
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </footer>
         </main>
