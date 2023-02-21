@@ -141,10 +141,6 @@ export default function Home() {
                 setOffsetTop(`${footerTop} - ${footerOffsetHeight}px`)
             }
 
-            // if (window.scrollY >= 4700) {
-            //     setStatus("after")
-            // }
-
             if (window.scrollY > 1500 && window.scrollY < 4500) {
                 setActivateText("on")
             } else {
@@ -206,13 +202,11 @@ export default function Home() {
                             playsInline
                             loop
                             autoPlay
-                            className="h-full w-full object-cover"
                             style={{
+                                objectFit: "cover",
                                 transform: `scale(${scrollNormalized})`,
-                                width:
-                                    status === "started" ? "100%" : undefined,
-                                height:
-                                    status === "started" ? "100vh" : undefined,
+                                width: "100%",
+                                height: status === "after" ? "100%" : "100vh",
                                 position:
                                     status === "started"
                                         ? "fixed"
