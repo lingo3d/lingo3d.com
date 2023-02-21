@@ -43,7 +43,8 @@ export default function FullScreenDialog() {
                     alignItems: "center",
                     paddingX: 4,
                     paddingY: 3,
-                    background: "transparent"
+                    background: "transparent",
+                    marginTop: "50px"
                 }}
             >
                 <Image

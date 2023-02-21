@@ -55,13 +55,14 @@ const CarouselSection = () => {
             <div className="w-full flex justify-center items-center absolute top-[-320px] md:top-[-200px] lg:top-[-140px]">
                 <div
                     ref={sliderRef}
-                    className="w-[90%] py-10 flex justify-start items-center gap-x-3 items bg-transparent"
+                    className="w-[90%] py-10 flex justify-start lg:justify-evenly items-center gap-x-3 items bg-transparent"
                 >
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
+                    {/* <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
@@ -70,8 +71,7 @@ const CarouselSection = () => {
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
-                    <CarouselCard />
-                    <CarouselCard />
+                    <CarouselCard /> */}
                 </div>
             </div>
         </section>

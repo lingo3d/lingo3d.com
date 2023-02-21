@@ -91,3 +91,29 @@ html {
 .borderTop {
     border-top: 1px solid rgba(255, 255, 255, 0.6);
 }
+
+.MuiAppBar-root {
+    max-width: 1550px !important;
+    max-height: 40px !important;
+    top: 100px;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.MuiBox-root,
+.css-dd960 {
+    height: 40px !important;
+}
+
+@media only screen and (min-width: 1200px) {
+    .MuiAppBar-root {
+        max-width: 1350px !important;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .MuiAppBar-root {
+        max-width: 1550px !important;
+    }
+}

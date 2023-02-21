@@ -115,8 +115,6 @@ export default function Home() {
         if (!footerRef.current) return
 
         window.addEventListener("scroll", () => {
-            console.log(window.scrollY)
-
             setScroll(window.scrollY)
 
             const footerOffsetHeight = footerRef?.current.offsetHeight
@@ -171,10 +169,10 @@ export default function Home() {
     return (
         <main className="relative">
             <motion.div
-                initial={{ y: 80 }}
+                initial={{ y: 40 }}
                 animate={{ y: 0 }}
                 transition={{
-                    duration: 1.3,
+                    duration: 0.8,
                     delay: 0.2
                 }}
             >

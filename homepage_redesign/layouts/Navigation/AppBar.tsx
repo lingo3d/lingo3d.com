@@ -40,13 +40,12 @@ export default function Nav() {
     }, [scrollY])
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box>
             <AppBar
                 component="nav"
                 elevation={0}
                 sx={{
-                    background: "transparent",
-                    paddingX: "45px"
+                    background: "transparent"
                 }}
             >
                 <Toolbar
