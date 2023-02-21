@@ -109,10 +109,16 @@ export default function Home() {
 
     const footerRef = useRef<HTMLElement | null>(null)
 
+    const [scroll, setScroll] = useState(0)
+
     useEffect(() => {
         if (!footerRef.current) return
 
         window.addEventListener("scroll", () => {
+            console.log(window.scrollY)
+
+            setScroll(window.scrollY)
+
             const footerOffsetHeight = footerRef?.current.offsetHeight
             const windowHeight = window.innerHeight
             const footerTop =
@@ -120,10 +126,12 @@ export default function Home() {
             const transitionStart = footerTop - windowHeight
 
             const videoElTop = boundsVideo?.top
+
             if (videoElTop <= window.scrollY) {
                 setParallaxStartY(window.scrollY - 100)
                 setStatus("started")
             }
+
             if (window.scrollY <= parallaxStartY) {
                 setStatus("before")
             }
@@ -174,7 +182,7 @@ export default function Home() {
                     delay: 0.2
                 }}
             >
-                <Navigation />
+                <Navigation scroll={scroll} />
                 <VideoSection />
                 <CarouselSection />
             </motion.div>
