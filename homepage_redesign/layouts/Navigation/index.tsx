@@ -18,6 +18,7 @@ const Navigation = ({ scroll }: NavProps) => {
     return (
         <div
             style={{
+                height: "0px",
                 opacity: scroll >= 2000 && scroll <= 4500 ? 0 : 1,
                 transition: "opacity 0.2s ease-in-out",
                 zIndex: 1000

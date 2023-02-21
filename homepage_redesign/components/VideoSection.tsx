@@ -21,7 +21,7 @@ const VideoSection = () => {
                     loop
                     autoPlay
                     className="h-full w-full object-cover opacity-50"
-                    src="tech.mp4"
+                    src="software.mp4"
                 />
             </div>
         </section>
