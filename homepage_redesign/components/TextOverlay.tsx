@@ -1,12 +1,17 @@
 type DisplayTextProps = {
     displayText: "on" | "off"
+    activateText: "on" | "off"
 }
 
-export const TextOverlay = ({ displayText }: DisplayTextProps) => {
+export const TextOverlay = ({
+    displayText,
+    activateText
+}: DisplayTextProps) => {
     return (
         <div
             className="transition-all duration-1000 w-[90%] md:w-[60%] lg:w-[50%]"
             style={{
+                display: activateText === "on" ? "block" : "none",
                 opacity: displayText === "on" ? 1 : 0,
                 position: "fixed",
                 top: "50%",

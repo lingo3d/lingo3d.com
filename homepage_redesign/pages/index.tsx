@@ -1,11 +1,10 @@
-import Navigation from "@/layouts/Navigation/index"
+import Navigation from "@/layouts/navigation/index"
 import VideoSection from "@/components/VideoSection"
 import CarouselSection from "@/components/CarouselSection"
 import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
 import { TextOverlay } from "@/components/TextOverlay"
 import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
-import Image from "next/legacy/image"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -101,6 +100,7 @@ export default function Home() {
     )
 
     const [displayText, setDisplayText] = useState<"off" | "on">("off")
+    const [activateText, setActivateText] = useState<"off" | "on">("off")
 
     const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
@@ -136,6 +136,12 @@ export default function Home() {
             // if (window.scrollY >= 4700) {
             //     setStatus("after")
             // }
+
+            if (window.scrollY > 1500 && window.scrollY < 4500) {
+                setActivateText("on")
+            } else {
+                setActivateText("off")
+            }
 
             if (window.scrollY > 2000 && window.scrollY < 3000) {
                 setDisplayText("on")
@@ -179,7 +185,10 @@ export default function Home() {
                         className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px]  pt-[50px] w-full "
                         ref={setEl}
                     >
-                        <TextOverlay displayText={displayText} />
+                        <TextOverlay
+                            displayText={displayText}
+                            activateText={activateText}
+                        />
                         <ParallaxBlackOverlay
                             opacityLevel={opacityLevel}
                             dispayOverlay={dispayOverlay}
@@ -223,6 +232,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
             <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
                 <section className="w-full h-full flex justify-center items-center relative">
                     <div className="upperColor absolute top-0 w-full h-[50%] bg-[#e5e5e5]" />

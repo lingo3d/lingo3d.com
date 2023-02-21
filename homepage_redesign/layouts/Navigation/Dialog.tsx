@@ -35,7 +35,7 @@ export default function FullScreenDialog() {
     }
 
     return (
-        <div className="fixed w-full z-50">
+        <div className="fixed w-full z-[999]">
             <Box
                 sx={{
                     display: "flex",
@@ -46,7 +46,12 @@ export default function FullScreenDialog() {
                     background: "transparent"
                 }}
             >
-                <Image src="/logo.png" width={43} height={43} alt="logo" />
+                <Image
+                    src="/logo-rounded.png"
+                    width={48}
+                    height={48}
+                    alt="logo"
+                />
                 <IconButton
                     sx={{ color: "white" }}
                     aria-label="open menu"
