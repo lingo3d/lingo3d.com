@@ -248,19 +248,15 @@ export default function Home() {
                                 objectFit: "cover",
                                 transform: `scale(${scrollNormalized})`,
                                 width: "100%",
-                                height: status === "after" ? "100%" : "100vh",
+                                height: "100vh",
                                 position:
                                     status === "started"
                                         ? "fixed"
                                         : status === "after"
                                         ? "absolute"
                                         : undefined,
-                                top:
-                                    status === "started"
-                                        ? 0
-                                        : status === "after"
-                                        ? offsetTop
-                                        : undefined,
+                                top: status === "started" ? 0 : undefined,
+                                bottom: status === "after" ? 0 : undefined,
                                 left: status === "started" ? 0 : undefined,
                                 zIndex: status === "started" ? 800 : 799,
                                 transition:
