@@ -95,16 +95,16 @@ html {
 .MuiAppBar-root {
     max-width: 1550px !important;
     max-height: 40px !important;
-    top: 100px;
+    top: 50px;
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%);
 }
 
-.MuiBox-root,
+/* .MuiBox-root,
 .css-dd960 {
     height: 40px !important;
-}
+} */
 
 @media only screen and (min-width: 1200px) {
     .MuiAppBar-root {

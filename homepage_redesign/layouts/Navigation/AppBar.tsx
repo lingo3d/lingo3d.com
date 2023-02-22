@@ -79,7 +79,7 @@ export default function Nav() {
                         />
                         <Image
                             ref={logo2Ref}
-                            src="/logo-rounded.png"
+                            src="/logo.png"
                             alt="company background"
                             width={60}
                             height={60}
