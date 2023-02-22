@@ -6,8 +6,8 @@ import HeroTitle from "@/components/HeroTitle"
 import CarouselSection from "@/components/CarouselSection"
 import { TextOverlay } from "@/components/TextOverlay"
 import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
-import ICP from "@/layouts/footer/ICP"
-import Partners from "@/components/Partners"
+import Footer from "@/layouts/footer"
+import MotionAnimation from "@/components/MotionAnimation"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -88,6 +88,7 @@ const mapRange = (
 export default function Home() {
     const scrollY = useScroll()
     const [bounds, setEl] = useBounds()
+    const footerRef = useRef<HTMLElement | null>(null)
 
     const top = bounds?.top ?? 0
     const bottom = bounds?.bottom ?? 1
@@ -107,10 +108,6 @@ export default function Home() {
 
     const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
-
-    const [offsetTop, setOffsetTop] = useState<string | null>(null)
-
-    const footerRef = useRef<HTMLElement | null>(null)
 
     const [scroll, setScroll] = useState(0)
 
@@ -139,7 +136,6 @@ export default function Home() {
 
             if (window.scrollY >= transitionStart) {
                 setStatus("after")
-                setOffsetTop(`${footerTop} - ${footerOffsetHeight}px`)
             }
 
             if (window.scrollY > 1500 && window.scrollY < 4500) {
@@ -172,18 +168,11 @@ export default function Home() {
     return (
         <main className="relative">
             <HeroVideo />
-            <motion.div
-                initial={{ y: 40 }}
-                animate={{ y: 0 }}
-                transition={{
-                    duration: 0.8,
-                    delay: 0.2
-                }}
-            >
+            <MotionAnimation>
                 <Navigation scroll={scroll} />
                 <HeroTitle />
                 <CarouselSection />
-            </motion.div>
+            </MotionAnimation>
 
             <section>
                 <div className="h-[4400px] relative">
@@ -233,10 +222,7 @@ export default function Home() {
                 </div>
             </section>
 
-            <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
-                <Partners />
-                <ICP />
-            </footer>
+            <Footer ref={footerRef} />
         </main>
     )
 }
