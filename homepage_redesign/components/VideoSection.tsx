@@ -10,20 +10,6 @@ const VideoSection = () => {
             >
                 We help ambitious companies scale up at every stage of growth
             </h1>
-
-            <div
-                className="relative top-0 left-0 w-full h-screen"
-                id="video-container"
-            >
-                <video
-                    muted
-                    playsInline
-                    loop
-                    autoPlay
-                    className="h-full w-full object-cover opacity-50"
-                    src="software.mp4"
-                />
-            </div>
         </section>
     )
 }
