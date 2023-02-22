@@ -62,7 +62,6 @@ const CarouselSection = () => {
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
-                    {/* <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
@@ -71,7 +70,8 @@ const CarouselSection = () => {
                     <CarouselCard />
                     <CarouselCard />
                     <CarouselCard />
-                    <CarouselCard /> */}
+                    <CarouselCard />
+                    <CarouselCard />
                 </div>
             </div>
         </section>

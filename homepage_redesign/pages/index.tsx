@@ -117,6 +117,8 @@ export default function Home() {
         window.addEventListener("scroll", () => {
             setScroll(window.scrollY)
 
+            console.log(window.scrollY)
+
             const footerOffsetHeight = footerRef?.current.offsetHeight
             const windowHeight = window.innerHeight
             const footerTop =
@@ -190,7 +192,7 @@ export default function Home() {
             </motion.div>
 
             <section>
-                <div className="h-[4700px] relative">
+                <div className="h-[4400px] relative">
                     <div
                         className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px]  pt-[50px] w-full "
                         ref={setEl}
