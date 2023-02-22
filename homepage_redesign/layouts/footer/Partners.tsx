@@ -1,4 +1,4 @@
-export const Partners = () => {
+const Partners = () => {
     return (
         <section className="w-full h-full flex justify-center items-center relative">
             <div className="upperColor absolute top-0 w-full h-[50%] bg-[#e5e5e5]" />

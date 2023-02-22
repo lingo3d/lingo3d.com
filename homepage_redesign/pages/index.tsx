@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from "react"
-import { motion } from "framer-motion"
+import MotionAnimation from "@/components/MotionAnimation"
 import Navigation from "@/layouts/navigation/index"
 import HeroVideo from "@/components/HeroVideo"
 import HeroTitle from "@/components/HeroTitle"
 import CarouselSection from "@/components/CarouselSection"
-import { TextOverlay } from "@/components/TextOverlay"
-import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
+import Parallax from "@/components/Parallax"
 import Footer from "@/layouts/footer"
-import MotionAnimation from "@/components/MotionAnimation"
 
 const useScroll = () => {
     const [scrollY, setScrollY] = useState(0)
@@ -53,7 +51,7 @@ const useBoundsVideo = () => {
         setBoundsVideo(elVideo?.getBoundingClientRect())
     }, [elVideo])
 
-    return [setElVideo, boundsVideo, elVideo] as const
+    return [setElVideo, boundsVideo] as const
 }
 
 const mapRange = (
@@ -94,7 +92,7 @@ export default function Home() {
     const bottom = bounds?.bottom ?? 1
     const scrollNormalized = mapRange(scrollY + 80, top, bottom, 0.75, 1, true)
 
-    const [setElVideo, boundsVideo, elVideo] = useBoundsVideo()
+    const [setElVideo, boundsVideo] = useBoundsVideo()
 
     const [parallaxStartY, setParallaxStartY] = useState<number | undefined>(
         undefined
@@ -102,13 +100,10 @@ export default function Home() {
     const [status, setStatus] = useState<"before" | "started" | "after">(
         "before"
     )
-
     const [displayText, setDisplayText] = useState<"off" | "on">("off")
     const [activateText, setActivateText] = useState<"off" | "on">("off")
-
     const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
-
     const [scroll, setScroll] = useState(0)
 
     useEffect(() => {
@@ -117,7 +112,6 @@ export default function Home() {
         window.addEventListener("scroll", () => {
             setScroll(window.scrollY)
 
-            const footerOffsetHeight = footerRef?.current.offsetHeight
             const windowHeight = window.innerHeight
             const footerTop =
                 footerRef?.current.getBoundingClientRect().top + window.scrollY
@@ -173,55 +167,16 @@ export default function Home() {
                 <HeroTitle />
                 <CarouselSection />
             </MotionAnimation>
-
-            <section>
-                <div className="h-[4400px] relative">
-                    <div
-                        className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px]  pt-[50px] w-full "
-                        ref={setEl}
-                    >
-                        <TextOverlay
-                            displayText={displayText}
-                            activateText={activateText}
-                        />
-                        <ParallaxBlackOverlay
-                            opacityLevel={opacityLevel}
-                            dispayOverlay={dispayOverlay}
-                        />
-                        <video
-                            muted
-                            playsInline
-                            loop
-                            autoPlay
-                            style={{
-                                objectFit: "cover",
-                                transform: `scale(${scrollNormalized})`,
-                                width: "100%",
-                                height: "100vh",
-                                position:
-                                    status === "started"
-                                        ? "fixed"
-                                        : status === "after"
-                                        ? "absolute"
-                                        : undefined,
-                                top: status === "started" ? 0 : undefined,
-                                bottom: status === "after" ? 0 : undefined,
-                                left: status === "started" ? 0 : undefined,
-                                zIndex: status === "started" ? 800 : 799,
-                                transition:
-                                    status === "started"
-                                        ? "all 0.3s ease-in-out"
-                                        : status === "after"
-                                        ? "top 0.5s ease-out"
-                                        : undefined
-                            }}
-                            src="city.mp4"
-                            ref={setElVideo}
-                        />
-                    </div>
-                </div>
-            </section>
-
+            <Parallax
+                setEl={setEl}
+                status={status}
+                displayText={displayText}
+                activateText={activateText}
+                opacityLevel={opacityLevel}
+                dispayOverlay={dispayOverlay}
+                scrollNormalized={scrollNormalized}
+                setElVideo={setElVideo}
+            />
             <Footer ref={footerRef} />
         </main>
     )
