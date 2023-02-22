@@ -1,8 +1,9 @@
-import Navigation from "@/layouts/navigation/index"
-import VideoSection from "@/components/VideoSection"
-import CarouselSection from "@/components/CarouselSection"
-import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react"
+import { motion } from "framer-motion"
+import Navigation from "@/layouts/navigation/index"
+import HeroVideo from "@/components/HeroVideo"
+import HeroTitle from "@/components/HeroTitle"
+import CarouselSection from "@/components/CarouselSection"
 import { TextOverlay } from "@/components/TextOverlay"
 import ParallaxBlackOverlay from "@/components/ParallaxBlackOverlay"
 
@@ -117,8 +118,6 @@ export default function Home() {
         window.addEventListener("scroll", () => {
             setScroll(window.scrollY)
 
-            console.log(window.scrollY)
-
             const footerOffsetHeight = footerRef?.current.offsetHeight
             const windowHeight = window.innerHeight
             const footerTop =
@@ -170,14 +169,7 @@ export default function Home() {
 
     return (
         <main className="relative">
-            <video
-                muted
-                playsInline
-                loop
-                autoPlay
-                className="h-screen w-full object-cover opacity-50 top-0 left-0 absolute"
-                src="software.mp4"
-            />
+            <HeroVideo />
             <motion.div
                 initial={{ y: 40 }}
                 animate={{ y: 0 }}
@@ -187,7 +179,7 @@ export default function Home() {
                 }}
             >
                 <Navigation scroll={scroll} />
-                <VideoSection />
+                <HeroTitle />
                 <CarouselSection />
             </motion.div>
 

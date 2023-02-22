@@ -1,4 +1,4 @@
-const VideoSection = () => {
+const HeroTitle = () => {
     return (
         <section className="relative h-screen z-10">
             <h1
@@ -14,4 +14,4 @@ const VideoSection = () => {
     )
 }
 
-export default VideoSection
+export default HeroTitle

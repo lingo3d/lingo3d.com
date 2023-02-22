@@ -47,12 +47,7 @@ export default function FullScreenDialog() {
                     // marginTop: "50px"
                 }}
             >
-                <Image
-                    src="/logo-rounded.png"
-                    width={48}
-                    height={48}
-                    alt="logo"
-                />
+                <Image src="/logo.png" width={44} height={44} alt="logo" />
                 <IconButton
                     sx={{ color: "white" }}
                     aria-label="open menu"
