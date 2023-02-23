@@ -5,11 +5,12 @@ import HeroVideo from "@/components/HeroVideo"
 import HeroTitle from "@/components/HeroTitle"
 import CarouselSection from "@/components/CarouselSection"
 import Parallax from "@/components/Parallax"
-import Footer from "@/layouts/footer/index"
 import mapRange from "@/utils/mapRange"
 import useScroll from "@/utils/useScroll"
 import useBounds from "@/utils/useBounds"
 import useBoundsVideo from "@/utils/useBoundsVideo"
+import Partners from "@/layouts/footer/Partners"
+import Icp from "@/layouts/footer/Icp"
 
 export default function Home() {
     const scrollY = useScroll()
@@ -105,8 +106,10 @@ export default function Home() {
                 scrollNormalized={scrollNormalized}
                 elVideo={elVideo}
             />
-
-            <Footer ref={footerRef} />
+            <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
+                <Partners />
+                <Icp />
+            </footer>
         </main>
     )
 }
