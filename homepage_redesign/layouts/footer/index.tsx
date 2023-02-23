@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react"
-import Icp from "@/layouts/footer/Icp"
-import Partners from "@/layouts/footer/Partners"
+import Icp from "@/components/Icp"
+import Partners from "@/components/Partners"
 
 const ChildComponent = forwardRef(
     (props, ref: React.ForwardedRef<HTMLElement>) => {

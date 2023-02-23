@@ -9,8 +9,8 @@ import mapRange from "@/utils/mapRange"
 import useScroll from "@/utils/useScroll"
 import useBounds from "@/utils/useBounds"
 import useBoundsVideo from "@/utils/useBoundsVideo"
-import Partners from "@/layouts/footer/Partners"
-import Icp from "@/layouts/footer/Icp"
+import Partners from "@/components/Partners"
+import Icp from "@/components/Icp"
 
 export default function Home() {
     const scrollY = useScroll()
