@@ -17,6 +17,7 @@ html {
         url("/fonts/100-graphie.woff") format("woff");
     font-weight: 100;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -24,6 +25,7 @@ html {
         url("/fonts/200-graphie.woff") format("woff");
     font-weight: 200;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -31,6 +33,7 @@ html {
         url("/fonts/300-graphie.woff") format("woff");
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -38,6 +41,7 @@ html {
         url("/fonts/400-graphie.woff") format("woff");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -45,6 +49,7 @@ html {
         url("/fonts/500-graphie.woff") format("woff");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -52,6 +57,7 @@ html {
         url("/fonts/600-graphie.woff") format("woff");
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -59,6 +65,7 @@ html {
         url("/fonts/700-graphie.woff") format("woff");
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: "Graphie";
@@ -66,6 +73,7 @@ html {
         url("/fonts/800-graphie.woff") format("woff");
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
 }
 
 .items {
