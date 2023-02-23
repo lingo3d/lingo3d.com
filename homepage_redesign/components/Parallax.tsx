@@ -1,22 +1,33 @@
 import ParallaxBlackOverlay from "./ParallaxBlackOverlay"
 import TextOverlay from "./TextOverlay"
 
+type ParallaxProps = {
+    el: React.RefObject<HTMLDivElement> | null
+    status: string
+    displayText: "on" | "off"
+    activateText: "off" | "on"
+    opacityLevel: number
+    dispayOverlay: string | number
+    scrollNormalized: number
+    elVideo: React.RefObject<HTMLVideoElement> | null
+}
+
 const Parallax = ({
-    setEl,
+    el,
     status,
     displayText,
     activateText,
     opacityLevel,
     dispayOverlay,
     scrollNormalized,
-    setElVideo
-}) => {
+    elVideo
+}: ParallaxProps) => {
     return (
         <section>
             <div className="h-[4400px] relative">
                 <div
                     className="bg-slate-700 mt-[500px] md:mt-[800px] lg:mt-[900px]  pt-[50px] w-full "
-                    ref={setEl}
+                    ref={el}
                 >
                     <TextOverlay
                         displayText={displayText}
@@ -54,7 +65,7 @@ const Parallax = ({
                                     : undefined
                         }}
                         src="city.mp4"
-                        ref={setElVideo}
+                        ref={elVideo}
                     />
                 </div>
             </div>

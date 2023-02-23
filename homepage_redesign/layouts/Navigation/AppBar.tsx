@@ -10,8 +10,8 @@ const navItems = ["Home", "About", "Contact"]
 export default function Nav() {
     const [scrollY, setScrollY] = useState(0)
     const fadeStart = 100
-    const logo1Ref = useRef<HTMLElement | undefined>(undefined)
-    const logo2Ref = useRef<HTMLElement | undefined>(undefined)
+    const logo1Ref = useRef<HTMLImageElement | null>(null)
+    const logo2Ref = useRef<HTMLImageElement | null>(null)
     const [logo1Opacity, setLogo1Opacity] = useState<number>(1)
     const [logo2Opacity, setLogo2Opacity] = useState<number>(0)
 

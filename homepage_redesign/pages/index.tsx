@@ -26,14 +26,15 @@ const useScroll = () => {
 }
 
 const useBounds = () => {
-    const [el, setEl] = useState<HTMLDivElement | null>(null)
+    const el = useRef<HTMLDivElement | null>(null)
     const [bounds, setBounds] = useState<DOMRect>()
 
     useEffect(() => {
-        setBounds(el?.getBoundingClientRect())
+        if (!el.current) return
+        setBounds(el?.current.getBoundingClientRect())
 
         const cb = () => {
-            setBounds(el?.getBoundingClientRect())
+            setBounds(el?.current!.getBoundingClientRect())
         }
         window.addEventListener("resize", cb)
         return () => {
@@ -41,18 +42,19 @@ const useBounds = () => {
         }
     }, [el])
 
-    return [bounds, setEl] as const
+    return [bounds, el] as const
 }
 
 const useBoundsVideo = () => {
-    const [elVideo, setElVideo] = useState<HTMLVideoElement | null>(null)
+    const elVideo = useRef<HTMLVideoElement | null>(null)
     const [boundsVideo, setBoundsVideo] = useState<DOMRect>()
 
     useEffect(() => {
-        setBoundsVideo(elVideo?.getBoundingClientRect())
+        if (!elVideo) return
+        setBoundsVideo(elVideo?.current!.getBoundingClientRect())
     }, [elVideo])
 
-    return [setElVideo, boundsVideo] as const
+    return [elVideo, boundsVideo] as const
 }
 
 const mapRange = (
@@ -86,14 +88,14 @@ const mapRange = (
 
 export default function Home() {
     const scrollY = useScroll()
-    const [bounds, setEl] = useBounds()
+    const [bounds, el] = useBounds()
     const footerRef = useRef<HTMLElement | null>(null)
 
     const top = bounds?.top ?? 0
     const bottom = bounds?.bottom ?? 1
     const scrollNormalized = mapRange(scrollY + 80, top, bottom, 0.75, 1, true)
 
-    const [setElVideo, boundsVideo] = useBoundsVideo()
+    const [elVideo, boundsVideo] = useBoundsVideo()
 
     const [parallaxStartY, setParallaxStartY] = useState<number | undefined>(
         undefined
@@ -115,17 +117,17 @@ export default function Home() {
 
             const windowHeight = window.innerHeight
             const footerTop =
-                footerRef?.current.getBoundingClientRect().top + window.scrollY
+                footerRef?.current!.getBoundingClientRect().top + window.scrollY
             const transitionStart = footerTop - windowHeight
 
-            const videoElTop = boundsVideo?.top
+            const videoElTop: number | undefined = boundsVideo?.top
 
-            if (videoElTop <= window.scrollY) {
+            if (videoElTop! <= window.scrollY) {
                 setParallaxStartY(window.scrollY - 100)
                 setStatus("started")
             }
 
-            if (window.scrollY <= parallaxStartY) {
+            if (window.scrollY <= parallaxStartY!) {
                 setStatus("before")
             }
 
@@ -169,14 +171,14 @@ export default function Home() {
                 <CarouselSection />
             </MotionAnimation>
             <Parallax
-                setEl={setEl}
+                el={el}
                 status={status}
                 displayText={displayText}
                 activateText={activateText}
                 opacityLevel={opacityLevel}
                 dispayOverlay={dispayOverlay}
                 scrollNormalized={scrollNormalized}
-                setElVideo={setElVideo}
+                elVideo={elVideo}
             />
             <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
                 <section className="w-full h-full flex justify-center items-center relative">

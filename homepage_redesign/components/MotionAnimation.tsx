@@ -1,6 +1,12 @@
 import { motion } from "framer-motion"
 
-const MotionAnimation = ({ children }) => {
+type MotionAnimProps = {
+    // children: React.ReactNode - any type of children
+    // children: React.ReactElement<MyComponentProps> | React.ReactElement<OtherComponentProps> | React.ReactElement[]; - specific type of children
+    children: React.ReactElement | React.ReactElement[]
+}
+
+const MotionAnimation = ({ children }: MotionAnimProps) => {
     return (
         <motion.div
             initial={{ y: 40 }}

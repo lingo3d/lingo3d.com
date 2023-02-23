@@ -2,29 +2,29 @@ import { useEffect, useRef } from "react"
 import CarouselCard from "./CarouselCard"
 
 const CarouselSection = () => {
-    const sliderRef = useRef<HTMLDivElement>(null)
+    const sliderRef: any = useRef()
 
     useEffect(() => {
         let slider = sliderRef.current
         if (!slider) return
 
         let isDown = false
-        let startX
-        let scrollLeft
+        let startX: number | undefined
+        let scrollLeft: number | undefined
 
-        const handleMouseDown = (e) => {
+        const handleMouseDown = (e: any) => {
             isDown = true
             slider?.classList.add("active")
-            startX = e.pageX - slider?.offsetLeft
+            startX = e.pageX - slider?.offsetLeft!
             scrollLeft = slider?.scrollLeft
         }
 
-        const handleMouseMove = (e) => {
+        const handleMouseMove = (e: any) => {
             if (!isDown) return
             e.preventDefault()
-            const x = e.pageX - slider.offsetLeft
-            const walk = x - startX
-            slider.scrollLeft = scrollLeft - walk
+            const x = e.pageX - slider!.offsetLeft
+            const walk = x - startX!
+            slider!.scrollLeft = scrollLeft! - walk
         }
 
         const handleMouseLeave = () => {
@@ -43,10 +43,10 @@ const CarouselSection = () => {
         slider.addEventListener("mouseup", handleMouseUp)
 
         return () => {
-            slider.removeEventListener("mousedown", handleMouseDown)
-            slider.removeEventListener("mousedown", handleMouseMove)
-            slider.removeEventListener("mouseleave", handleMouseLeave)
-            slider.removeEventListener("mouseup", handleMouseUp)
+            slider?.removeEventListener("mousedown", handleMouseDown)
+            slider?.removeEventListener("mousedown", handleMouseMove)
+            slider?.removeEventListener("mouseleave", handleMouseLeave)
+            slider?.removeEventListener("mouseup", handleMouseUp)
         }
     })
 
