@@ -1,18 +1,18 @@
 import React, { forwardRef } from "react"
-import ICP from "./ICP"
-import Partners from "./Partners"
+import Icp from "@/layouts/footer/Icp"
+import Partners from "@/layouts/footer/Partners"
 
 const ChildComponent = forwardRef(
     (props, ref: React.ForwardedRef<HTMLElement>) => {
         return (
             <footer ref={ref} className="z-[999] w-full bg-gray-500">
                 <Partners />
-                <ICP />
+                <Icp />
             </footer>
         )
     }
 )
 
-ChildComponent.displayName = "ChildComponent"
+ChildComponent.displayName = "Footer"
 
 export default ChildComponent

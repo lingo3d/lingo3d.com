@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 const mapRange = (
     value: number,
     minFrom: number,
@@ -7,7 +5,7 @@ const mapRange = (
     minTo: number,
     maxTo: number,
     constrain?: boolean
-) => {
+): number => {
     const rangeFrom = maxFrom - minFrom
     const rangeTo = maxTo - minTo
     const result = minTo + ((value - minFrom) / rangeFrom) * rangeTo
@@ -28,3 +26,5 @@ const mapRange = (
 
     return result
 }
+
+export default mapRange

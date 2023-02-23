@@ -1,4 +1,4 @@
-export const ICP = () => {
+export const Icp = () => {
     return (
         <section className="icp-section h-[50px] bg-[#434343] px-2 md:px-4 lg:px-6 z-[1001]">
             <div className="h-full flex justify-between items-center text-white text-sm borderTop font-[500]">
@@ -19,4 +19,4 @@ export const ICP = () => {
     )
 }
 
-export default ICP
+export default Icp

@@ -5,86 +5,11 @@ import HeroVideo from "@/components/HeroVideo"
 import HeroTitle from "@/components/HeroTitle"
 import CarouselSection from "@/components/CarouselSection"
 import Parallax from "@/components/Parallax"
-import Footer from "@/layouts/footer"
-import ICP from "@/layouts/footer/ICP"
-
-const useScroll = () => {
-    const [scrollY, setScrollY] = useState(0)
-
-    useEffect(() => {
-        const cb = () => {
-            setScrollY(window.scrollY + window.innerHeight)
-        }
-        document.addEventListener("scroll", cb)
-
-        return () => {
-            document.removeEventListener("scroll", cb)
-        }
-    }, [])
-
-    return scrollY
-}
-
-const useBounds = () => {
-    const el = useRef<HTMLDivElement | null>(null)
-    const [bounds, setBounds] = useState<DOMRect>()
-
-    useEffect(() => {
-        if (!el.current) return
-        setBounds(el?.current.getBoundingClientRect())
-
-        const cb = () => {
-            setBounds(el?.current!.getBoundingClientRect())
-        }
-        window.addEventListener("resize", cb)
-        return () => {
-            window.removeEventListener("resize", cb)
-        }
-    }, [el])
-
-    return [bounds, el] as const
-}
-
-const useBoundsVideo = () => {
-    const elVideo = useRef<HTMLVideoElement | null>(null)
-    const [boundsVideo, setBoundsVideo] = useState<DOMRect>()
-
-    useEffect(() => {
-        if (!elVideo) return
-        setBoundsVideo(elVideo?.current!.getBoundingClientRect())
-    }, [elVideo])
-
-    return [elVideo, boundsVideo] as const
-}
-
-const mapRange = (
-    value: number,
-    minFrom: number,
-    maxFrom: number,
-    minTo: number,
-    maxTo: number,
-    constrain?: boolean
-) => {
-    const rangeFrom = maxFrom - minFrom
-    const rangeTo = maxTo - minTo
-    const result = minTo + ((value - minFrom) / rangeFrom) * rangeTo
-
-    if (!constrain) return result
-
-    let minVal: number
-    let maxVal: number
-    if (minTo < maxTo) {
-        minVal = minTo
-        maxVal = maxTo
-    } else {
-        minVal = maxTo
-        maxVal = minTo
-    }
-    if (result < minVal) return minVal
-    if (result > maxVal) return maxVal
-
-    return result
-}
+import Footer from "@/layouts/footer/index"
+import mapRange from "@/utils/mapRange"
+import useScroll from "@/utils/useScroll"
+import useBounds from "@/utils/useBounds"
+import useBoundsVideo from "@/utils/useBoundsVideo"
 
 export default function Home() {
     const scrollY = useScroll()
@@ -180,35 +105,8 @@ export default function Home() {
                 scrollNormalized={scrollNormalized}
                 elVideo={elVideo}
             />
-            <footer ref={footerRef} className="z-[999] w-full bg-gray-500">
-                <section className="w-full h-full flex justify-center items-center relative">
-                    <div className="upperColor absolute top-0 w-full h-[50%] bg-[#e5e5e5]" />
-                    <div className="bottomColor absolute bottom-0 w-full h-[50%] bg-[#434343]" />
-                    <div
-                        className="image-container w-full h-[470px] my-[115px] mx-[35px]
-                    md:h-[387px] 
-                    lg:mx-[90px] 
-                    xl:mx-[160px] 
-                    2xl:mx-[225px]   bg-[#969696] 2xl:h-[591px] z-[100]"
-                    >
-                        <picture className="w-full h-full">
-                            <source
-                                media="(min-width: 768px)"
-                                srcSet="/brands_horizontal.png"
-                                className="w-full h-full"
-                            />
-                            <img
-                                src="/brands_vertical.png"
-                                alt="Logo"
-                                className="w-full h-full"
-                            />
-                        </picture>
-                    </div>
-                </section>
-                <ICP />
-            </footer>
 
-            {/* <Footer ref={footerRef} /> */}
+            <Footer ref={footerRef} />
         </main>
     )
 }
