@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
 import ParallaxBlackOverlay from "./ParallaxBlackOverlay"
 import TextOverlay from "./TextOverlay"
 
