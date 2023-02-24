@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react"
 import ParallaxBlackOverlay from "./ParallaxBlackOverlay"
 import TextOverlay from "./TextOverlay"
 
@@ -22,6 +23,32 @@ const Parallax = ({
     scrollNormalized,
     elVideo
 }: ParallaxProps) => {
+    useEffect(() => {
+        const options = {
+            threshold: 0.1
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    elVideo?.current?.play()
+                } else {
+                    elVideo?.current?.pause()
+                }
+            })
+        }, options)
+
+        let currentElVideo = elVideo?.current
+        if (currentElVideo) {
+            observer.observe(currentElVideo)
+        }
+
+        return () => {
+            if (currentElVideo) {
+                observer.unobserve(currentElVideo)
+            }
+        }
+    }, [elVideo])
+
     return (
         <section>
             <div className="h-[4400px] relative">
@@ -41,7 +68,7 @@ const Parallax = ({
                         muted
                         playsInline
                         loop
-                        autoPlay
+                        data-src="city.mp4"
                         style={{
                             objectFit: "cover",
                             transform: `scale(${scrollNormalized})`,
