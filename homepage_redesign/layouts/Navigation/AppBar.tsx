@@ -107,7 +107,7 @@ export default function Nav() {
                         </Button>
                         <Link href="http://localhost:3000" target="_blank">
                             <Button
-                                key="home"
+                                key="forum"
                                 sx={{
                                     color: "#fff",
                                     paddingRight: "30px",
@@ -119,14 +119,14 @@ export default function Nav() {
                         </Link>
 
                         <Button
-                            key="home"
+                            key="contact"
                             sx={{
                                 color: "#fff",
                                 paddingRight: "30px",
                                 fontSize: "14px"
                             }}
                         >
-                            Home
+                            Contact
                         </Button>
                     </Box>
                     {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>

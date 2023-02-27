@@ -7,12 +7,20 @@ type NavProps = {
     scroll: number
 }
 
-const Navigation = ({ scroll }: NavProps) => {
+const Navigation = () => {
     const [windowWidth, setWindowWidth] = useState<number | null>(null)
     const width = useWindowWidth()
+    const [scroll, setScroll] = useState(0)
 
     useEffect(() => {
         setWindowWidth(width)
+        const cb = () => {
+            setScroll(window.scrollY)
+        }
+        window.addEventListener("scroll", cb)
+        return () => {
+            window.removeEventListener("scroll", cb)
+        }
     }, [width])
 
     return (
