@@ -6,7 +6,7 @@ import Button from "@mui/material/Button"
 import Image from "next/image"
 import Link from "next/link"
 
-const navItems = ["Home", "Forum", "Contact"]
+// const navItems = ["Home", "Forum", "Contact"]
 
 export default function Nav() {
     const [scrollY, setScrollY] = useState(0)

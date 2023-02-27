@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import mapRange from "@/utils/mapRange"
 import useScroll from "@/utils/useScroll"
 import useBounds from "@/utils/useBounds"
@@ -19,14 +19,11 @@ export const useParallax = (footer: HTMLElement | null) => {
     const [activateText, setActivateText] = useState<"off" | "on">("off")
     const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
-    const [scroll, setScroll] = useState(0)
 
     useEffect(() => {
         if (!footer) return
 
         const handleScroll = () => {
-            setScroll(window.scrollY)
-
             const windowHeight = window.innerHeight
             const footerTop =
                 footer.getBoundingClientRect().top + window.scrollY
