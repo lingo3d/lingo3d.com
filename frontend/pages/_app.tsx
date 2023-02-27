@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AppProps } from "next/app"
 import { Provider } from "../context/user"
 import Router from "next/router"
+import Head from "next/head"
 import Loader from "../components/Loader"
 import NavBar from "../components/AppBar"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
@@ -18,6 +19,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <>
+            <Head>
+                <title>Lingo3D forum</title>
+            </Head>
             <Provider>
                 <NavBar />
                 {loading && <Loader />}
