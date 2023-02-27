@@ -4,8 +4,9 @@ import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import Image from "next/image"
+import Link from "next/link"
 
-const navItems = ["Home", "About", "Contact"]
+const navItems = ["Home", "Forum", "Contact"]
 
 export default function Nav() {
     const [scrollY, setScrollY] = useState(0)
@@ -93,8 +94,42 @@ export default function Nav() {
                             }}
                         />
                     </Box>
-
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                        <Button
+                            key="home"
+                            sx={{
+                                color: "#fff",
+                                paddingRight: "30px",
+                                fontSize: "14px"
+                            }}
+                        >
+                            Home
+                        </Button>
+                        <Link href="http://localhost:3000" target="_blank">
+                            <Button
+                                key="home"
+                                sx={{
+                                    color: "#fff",
+                                    paddingRight: "30px",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                Forum
+                            </Button>
+                        </Link>
+
+                        <Button
+                            key="home"
+                            sx={{
+                                color: "#fff",
+                                paddingRight: "30px",
+                                fontSize: "14px"
+                            }}
+                        >
+                            Home
+                        </Button>
+                    </Box>
+                    {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
                             <Button
                                 key={item}
@@ -107,7 +142,7 @@ export default function Nav() {
                                 {item}
                             </Button>
                         ))}
-                    </Box>
+                    </Box> */}
                 </Toolbar>
             </AppBar>
         </Box>

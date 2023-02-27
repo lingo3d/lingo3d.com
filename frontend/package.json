@@ -10,6 +10,7 @@
         "@emotion/styled": "^11.10.5",
         "@mui/icons-material": "^5.10.9",
         "@mui/material": "^5.10.13",
+        "@preact/signals-react": "^1.2.2",
         "@react-hook/window-size": "^3.1.1",
         "cloudinary": "^1.33.0",
         "formidable": "^2.1.1",

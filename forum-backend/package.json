@@ -34,5 +34,8 @@
         "tabWidth": 4,
         "semi": false,
         "singleQuote": false
+    },
+    "devDependencies": {
+        "vault-env": "^5.0.0-beta.2"
     }
 }
