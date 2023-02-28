@@ -15,11 +15,9 @@ import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
-import Modal from "./login_register/index"
+import { showLogin } from "../signals/showLogin"
 
 const ButtonAppBar: React.FC = () => {
-    const [showModal, setShowModal] = useState<boolean>(false)
-    const [displayRegister, setDisplayRegister] = useState<boolean>(false)
     const user = useUser()
     const [windowWidth, setWindowWidth] = useState<number | undefined>()
     const width = useWindowWidth()
@@ -88,7 +86,7 @@ const ButtonAppBar: React.FC = () => {
                         {!user && (
                             <>
                                 <Button
-                                    onClick={() => setShowModal(true)}
+                                    onClick={() => (showLogin.value = true)}
                                     sx={{
                                         background:
                                             "rgb(42, 58, 185) !important",
@@ -137,14 +135,6 @@ const ButtonAppBar: React.FC = () => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            <Modal
-                onClose={() => {
-                    setShowModal(false), setDisplayRegister(false)
-                }}
-                show={showModal}
-                displayRegister={displayRegister}
-                setDisplayRegister={setDisplayRegister}
-            />
         </Box>
     )
 }

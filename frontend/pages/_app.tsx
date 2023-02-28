@@ -7,6 +7,7 @@ import Loader from "../components/Loader"
 import NavBar from "../components/AppBar"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
+import Modal from "../components/login_register"
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false)
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <Provider>
                 <NavBar />
+                <Modal />
                 {loading && <Loader />}
                 <ErrorBoundary>
                     <div className="px-[35px] md:px-[70px] lg:px-[220px] mt-[94px]">

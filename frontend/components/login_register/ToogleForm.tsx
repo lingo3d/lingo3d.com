@@ -1,27 +1,25 @@
+import React, { useState } from "react"
 import Box from "@mui/material/Box"
 import Dialog from "@mui/material/Dialog"
 import Image from "next/image"
 import logo from "../../public/logo_colored_thick.png"
 import Login from "./Login"
 import Register from "./Register"
+import { showLogin } from "../../signals/showLogin"
 
-type ToogleFormProps = {
-    show: boolean
-    handleClose: (e: any) => void
-    displayRegister: boolean
-    setDisplayRegister: (display: boolean) => void
-}
+const Form = () => {
+    const [displayRegister, setDisplayRegister] = useState<boolean>(false)
 
-const Form = ({
-    show,
-    handleClose,
-    displayRegister,
-    setDisplayRegister
-}: ToogleFormProps) => {
-    return show ? (
+    const handleCloseClick = (e: any) => {
+        e.preventDefault()
+        showLogin.value = false
+        setDisplayRegister(false)
+    }
+
+    return showLogin.value ? (
         <Dialog
-            onClose={handleClose}
-            open={show}
+            onClose={handleCloseClick}
+            open={showLogin.value}
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4">
