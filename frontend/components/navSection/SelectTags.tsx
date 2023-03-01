@@ -19,7 +19,7 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({
             //@ts-ignore
             document.activeElement.blur()
         }
-    })
+    }, [])
 
     const handleChange = (tag: string) => {
         router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`)

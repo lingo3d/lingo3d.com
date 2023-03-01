@@ -5,7 +5,6 @@ import NavSection from "../components/navSection"
 import Tags from "../pages_components/index/Tags"
 import Body from "../pages_components/index/Body"
 import { useWindowWidth } from "@react-hook/window-size"
-import { signal, useSignal } from "@preact/signals-react"
 
 const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
     const [windowWidth, setWindowWidth] = useState<number | null>(null)
