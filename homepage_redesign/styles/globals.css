@@ -108,6 +108,9 @@ html {
     right: 50%;
     transform: translate(-50%, -50%);
 }
+.css-m9glnp-MuiPaper-root-MuiDialog-paper {
+    background-color: #1e1e1e !important;
+}
 
 /* .MuiBox-root,
 .css-dd960 {
