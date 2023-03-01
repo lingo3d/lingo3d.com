@@ -4,10 +4,11 @@ import { Provider } from "../context/user"
 import Router from "next/router"
 import Head from "next/head"
 import Loader from "../components/Loader"
-import NavBar from "../components/AppBar"
+import AppBar from "../components/AppBar"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
 import Modal from "../components/login_register"
+import Navigation from "../components/navigation/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false)
@@ -24,7 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>Lingo3D forum</title>
             </Head>
             <Provider>
-                <NavBar />
+                <Navigation />
+                {/* <AppBar /> */}
                 <Modal />
                 {loading && <Loader />}
                 <ErrorBoundary>

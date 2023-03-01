@@ -4,8 +4,7 @@ import { unsetToken as logout } from "../pages/api/auth/js-cookie"
 import Image from "next/image"
 import Link from "next/link"
 import { useWindowWidth } from "@react-hook/window-size"
-import logo from "../public/logo.png"
-import logo_short from "../public/logo_short.png"
+import logoOld from "../public/logoOld.png"
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -60,14 +59,14 @@ const ButtonAppBar: React.FC = () => {
                         <Box sx={{ display: "flex", flexDirection: "row" }}>
                             {windowWidth! > 600 ? (
                                 <Image
-                                    src={logo}
+                                    src={logoOld}
                                     width={127}
                                     height={24}
                                     alt="logo"
                                 />
                             ) : (
                                 <Image
-                                    src={logo}
+                                    src={logoOld}
                                     width={90}
                                     height={16}
                                     alt="logo"
