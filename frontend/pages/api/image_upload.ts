@@ -20,18 +20,16 @@ export default async function upload(
     res: NextApiResponse
 ) {
     if (req.method === "POST") {
-        const data = await new Promise((resolve, reject) => {
+        const data: any = await new Promise((resolve, reject) => {
             const form = new formidable.IncomingForm()
             form.parse(req, (err, fields, files) => {
                 if (err) return reject(err)
                 resolve({ fields, files })
             })
         })
-        //@ts-ignore
+
         const filePath = data?.files?.file.filepath
-        //@ts-ignore
         const fileName = data.files.file.originalFilename
-        //@ts-ignore
         const upload_preset = data?.fields?.upload_preset
 
         try {

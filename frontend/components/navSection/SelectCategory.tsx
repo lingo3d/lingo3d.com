@@ -12,16 +12,14 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
     const router = useRouter()
 
     useEffect(() => {
-        const currentCategory = router.query.category
+        const currentCategory = router.query.category as string
         if (currentCategory) {
-            //@ts-ignore
             setCategory(
-                //@ts-ignore
                 currentCategory.charAt(0).toUpperCase() +
                     currentCategory.slice(1)
             )
-            //@ts-ignore
-            document.activeElement.blur()
+            const activeElement = document.activeElement as HTMLElement
+            activeElement.blur()
         }
     }, [router.asPath])
 

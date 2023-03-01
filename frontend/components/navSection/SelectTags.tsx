@@ -12,12 +12,11 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({
     const router = useRouter()
 
     useEffect(() => {
-        const tagQuery = router.query.tag
+        const tagQuery = router.query.tag as string
         if (tagQuery) {
-            //@ts-ignore
             setTag(tagQuery.charAt(0).toUpperCase() + tagQuery.slice(1))
-            //@ts-ignore
-            document.activeElement.blur()
+            const activeElement = document.activeElement as HTMLElement
+            activeElement.blur()
         }
     }, [])
 

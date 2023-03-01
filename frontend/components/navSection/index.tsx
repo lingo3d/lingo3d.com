@@ -10,13 +10,14 @@ import Box from "@mui/material/Box"
 import { useWindowWidth } from "@react-hook/window-size"
 import Divider from "@mui/material/Divider"
 import { useUser } from "../../context/user"
+import { User } from "../../types"
 
 export default function NavSection() {
     const [windowWidth, setWindowWidth] = useState<number | null>(null)
     const [displayExtraMenus, setDisplayExtraMenus] = useState(false)
     const [active, setActive] = useState("")
     const width = useWindowWidth()
-    const user = useUser()
+    const user: User | undefined = useUser()
     const router = useRouter()
 
     useEffect(() => {

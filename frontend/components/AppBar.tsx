@@ -15,9 +15,10 @@ import Button from "@mui/material/Button"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
 import { showLogin } from "../signals/showLogin"
+import { User } from "../types"
 
 const ButtonAppBar: React.FC = () => {
-    const user = useUser()
+    const user: User | undefined = useUser()
     const [windowWidth, setWindowWidth] = useState<number | undefined>()
     const width = useWindowWidth()
 

@@ -22,8 +22,7 @@ export const unsetToken = () => {
     Cookies.remove("id")
     Cookies.remove("username")
     Cookies.remove("jwt")
-    //@ts-ignore
-    window.location = "/"
+    window.location.assign("/")
 }
 
 export const getTokenFromLocalCookie = () => {

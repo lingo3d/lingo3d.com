@@ -76,8 +76,7 @@ const Tag: NextPage<{ data: Response; tag: string }> = ({ data, tag }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-    //@ts-ignore
-    const tag = params.tag
+    const tag = params?.tag
     let response = await fetch(
         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[tags][$containsi]=${tag}`
     )

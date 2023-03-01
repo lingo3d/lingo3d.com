@@ -10,13 +10,14 @@ import Input from "@mui/material/Input"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import RichTextEditor from "../components/RichTextEditor"
+import { User } from "../types"
 
 const UploadThread: NextPage = () => {
     const [title, setTitle] = useState("")
     const [richTextValue, setRichTextValue] = useState("")
     const [category, setCategory] = useState("")
     const [tags, setTags] = useState<Array<string>>([])
-    const user = useUser()
+    const user: User | undefined = useUser()
 
     const addTags = (e: any) => {
         if (e.target.value === "Choose tags") return
@@ -35,6 +36,7 @@ const UploadThread: NextPage = () => {
 
     async function postThread(e: any) {
         e.preventDefault()
+        if (!user) return
 
         const token = Cookies.get("jwt")
 
@@ -51,7 +53,6 @@ const UploadThread: NextPage = () => {
                         title,
                         category,
                         description: richTextValue,
-                        //@ts-ignore
                         username: user.username,
                         tags: tags.length === 0 ? null : tags
                     }
@@ -64,8 +65,9 @@ const UploadThread: NextPage = () => {
         if (data.error) {
             alert(data.error.message)
         } else {
-            //@ts-ignore
-            window.location = `${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.data.id}/${data.data.attributes.title}`
+            window.location.assign(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.data.id}/${data.data.attributes.title}`
+            )
         }
     }
 

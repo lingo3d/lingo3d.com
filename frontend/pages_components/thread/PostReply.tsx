@@ -10,8 +10,7 @@ const PostReply: React.FC<{ user: string | null; text: string | null }> = ({
             <div
                 className="textColor1 border rounded p-2"
                 dangerouslySetInnerHTML={{
-                    //@ts-ignore
-                    __html: text
+                    __html: text!
                 }}
             />
         </div>

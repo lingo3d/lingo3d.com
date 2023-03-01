@@ -13,6 +13,7 @@ import Answers from "../../pages_components/thread/Answers"
 import Box from "@mui/material/Box"
 import CloseIcon from "@mui/icons-material/Close"
 import RichTextEditor from "../../components/RichTextEditor"
+import { User } from "../../types"
 
 export type ActivateReply = (description: string, username: string) => void
 
@@ -26,7 +27,7 @@ const viewThread: NextPage<{
     const [userToReply, setUserToReply] = useState<string | null>(null)
     const [textToReply, setTextToReply] = useState<string | null>(null)
     const replyareaRef = useRef<null | HTMLDivElement>(null)
-    const user: any = useUser()
+    const user: User | undefined = useUser()
 
     const handleChange = (output: string) => {
         setAnswer(output)
@@ -51,7 +52,7 @@ const viewThread: NextPage<{
                             ...formerArray,
                             {
                                 answer,
-                                username: user.username,
+                                username: user!.username,
                                 replied: replyArea,
                                 userToReply,
                                 textToReply
@@ -141,8 +142,7 @@ const viewThread: NextPage<{
                             </span>{" "} */}
                             <div
                                 dangerouslySetInnerHTML={{
-                                    //@ts-ignore
-                                    __html: textToReply
+                                    __html: textToReply!
                                 }}
                             />
                         </div>

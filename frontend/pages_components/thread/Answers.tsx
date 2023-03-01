@@ -58,8 +58,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
 
         const editedAnswer = {
             answer: editAnswer,
-            //@ts-ignore
-            username: user.username,
+            username: user!.username,
             userToReply: allAnswers[index].userToReply,
             textToReply: allAnswers[index].textToReply,
             replied: allAnswers[index].replied

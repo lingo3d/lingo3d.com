@@ -48,8 +48,7 @@ export default function SignUp() {
             }
         ).catch((err) => console.log(err))
 
-        //@ts-ignore
-        const res = await submitData.json()
+        const res = await (submitData as Response).json()
 
         if (res.error) {
             setShow(true)
