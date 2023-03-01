@@ -65,7 +65,7 @@ export default function Nav() {
                     >
                         <Image
                             ref={logo1Ref}
-                            src="/logo_colored_white.png"
+                            src="/logo_full_name.png"
                             alt="company background"
                             width={120}
                             height={50}
@@ -80,7 +80,7 @@ export default function Nav() {
                         />
                         <Image
                             ref={logo2Ref}
-                            src="/logo.png"
+                            src="/logo_trademark.png"
                             alt="company background"
                             width={60}
                             height={60}
