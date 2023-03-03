@@ -1,20 +1,30 @@
-import { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
+import { showLogin } from "../../signals/showLogin"
+import { useUser } from "../../context/user"
+import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
 import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
 import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import Image from "next/image"
-import Link from "next/link"
+import { User } from "../../types"
+import Avatar from "@mui/material/Avatar"
+import Box from "@mui/material/Box"
+import Menu from "@mui/material/Menu"
+import MenuItem from "@mui/material/MenuItem"
 
 // const navItems = ["Home", "Forum", "Contact"]
 
 export default function Nav() {
+    const user: User | undefined = useUser()
     const [scrollY, setScrollY] = useState(0)
     const fadeStart = 100
     const logo1Ref = useRef<HTMLImageElement | null>(null)
     const logo2Ref = useRef<HTMLImageElement | null>(null)
     const [logo1Opacity, setLogo1Opacity] = useState<number>(1)
     const [logo2Opacity, setLogo2Opacity] = useState<number>(0)
+
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const open = Boolean(anchorEl)
 
     useEffect(() => {
         const cb = () => {
@@ -39,6 +49,16 @@ export default function Nav() {
             setLogo2Opacity(0)
         }
     }, [scrollY])
+
+    const handleClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
 
     return (
         <Box>
@@ -90,53 +110,71 @@ export default function Nav() {
                     </Box>
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <Button
-                            key="home"
+                            key="Waitlist"
+                            onClick={() => (showLogin.value = true)}
                             sx={{
                                 color: "#fff",
                                 paddingRight: "30px",
                                 fontSize: "14px"
                             }}
                         >
-                            Home
+                            Waitlist
                         </Button>
-                        <Link href="http://localhost:3000" target="_blank">
-                            <Button
-                                key="forum"
-                                sx={{
-                                    color: "#fff",
-                                    paddingRight: "30px",
-                                    fontSize: "14px"
-                                }}
-                            >
-                                Forum
-                            </Button>
-                        </Link>
-
                         <Button
-                            key="contact"
+                            key="Documentation"
+                            onClick={() => (showLogin.value = true)}
                             sx={{
                                 color: "#fff",
                                 paddingRight: "30px",
                                 fontSize: "14px"
                             }}
                         >
-                            Contact
+                            Documentation
                         </Button>
+                        {!user && (
+                            <>
+                                <Button
+                                    key="Login"
+                                    onClick={() => (showLogin.value = true)}
+                                    sx={{
+                                        color: "#fff",
+                                        paddingRight: "30px",
+                                        fontSize: "14px"
+                                    }}
+                                >
+                                    Login
+                                </Button>
+                            </>
+                        )}
+                        {user && (
+                            <>
+                                <Avatar
+                                    onClick={(e) => handleClick(e)}
+                                    className="cursor-pointer w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] bg-[#86A1D8] inline-flex"
+                                />
+
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    MenuListProps={{
+                                        "aria-labelledby": "basic-button"
+                                    }}
+                                >
+                                    <MenuItem
+                                        sx={{
+                                            paddingTop: "0",
+                                            paddingBottom: "0"
+                                        }}
+                                        onClick={() => logout()}
+                                    >
+                                        Logout
+                                    </MenuItem>
+                                </Menu>
+                            </>
+                        )}
                     </Box>
-                    {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                        {navItems.map((item) => (
-                            <Button
-                                key={item}
-                                sx={{
-                                    color: "#fff",
-                                    paddingRight: "30px",
-                                    fontSize: "14px"
-                                }}
-                            >
-                                {item}
-                            </Button>
-                        ))}
-                    </Box> */}
                 </Toolbar>
             </AppBar>
         </Box>

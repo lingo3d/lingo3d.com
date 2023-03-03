@@ -13,6 +13,14 @@ import Slide from "@mui/material/Slide"
 import Box from "@mui/material/Box"
 import { TransitionProps } from "@mui/material/transitions"
 import Image from "next/image"
+import { Button } from "@mui/material"
+import { showLogin } from "../../signals/showLogin"
+import { useUser } from "../../context/user"
+import { User } from "../../types"
+import Avatar from "@mui/material/Avatar"
+import Menu from "@mui/material/Menu"
+import MenuItem from "@mui/material/MenuItem"
+import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -24,20 +32,34 @@ const Transition = React.forwardRef(function Transition(
 })
 
 export default function FullScreenDialog() {
-    const [open, setOpen] = React.useState(false)
+    // const [open, setOpen] = React.useState(false)
+    const user: User | undefined = useUser()
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const open = Boolean(anchorEl)
 
-    const handleClickOpen = () => {
-        setOpen(true)
+    // const handleClickOpen = () => {
+    //     setOpen(true)
+    // }
+
+    // const handleClose = () => {
+    //     setOpen(false)
+    // }
+
+    const handleClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) => {
+        setAnchorEl(event.currentTarget)
     }
 
     const handleClose = () => {
-        setOpen(false)
+        setAnchorEl(null)
     }
 
     return (
         <div className="fixed w-full z-[999] top-0">
             <Box
                 sx={{
+                    width: "100%",
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -49,25 +71,96 @@ export default function FullScreenDialog() {
             >
                 <Image
                     src="/logo_trademark.png"
-                    width={44}
-                    height={44}
+                    width={30}
+                    height={30}
                     alt="logo"
                 />
-                <IconButton
+                <Box
                     sx={{
-                        color: "white",
-                        width: "40px",
-                        height: "40px",
-                        padding: "0px !important"
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center"
                     }}
-                    aria-label="open menu"
-                    component="label"
-                    onClick={handleClickOpen}
                 >
-                    <ExploreIcon sx={{ height: "100%", width: "100%" }} />
-                </IconButton>
+                    <Button
+                        key="waitlist"
+                        sx={{
+                            color: "#fff",
+                            paddingRight: "20px",
+                            fontSize: "14px"
+                        }}
+                    >
+                        Waitlist
+                    </Button>
+                    <Button
+                        key="docs"
+                        sx={{
+                            color: "#fff",
+                            paddingRight: "20px",
+                            fontSize: "14px"
+                        }}
+                    >
+                        Docs
+                    </Button>
+                    {!user && (
+                        <>
+                            <Button
+                                key="Login"
+                                onClick={() => (showLogin.value = true)}
+                                sx={{
+                                    color: "#fff",
+                                    paddingRight: "30px",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                Login
+                            </Button>
+                        </>
+                    )}
+                    {user && (
+                        <>
+                            <Avatar
+                                onClick={(e) => handleClick(e)}
+                                className="cursor-pointer w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] bg-[#86A1D8] inline-flex"
+                            />
+
+                            <Menu
+                                id="basic-menu"
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                MenuListProps={{
+                                    "aria-labelledby": "basic-button"
+                                }}
+                            >
+                                <MenuItem
+                                    sx={{
+                                        paddingTop: "0",
+                                        paddingBottom: "0"
+                                    }}
+                                    onClick={() => logout()}
+                                >
+                                    Logout
+                                </MenuItem>
+                            </Menu>
+                        </>
+                    )}
+                    {/* <IconButton
+                        sx={{
+                            color: "white",
+                            width: "40px",
+                            height: "40px",
+                            padding: "0px !important"
+                        }}
+                        aria-label="open menu"
+                        component="label"
+                        onClick={handleClickOpen}
+                    >
+                        <ExploreIcon sx={{ height: "100%", width: "100%" }} />
+                    </IconButton> */}
+                </Box>
             </Box>
-            <Dialog
+            {/* <Dialog
                 fullScreen
                 open={open}
                 onClose={handleClose}
@@ -192,7 +285,7 @@ export default function FullScreenDialog() {
                         />
                     </ListItem>
                 </List>
-            </Dialog>
+            </Dialog> */}
         </div>
     )
 }
