@@ -4,7 +4,8 @@
   "info": {
     "singularName": "sandbox",
     "pluralName": "sandboxes",
-    "displayName": "Sandbox"
+    "displayName": "Sandbox",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -49,21 +50,23 @@
         "Vue 3 Typescript",
         "JavaScript",
         "TypeScript",
-        "Python"
+        "Python",
+        "Lingo3D"
       ]
     },
     "description": {
       "type": "richtext"
     },
     "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }
