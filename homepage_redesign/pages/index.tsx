@@ -18,7 +18,8 @@ export default function Home() {
         displayText,
         activateText,
         opacityLevel,
-        dispayOverlay,
+        zIndexOverlay,
+        displayOverlay,
         scrollNormalized,
         elVideo
     } = useParallax(footer)
@@ -37,7 +38,8 @@ export default function Home() {
                 displayText={displayText}
                 activateText={activateText}
                 opacityLevel={opacityLevel}
-                dispayOverlay={dispayOverlay}
+                zIndexOverlay={zIndexOverlay}
+                displayOverlay={displayOverlay}
                 scrollNormalized={scrollNormalized}
                 elVideo={elVideo}
             />

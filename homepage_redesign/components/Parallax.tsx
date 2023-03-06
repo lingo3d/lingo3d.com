@@ -8,7 +8,8 @@ type ParallaxProps = {
     displayText: "on" | "off"
     activateText: "off" | "on"
     opacityLevel: number
-    dispayOverlay: string | number
+    zIndexOverlay: string | number
+    displayOverlay: string
     scrollNormalized: number
     elVideo: React.RefObject<HTMLVideoElement> | null
 }
@@ -19,7 +20,8 @@ const Parallax = ({
     displayText,
     activateText,
     opacityLevel,
-    dispayOverlay,
+    zIndexOverlay,
+    displayOverlay,
     scrollNormalized,
     elVideo
 }: ParallaxProps) => {
@@ -62,7 +64,8 @@ const Parallax = ({
                     />
                     <ParallaxBlackOverlay
                         opacityLevel={opacityLevel}
-                        dispayOverlay={dispayOverlay}
+                        zIndexOverlay={zIndexOverlay}
+                        displayOverlay={displayOverlay}
                     />
                     <video
                         muted

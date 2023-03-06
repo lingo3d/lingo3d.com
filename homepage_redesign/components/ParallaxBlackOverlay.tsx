@@ -1,16 +1,19 @@
 type ParallaxBlackOverlayProps = {
     opacityLevel: number
-    dispayOverlay: string | number
+    zIndexOverlay: string | number
+    displayOverlay: string
 }
 
 export const ParallaxBlackOverlay = ({
     opacityLevel,
-    dispayOverlay
+    zIndexOverlay,
+    displayOverlay
 }: ParallaxBlackOverlayProps) => {
     return (
         <div
             style={{
                 position: "fixed",
+                display: displayOverlay,
                 top: 0,
                 left: 0,
                 width: "100%",
@@ -18,7 +21,7 @@ export const ParallaxBlackOverlay = ({
                 backgroundColor: "black",
                 opacity: opacityLevel,
                 transition: "opacity 0.5s ease-in-out",
-                zIndex: dispayOverlay
+                zIndex: zIndexOverlay
             }}
         />
     )

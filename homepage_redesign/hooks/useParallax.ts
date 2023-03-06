@@ -17,8 +17,9 @@ export const useParallax = (footer: HTMLElement | null) => {
     )
     const [displayText, setDisplayText] = useState<"off" | "on">("off")
     const [activateText, setActivateText] = useState<"off" | "on">("off")
-    const [dispayOverlay, setDisplayOverlay] = useState<string | number>("auto")
+    const [zIndexOverlay, setZIndexOverlay] = useState<string | number>("auto")
     const [opacityLevel, setOpacityLevel] = useState<number>(0)
+    const [displayOverlay, setDisplayOverlay] = useState<string>("none")
 
     useEffect(() => {
         if (!footer) return
@@ -55,9 +56,15 @@ export const useParallax = (footer: HTMLElement | null) => {
                 setDisplayText("off")
             }
 
+            if (window.scrollY >= 0 && window.scrollY <= 1450) {
+                setDisplayOverlay("none")
+            } else {
+                setDisplayOverlay("block")
+            }
+
             if (window.scrollY >= 1650 && window.scrollY <= 2000) {
                 setOpacityLevel(((window.scrollY - 1650) / 600) * 0.8)
-                setDisplayOverlay(890)
+                setZIndexOverlay(890)
             } else if (window.scrollY >= 4000 && window.scrollY <= 4500) {
                 setOpacityLevel(((4500 - window.scrollY) / 600) * 0.8)
             }
@@ -82,7 +89,8 @@ export const useParallax = (footer: HTMLElement | null) => {
         displayText,
         activateText,
         opacityLevel,
-        dispayOverlay,
+        zIndexOverlay,
+        displayOverlay,
         scrollNormalized: mapRange(
             scrollY + 80,
             bounds?.top ?? 0,
