@@ -6,9 +6,9 @@ function App() {
     return (
         <Box className="w-full h-full flex">
             <SideNav />
-            <main className="flex-1 flex flex-col h-screen bg-red-800">
+            <main className="flex-1 flex flex-col h-screen">
                 <Navbar />
-                <div className="flex-1 bg-black">I am the rest of the content</div>
+                <div className="flex-1 bg-[#121316]">I am the rest of the content</div>
             </main>
         </Box>
     )
