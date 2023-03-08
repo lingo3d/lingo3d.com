@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import ReactDOM from "react-dom"
 import ToogleForm from "./ToogleForm"
 
 const Modal = () => {
@@ -10,11 +9,7 @@ const Modal = () => {
     }, [])
 
     if (isBrowser) {
-        return ReactDOM.createPortal(
-            <ToogleForm />,
-            //@ts-ignore
-            document.getElementById("modal-root")
-        )
+        return <ToogleForm />
     } else {
         return null
     }
