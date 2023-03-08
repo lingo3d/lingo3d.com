@@ -29,7 +29,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex-grow" />
                 <div className="right-0 flex items-center">
-                    <Button className="bg-[#EAFF96] text-black w-5 h-6 text-xs mx-1">
+                    <Button className="[#EAFF96] text-black w-5 h-6 text-xs mx-1">
                         Create
                     </Button>
                     <Button className="hover:bg-white/20">
