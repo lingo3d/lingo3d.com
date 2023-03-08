@@ -15,3 +15,16 @@ html {
     min-height: 100vh;
     width: 100%;
 }
+
+.MuiPaper-root,
+.MuiPaper-elevation,
+.MuiPaper-elevation16,
+.MuiDrawer-paper,
+.MuiDrawer-paperAnchorLeft,
+.css-f0ij77-MuiPaper-root-MuiDrawer-paper {
+    top: 70px !important;
+}
+
+.ForwardRef-root-1 {
+    height: 35px !important;
+}

@@ -13,6 +13,12 @@ export default function LeftDrawer() {
                 classes={{
                     paper: "w-64"
                 }}
+                PaperProps={{
+                    sx: {
+                        backgroundColor: "#121316",
+                        color: "#c1c1c1"
+                    }
+                }}
             >
                 <Content />
             </Drawer>
