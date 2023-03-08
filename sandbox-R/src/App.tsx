@@ -5,11 +5,11 @@ import SideNav from "./layouts/sidebar/index"
 
 function App() {
     return (
-        <Box className="w-full h-full flex">
+        <Box className="w-full h-full flex pt-4">
             <SideNav />
             <main className="flex-1 flex flex-col h-screen max-w-[1080px] mx-auto">
                 <Navbar />
-                <div className="flex-1 bg-[#121316] px-8 py-8">
+                <div className="flex-1 bg-[#121316] px-8 py-8 overflow-y-scroll">
                     <Home />
                 </div>
             </main>
