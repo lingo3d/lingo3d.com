@@ -1,8 +1,7 @@
 import TemplateFeatured from "./TemplateFeatured"
-import TemplateCreate from "./TemplateCreate"
 import { Box } from "@mui/material"
-import react from "/react.png"
-import vue from "/vue.png"
+import Button from "@material-ui/core/Button"
+import AddIcon from "@mui/icons-material/Add"
 
 const Home = () => {
     return (
@@ -13,9 +12,13 @@ const Home = () => {
             </Box>
             <Box>
                 <h2 className="text-[24px] font-[500] mb-2">Create</h2>
-                <Box className="flex flex-col gap-y-3">
-                    <TemplateCreate framework="React" img={react} />
-                    <TemplateCreate framework="Vue" img={vue} />
+                <Box className="flex flex-col md:flex-row gap-y-3 gap-x-3">
+                    <Button variant="contained" color="primary" size="small" className="md:w-[115px]" startIcon={<AddIcon />}>
+                        React
+                    </Button>
+                    <Button variant="contained" color="primary" size="small" className="md:w-[115px]" startIcon={<AddIcon />}>
+                        Vue
+                    </Button>
                 </Box>
             </Box>
         </Box>
