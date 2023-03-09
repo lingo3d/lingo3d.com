@@ -6,6 +6,7 @@ import AppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import Image from "next/image"
+import Link from "next/link"
 import { User } from "../../types"
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -70,44 +71,48 @@ export default function Nav() {
                         alignItems: "center"
                     }}
                 >
-                    <Box
-                        sx={{
-                            width: "200px",
-                            height: "200px",
-                            position: "relative"
-                        }}
-                    >
-                        <Image
-                            ref={logo1Ref}
-                            src="/logo_full_name.png"
-                            alt="company background"
-                            width={120}
-                            height={50}
-                            style={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                opacity: logo1Opacity,
-                                transition: "opacity 0.5s ease-in-out"
+                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                        <Box
+                            sx={{
+                                width: "200px",
+                                height: "200px",
+                                position: "relative",
+                                cursor: "pointer"
                             }}
-                        />
-                        <Image
-                            ref={logo2Ref}
-                            src="/logo_trademark.png"
-                            alt="company background"
-                            width={50}
-                            height={50}
-                            style={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                opacity: logo2Opacity,
-                                transition: "opacity 0.5s ease-in-out"
-                            }}
-                        />
-                    </Box>
+                        >
+                            <Image
+                                ref={logo1Ref}
+                                src="/logo_full_name.png"
+                                alt="company background"
+                                width={120}
+                                height={50}
+                                style={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)",
+                                    opacity: logo1Opacity,
+                                    transition: "opacity 0.5s ease-in-out"
+                                }}
+                            />
+                            <Image
+                                ref={logo2Ref}
+                                src="/logo_trademark.png"
+                                alt="company background"
+                                width={50}
+                                height={50}
+                                style={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)",
+                                    opacity: logo2Opacity,
+                                    transition: "opacity 0.5s ease-in-out"
+                                }}
+                            />
+                        </Box>
+                    </Link>
+
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <Button
                             key="Waitlist"

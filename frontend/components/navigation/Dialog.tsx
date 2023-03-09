@@ -13,6 +13,7 @@ import Slide from "@mui/material/Slide"
 import Box from "@mui/material/Box"
 import { TransitionProps } from "@mui/material/transitions"
 import Image from "next/image"
+import Link from "next/link"
 import { Button } from "@mui/material"
 import { showLogin } from "../../signals/showLogin"
 import { useUser } from "../../context/user"
@@ -69,12 +70,15 @@ export default function FullScreenDialog() {
                     // marginTop: "50px"
                 }}
             >
-                <Image
-                    src="/logo_trademark.png"
-                    width={30}
-                    height={30}
-                    alt="logo"
-                />
+                <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                    <Image
+                        src="/logo_trademark.png"
+                        width={30}
+                        height={30}
+                        alt="logo"
+                    />
+                </Link>
+
                 <Box
                     sx={{
                         display: "flex",

@@ -38,36 +38,40 @@ const UploadThread: NextPage = () => {
         e.preventDefault()
         if (!user) return
 
-        const token = Cookies.get("jwt")
-
-        const postQuestion = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    data: {
-                        title,
-                        category,
-                        description: richTextValue,
-                        username: user.username,
-                        tags: tags.length === 0 ? null : tags
-                    }
-                })
-            }
-        )
-
-        const data = await postQuestion.json()
-
-        if (data.error) {
-            alert(data.error.message)
-        } else {
-            window.location.assign(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.data.id}/${data.data.attributes.title}`
+        try {
+            const token = Cookies.get("jwt")
+            const postQuestion = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        data: {
+                            title,
+                            category,
+                            description: richTextValue,
+                            username: user.username,
+                            tags: tags.length === 0 ? null : tags
+                        }
+                    })
+                }
             )
+
+            const data = await postQuestion.json()
+
+            if (data.error) {
+                alert(data.error.message)
+            } else {
+                window.location.assign(
+                    `${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.data.id}/${data.data.attributes.title}`
+                )
+            }
+        } catch (error) {
+            console.log(error)
+            alert("Something is wrong with the server, please try again later")
         }
     }
 

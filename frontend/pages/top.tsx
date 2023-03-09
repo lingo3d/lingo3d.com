@@ -18,12 +18,17 @@ const Top: NextPage<{ data: Response }> = ({ data }) => {
     }, [])
 
     const handlePaginationChange = async (_: any, page: number) => {
-        let fetchPaginationPage = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=${page}&sort=answers%3Adesc`
-        )
-        const response = await fetchPaginationPage.json()
-        setPageIndex(page)
-        setTopThreadsData(response)
+        try {
+            let fetchPaginationPage = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?pagination[page]=${page}&sort=answers%3Adesc`
+            )
+            const response = await fetchPaginationPage.json()
+            setPageIndex(page)
+            setTopThreadsData(response)
+        } catch (error) {
+            console.log(error)
+            alert("Something went wrong. Please try again later.")
+        }
     }
 
     return (

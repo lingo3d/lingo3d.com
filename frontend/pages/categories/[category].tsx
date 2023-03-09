@@ -25,12 +25,17 @@ const Home: NextPage<{ data: Response; category: string }> = ({
     }, [router.asPath])
 
     const handlePaginationChange = async (_: any, page: number) => {
-        let fetchPaginationPage = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[category][$eq]=${category}&pagination[page]=${page}`
-        )
-        const response = await fetchPaginationPage.json()
-        setPageIndex(page)
-        setThreadsData(response)
+        try {
+            let fetchPaginationPage = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/threads?filters[category][$eq]=${category}&pagination[page]=${page}`
+            )
+            const response = await fetchPaginationPage.json()
+            setPageIndex(page)
+            setThreadsData(response)
+        } catch (error) {
+            console.log(error)
+            alert("Something went wrong. Please try again later")
+        }
     }
     return (
         <>

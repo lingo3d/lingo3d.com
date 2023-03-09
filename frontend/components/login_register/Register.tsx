@@ -33,30 +33,37 @@ export default function SignUp() {
     password.current = watch("password", "")
 
     const registerUser: SubmitHandler<Inputs> = async (data: Inputs) => {
-        const submitData = await fetch(
-            `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
-            {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    password: data.password,
-                    email: data.email,
-                    username: data.username
-                })
+        try {
+            const submitData = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        password: data.password,
+                        email: data.email,
+                        username: data.username
+                    })
+                }
+            )
+
+            const res = await (submitData as Response).json()
+
+            if (res.error) {
+                setShow(true)
+                setServerError(res.error.message)
+                return
             }
-        ).catch((err) => console.log(err))
 
-        const res = await (submitData as Response).json()
-
-        if (res.error) {
-            setShow(true)
-            setServerError(res.error.message)
-            return
+            setToken(res)
+        } catch (error) {
+            console.log(error)
+            alert(
+                "There was an error connecting to the server. Please try again later."
+            )
         }
-
-        setToken(res)
     }
 
     return (
