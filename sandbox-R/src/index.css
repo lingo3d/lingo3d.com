@@ -24,6 +24,7 @@ html {
 .MuiDrawer-paperAnchorLeft,
 .css-f0ij77-MuiPaper-root-MuiDrawer-paper {
     top: 70px !important;
+    height: calc(100% - 70px) !important;
 }
 
 .ForwardRef-root-1 {
@@ -33,5 +34,12 @@ html {
     padding-top: 16px !important;
 }
 .css-cveggr-MuiListItemIcon-root {
-    min-width: 40px !important;
+    min-width: 30px !important;
+}
+
+.MuiListItemButton-root:hover,
+.MuiListItemButton-gutters:hover,
+.MuiListItemButton-root:hover,
+.MuiListItemButton-gutters:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
 }

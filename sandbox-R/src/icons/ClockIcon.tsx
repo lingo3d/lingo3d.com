@@ -2,13 +2,7 @@ import React from "react"
 
 function ClockIcon() {
     return (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            className="icon"
-            viewBox="0 0 1024 1024"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="icon" viewBox="0 0 1024 1024">
             <path
                 fill="#fff"
                 d="M512 74.667C270.933 74.667 74.667 270.933 74.667 512S270.933 949.333 512 949.333 949.333 753.067 949.333 512 753.067 74.667 512 74.667zm0 810.666C307.2 885.333 138.667 716.8 138.667 512S307.2 138.667 512 138.667 885.333 307.2 885.333 512 716.8 885.333 512 885.333z"
