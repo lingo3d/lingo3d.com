@@ -4,7 +4,6 @@ import { Provider } from "../context/user"
 import Router from "next/router"
 import Head from "next/head"
 import Loader from "../components/Loader"
-import AppBar from "../components/AppBar"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
 import Modal from "../components/login_register"
@@ -26,7 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <Provider>
                 <Navigation />
-                {/* <AppBar /> */}
                 <Modal />
                 {loading && <Loader />}
                 <ErrorBoundary>
