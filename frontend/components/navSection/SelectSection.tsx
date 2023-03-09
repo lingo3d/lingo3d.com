@@ -4,19 +4,12 @@ import InputLabel from "@mui/material/InputLabel"
 import FormControl from "@mui/material/FormControl"
 import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
-import SelectCategory from "./SelectCategory"
-import SelectTags from "./SelectTags"
-import { useWindowWidth } from "@react-hook/window-size"
 
 const SelectSection: React.FC = () => {
     const [section, setSection] = useState<string>("Categories")
-
     const router = useRouter()
-    const [windowWidth, setWindowWidth] = useState<number | null>(null)
-    const width = useWindowWidth()
 
     useEffect(() => {
-        setWindowWidth(width)
         if (router.pathname.startsWith("/top")) setSection("Top")
         if (router.pathname.startsWith("/latest")) setSection("Latest")
         if (router.pathname.startsWith("/categories")) setSection("Categories")

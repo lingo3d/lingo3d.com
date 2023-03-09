@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react"
-import { useWindowWidth } from "@react-hook/window-size"
 import AppBar from "./AppBar"
 import Dialog from "./Dialog"
+import { useWidth } from "../../hooks/useWindowWidth"
 
 type NavProps = {
     scroll: number
 }
 
 const Navigation = () => {
-    const [windowWidth, setWindowWidth] = useState<number | null>(null)
-    const width = useWindowWidth()
+    const windowWidth = useWidth()
     const [scroll, setScroll] = useState(0)
 
     useEffect(() => {
-        setWindowWidth(width)
         const cb = () => {
             setScroll(window.scrollY)
         }
@@ -21,7 +19,7 @@ const Navigation = () => {
         return () => {
             window.removeEventListener("scroll", cb)
         }
-    }, [width])
+    }, [])
 
     return (
         <div
@@ -31,7 +29,6 @@ const Navigation = () => {
                 transition: "opacity 0.2s ease-in-out",
                 zIndex: 1000
             }}
-            // className="px-[35px] md:px-[70px] lg:px-[220px]"
         >
             {windowWidth! > 629 ? <AppBar /> : <Dialog />}
         </div>

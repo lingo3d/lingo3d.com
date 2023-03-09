@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Box from "@mui/material/Box"
-import { useWindowWidth } from "@react-hook/window-size"
 import { Response } from "../../../../types"
 import CategoriesSectionDesktop from "./CategoriesSectionDesktop"
 import CategoriesSectionMobile from "./CategoriesSectionMobile"
+import { useWidth } from "../../../../hooks/useWindowWidth"
 
 const Categories: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
-    const [windowWidth, setWindowWidth] = useState<number | undefined>()
-    const width = useWindowWidth()
+    const windowWidth = useWidth()
 
-    useEffect(() => {
-        setWindowWidth(width)
-    }, [])
     return (
         <Box className="flex flex-col items-start flex-1">
             <Box className="flex justify-between w-full">

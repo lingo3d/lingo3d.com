@@ -1,17 +1,12 @@
-import React, { useEffect, useState } from "react"
-import { useWindowWidth } from "@react-hook/window-size"
+import React from "react"
 import Box from "@mui/material/Box"
 import { Response } from "../../../types"
 import Latest from "./Latest/index"
 import Categories from "./Categories/index"
+import { useWidth } from "../../../hooks/useWindowWidth"
 
 const Body: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
-    const [windowWidth, setWindowWidth] = useState<number | undefined>()
-    const width = useWindowWidth()
-
-    useEffect(() => {
-        setWindowWidth(width)
-    }, [])
+    const windowWidth = useWidth()
 
     return (
         <Box className="flex gap-x-8">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useWindowWidth } from "@react-hook/window-size"
 import { ThreadOptions } from "../types"
 import profilePic from "../public/avatar2.png"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
@@ -10,6 +9,7 @@ import CommentIcon from "@mui/icons-material/Comment"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import VisibilityIcon from "@mui/icons-material/Visibility"
 import Box from "@mui/material/Box"
+import { useWidth } from "../hooks/useWindowWidth"
 
 type ThreadOverviewProps = {
     data: ThreadOptions
@@ -17,12 +17,7 @@ type ThreadOverviewProps = {
 }
 
 const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
-    const width = useWindowWidth()
-    const [windowWidth, setWindowWidth] = useState<number | null>(null)
-
-    useEffect(() => {
-        setWindowWidth(width)
-    }, [])
+    const windowWidth = useWidth()
 
     return (
         <Box className="flex justify-between items-stretch borderTop py-2 textColor2">

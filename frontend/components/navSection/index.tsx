@@ -7,21 +7,19 @@ import SelectSection from "./SelectSection"
 import Button from "@mui/material/Button"
 import AddIcon from "@mui/icons-material/Add"
 import Box from "@mui/material/Box"
-import { useWindowWidth } from "@react-hook/window-size"
 import Divider from "@mui/material/Divider"
 import { useUser } from "../../context/user"
 import { User } from "../../types"
+import { useWidth } from "../../hooks/useWindowWidth"
 
 export default function NavSection() {
-    const [windowWidth, setWindowWidth] = useState<number | null>(null)
+    const windowWidth = useWidth()
     const [displayExtraMenus, setDisplayExtraMenus] = useState(false)
     const [active, setActive] = useState("")
-    const width = useWindowWidth()
     const user: User | undefined = useUser()
     const router = useRouter()
 
     useEffect(() => {
-        setWindowWidth(width)
         if (router.pathname.startsWith("/top")) setActive("top")
         if (router.pathname.startsWith("/latest")) setActive("latest")
         if (router.pathname.startsWith("/categories")) setActive("categories")

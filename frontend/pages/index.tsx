@@ -1,18 +1,12 @@
 import { NextPage, GetStaticProps } from "next"
-import { useEffect, useState } from "react"
 import { Response } from "../types"
 import NavSection from "../components/navSection"
 import Tags from "../pages_components/index/Tags"
 import Body from "../pages_components/index/Body"
-import { useWindowWidth } from "@react-hook/window-size"
+import { useWidth } from "../hooks/useWindowWidth"
 
 const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
-    const [windowWidth, setWindowWidth] = useState<number | null>(null)
-    const width = useWindowWidth()
-
-    useEffect(() => {
-        setWindowWidth(width)
-    }, [])
+    const windowWidth = useWidth()
 
     return (
         <>
