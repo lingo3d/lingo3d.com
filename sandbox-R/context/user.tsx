@@ -23,7 +23,7 @@ export function Provider({ children }: any) {
                     const data = await res.json()
                     setUserData(data)
                 } catch (error) {
-                    // unsetToken()
+                    // unsetToken() without the page refresh if server is down and cookies are still set
                     Cookies.remove("id")
                     Cookies.remove("username")
                     Cookies.remove("jwt")

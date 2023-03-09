@@ -17,11 +17,6 @@ html {
     width: 100%;
 }
 
-.MuiPaper-root,
-.MuiPaper-elevation,
-.MuiPaper-elevation16,
-.MuiDrawer-paper,
-.MuiDrawer-paperAnchorLeft,
 .css-f0ij77-MuiPaper-root-MuiDrawer-paper {
     top: 70px !important;
     height: calc(100% - 70px) !important;
@@ -42,4 +37,8 @@ html {
 .MuiListItemButton-root:hover,
 .MuiListItemButton-gutters:hover {
     background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    height: auto !important;
 }
