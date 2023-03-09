@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react"
 import Cookies from "js-cookie"
-import { getTokenFromLocalCookie, unsetToken } from "../src/api/auth/js-cookie"
+import { getTokenFromLocalCookie } from "../src/api/auth/js-cookie"
 
 const Context = createContext(undefined)
 

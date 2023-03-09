@@ -111,7 +111,6 @@ export default function Nav() {
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <Button
                             key="Waitlist"
-                            onClick={() => (showLogin.value = true)}
                             sx={{
                                 color: "#fff",
                                 paddingRight: "30px",
@@ -122,7 +121,6 @@ export default function Nav() {
                         </Button>
                         <Button
                             key="Documentation"
-                            onClick={() => (showLogin.value = true)}
                             sx={{
                                 color: "#fff",
                                 paddingRight: "30px",
