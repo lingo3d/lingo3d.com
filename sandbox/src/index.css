@@ -17,6 +17,10 @@ html {
     width: 100%;
 }
 
+.textColor {
+    color: rgb(193, 193, 193);
+}
+
 .css-f0ij77-MuiPaper-root-MuiDrawer-paper {
     top: 70px !important;
     height: calc(100% - 70px) !important;
@@ -41,4 +45,8 @@ html {
 
 .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
     height: auto !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: "white !important";
 }

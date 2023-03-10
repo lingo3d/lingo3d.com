@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import Box from "@mui/material/Box"
 import Dialog from "@mui/material/Dialog"
 import logoSignup from "/logo_blue_signup.png"
