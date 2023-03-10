@@ -16,25 +16,19 @@ const Content = () => {
     return (
         <Box className="flex flex-col justify-between items-center h-full w-full">
             <List className="flex flex-col gap-y-4 pt-8 w-full">
-                <Box className="w-full">
-                    {user ? (
-                        <Box className="w-full flex justify-between items-center px-2">
-                            <Box className="flex justify-start items-center gap-x-2">
-                                <Avatar sx={{ width: "24px", height: "24px", cursor: "pointer" }} />
-                                <Typography className="!text-[18px]">@{user.username}</Typography>
-                            </Box>
-                            <Box className="cursor-pointer">
-                                <NoticeIcon />
-                            </Box>
-                        </Box>
-                    ) : (
-                        <Box className="w-full px-2">
-                            <Button variant="contained" size="small" className="w-full" onClick={() => (showLogin.value = true)}>
-                                Log in
-                            </Button>
-                        </Box>
-                    )}
-                </Box>
+                {user ? (
+                    <Box className="w-full flex justify-start items-center gap-x-2 px-3">
+                        <Avatar sx={{ width: "24px", height: "24px", cursor: "pointer" }} />
+                        <Typography className="!text-[18px]">@{user.username}</Typography>
+                    </Box>
+                ) : (
+                    <Box className="w-full px-2">
+                        <Button variant="contained" size="small" className="w-full" onClick={() => (showLogin.value = true)}>
+                            Log in
+                        </Button>
+                    </Box>
+                )}
+
                 {user ? (
                     <Box className="px-2">
                         <Button variant="contained" size="small" className="w-full">
