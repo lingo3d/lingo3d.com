@@ -38,9 +38,6 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "starred_sandboxes"
     },
-    "fields": {
-      "type": "json"
-    },
     "type": {
       "type": "enumeration",
       "enum": [
@@ -67,6 +64,10 @@
         "videos",
         "audios"
       ]
+    },
+    "isPublic": {
+      "type": "boolean",
+      "default": true
     }
   }
 }
