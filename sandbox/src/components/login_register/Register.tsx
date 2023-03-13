@@ -34,17 +34,20 @@ export default function SignUp() {
 
     const registerUser: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
-            const submitData = await fetch(`http://localhost:1337/api/auth/local/register`, {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    password: data.password,
-                    email: data.email,
-                    username: data.username
-                })
-            })
+            const submitData = await fetch(
+                `http://localhost:1337/api/auth/local/register`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        password: data.password,
+                        email: data.email,
+                        username: data.username
+                    })
+                }
+            )
             const res = await (submitData as Response).json()
 
             if (res.error) {
@@ -55,48 +58,57 @@ export default function SignUp() {
 
             setToken(res)
         } catch (error) {
-            alert("There was an error connecting to the server. Please try again later.")
+            alert(
+                "There was an error connecting to the server. Please try again later."
+            )
             console.log(error)
         }
     }
 
     return (
         <>
-            <div className="text-[22px] text-[#c1c1c1]">Create your account</div>
-            <div className='text-[#c1c1c1]'>Enter your desired username and password</div>
+            <div className="text-[22px] text-[#c1c1c1]">
+                Create your account
+            </div>
+            <div className="text-[#c1c1c1]">
+                Enter your desired username and password
+            </div>
             <Controller
                 control={control}
                 name="email"
                 rules={{ required: true }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField 
-                    fullWidth 
-                    inputRef={ref} 
-                    label="Email" 
-                    type="email" 
-                    value={value} 
-                    onChange={onChange} 
-                    error={!!errors.username} 
-                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
-                    '&:hover': {
-                        borderColor: '#c1c1c1 !important',
-                      }, 
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#c1c1c1 !important',
-                        borderWidth: '1px !important',
-                        borderStyle: 'solid !important',
-                      },
-                    }} 
-                    InputLabelProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
-                      InputProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
+                    <TextField
+                        fullWidth
+                        inputRef={ref}
+                        label="Email"
+                        type="email"
+                        value={value}
+                        onChange={onChange}
+                        error={!!errors.username}
+                        sx={{
+                            background: "#343740",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#c1c1c1 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#c1c1c1 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
                     />
                 )}
             />
@@ -105,34 +117,37 @@ export default function SignUp() {
                 name="username"
                 rules={{ required: true }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField 
-                    fullWidth 
-                    inputRef={ref} 
-                    label="Username" 
-                    type="text" 
-                    value={value} 
-                    onChange={onChange} 
-                    error={!!errors.username} 
-                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
-                    '&:hover': {
-                        borderColor: '#c1c1c1 !important',
-                      }, 
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#c1c1c1 !important',
-                        borderWidth: '1px !important',
-                        borderStyle: 'solid !important',
-                      },
-                    }} 
-                    InputLabelProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
-                      InputProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
+                    <TextField
+                        fullWidth
+                        inputRef={ref}
+                        label="Username"
+                        type="text"
+                        value={value}
+                        onChange={onChange}
+                        error={!!errors.username}
+                        sx={{
+                            background: "#343740",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#c1c1c1 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#c1c1c1 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
                     />
                 )}
             />
@@ -141,38 +156,43 @@ export default function SignUp() {
                 name="password"
                 rules={{ required: true, minLength: 6 }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField 
-                    fullWidth 
-                    inputRef={ref} 
-                    label="Password" 
-                    type="password" 
-                    value={value} 
-                    onChange={onChange} 
-                    error={!!errors.password} 
-                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
-                    '&:hover': {
-                        borderColor: '#c1c1c1 !important',
-                      }, 
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#c1c1c1 !important',
-                        borderWidth: '1px !important',
-                        borderStyle: 'solid !important',
-                      },
-                    }} 
-                    InputLabelProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
-                      InputProps={{
-                        sx: {
-                          color: '#c1c1c1',
-                        },
-                      }}
+                    <TextField
+                        fullWidth
+                        inputRef={ref}
+                        label="Password"
+                        type="password"
+                        value={value}
+                        onChange={onChange}
+                        error={!!errors.password}
+                        sx={{
+                            background: "#343740",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#c1c1c1 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#c1c1c1 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#c1c1c1"
+                            }
+                        }}
                     />
                 )}
             />
-            {errors.password && errors.password.type === "minLength" && <span>Minimum password length is 6 charachters</span>}
+            {errors.password && errors.password.type === "minLength" && (
+                <span>Minimum password length is 6 charachters</span>
+            )}
             <Controller
                 control={control}
                 name="passwordConfirm"
@@ -181,7 +201,10 @@ export default function SignUp() {
                     minLength: 6,
                     validate: (val: string) => {
                         if (watch("password") != val) {
-                            return val === password.current || "Passwords do not match"
+                            return (
+                                val === password.current ||
+                                "Passwords do not match"
+                            )
                         }
                     }
                 }}
@@ -194,33 +217,45 @@ export default function SignUp() {
                         value={value}
                         onChange={onChange}
                         error={!!errors.passwordConfirm}
-                        sx={{background:'#343740', border: 'none', borderRadius: '4px', 
-                        '&:hover': {
-                            borderColor: '#c1c1c1 !important',
-                          }, 
-                          '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#c1c1c1 !important',
-                            borderWidth: '1px !important',
-                            borderStyle: 'solid !important',
-                          },
-                        }} 
+                        sx={{
+                            background: "#343740",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#c1c1c1 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#c1c1c1 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
                         InputLabelProps={{
                             sx: {
-                              color: '#c1c1c1',
-                            },
-                          }}
-                          InputProps={{
+                                color: "#c1c1c1"
+                            }
+                        }}
+                        InputProps={{
                             sx: {
-                              color: '#c1c1c1',
-                            },
-                          }}
+                                color: "#c1c1c1"
+                            }
+                        }}
                     />
                 )}
             />
             {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
 
-            {show ? <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">{serverError}</span> : null}
-            <Button variant="contained"  className="w-full" sx={{paddingY: '10px !important'}} onClick={handleSubmit(registerUser)}>
+            {show ? (
+                <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">
+                    {serverError}
+                </span>
+            ) : null}
+            <Button
+                variant="contained"
+                className="w-full"
+                sx={{ paddingY: "10px !important" }}
+                onClick={handleSubmit(registerUser)}
+            >
                 Sign in
             </Button>
         </>

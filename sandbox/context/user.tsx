@@ -14,12 +14,15 @@ export function Provider({ children }: any) {
                 const token = getTokenFromLocalCookie()
 
                 try {
-                    const res = await fetch(`http://localhost:1337/api/users/me/`, {
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`
+                    const res = await fetch(
+                        `http://localhost:1337/api/users/me/`,
+                        {
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`
+                            }
                         }
-                    })
+                    )
                     const data = await res.json()
                     setUserData(data)
                 } catch (error) {

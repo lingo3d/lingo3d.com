@@ -1,4 +1,12 @@
-import { List, ListItemButton, ListItemIcon, ListItemText, Box, Typography, Button } from "@mui/material"
+import {
+    List,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Box,
+    Typography,
+    Button
+} from "@mui/material"
 import ClockIcon from "../../icons/ClockIcon"
 import EarthIcon from "../../icons/EarthIcon"
 import LikeIcon from "../../icons/LikeIcon"
@@ -18,12 +26,25 @@ const Content = () => {
             <List className="flex flex-col gap-y-4 pt-8 w-full">
                 {user ? (
                     <Box className="w-full flex justify-start items-center gap-x-2 px-3">
-                        <Avatar sx={{ width: "24px", height: "24px", cursor: "pointer" }} />
-                        <Typography className="!text-[18px]">@{user.username}</Typography>
+                        <Avatar
+                            sx={{
+                                width: "24px",
+                                height: "24px",
+                                cursor: "pointer"
+                            }}
+                        />
+                        <Typography className="!text-[18px]">
+                            @{user.username}
+                        </Typography>
                     </Box>
                 ) : (
                     <Box className="w-full px-2">
-                        <Button variant="contained" size="small" className="w-full" onClick={() => (showLogin.value = true)}>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            className="w-full"
+                            onClick={() => (showLogin.value = true)}
+                        >
                             Log in
                         </Button>
                     </Box>
@@ -31,13 +52,22 @@ const Content = () => {
 
                 {user ? (
                     <Box className="px-2">
-                        <Button variant="contained" size="small" className="w-full">
+                        <Button
+                            variant="contained"
+                            size="small"
+                            className="w-full"
+                        >
                             Create New
                         </Button>
                     </Box>
                 ) : (
                     <Box className="px-2">
-                        <Button variant="outlined" sx={{ background: "transparent", color: "white" }} size="small" className="w-full">
+                        <Button
+                            variant="outlined"
+                            sx={{ background: "transparent", color: "white" }}
+                            size="small"
+                            className="w-full"
+                        >
                             Create New
                         </Button>
                     </Box>
@@ -88,15 +118,32 @@ const Content = () => {
                         <ListItemIcon>
                             <FolderIcon />
                         </ListItemIcon>
-                        {!user ? <ListItemText primary="Log In" /> : <ListItemText primary="Log Out" onClick={() => logout()} />}
+                        {!user ? (
+                            <ListItemText primary="Log In" />
+                        ) : (
+                            <ListItemText
+                                primary="Log Out"
+                                onClick={() => logout()}
+                            />
+                        )}
                     </ListItemButton>
                 </Box>
             </List>
             <Box className="w-full p-2 py-4 flex flex-col justify-center items-center gap-y-4">
-                <Button variant="outlined" sx={{ background: "transparent", color: "white" }} size="small" className="w-full">
+                <Button
+                    variant="outlined"
+                    sx={{ background: "transparent", color: "white" }}
+                    size="small"
+                    className="w-full"
+                >
                     Documentation
                 </Button>
-                <Button variant="outlined" sx={{ background: "transparent", color: "white" }} size="small" className="w-full">
+                <Button
+                    variant="outlined"
+                    sx={{ background: "transparent", color: "white" }}
+                    size="small"
+                    className="w-full"
+                >
                     Help
                 </Button>
             </Box>
