@@ -15,6 +15,7 @@ import ArchiveIcon from "../../icons/ArchiveIcon"
 import NoticeIcon from "../../icons/NoticeIcon"
 import Avatar from "@mui/material/Avatar"
 import { showLogin } from "../../../signals/showLogin"
+import { showCreateProject } from "../../../signals/showCreateProject"
 import { useUser } from "../../../context/user"
 import { unsetToken as logout } from "../../api/auth/js-cookie"
 
@@ -56,6 +57,7 @@ const Content = () => {
                             variant="contained"
                             size="small"
                             className="w-full"
+                            onClick={() => (showCreateProject.value = true)}
                         >
                             Create New
                         </Button>
@@ -67,6 +69,7 @@ const Content = () => {
                             sx={{ background: "transparent", color: "white" }}
                             size="small"
                             className="w-full"
+                            onClick={() => (showLogin.value = true)}
                         >
                             Create New
                         </Button>

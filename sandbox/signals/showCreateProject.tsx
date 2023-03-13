@@ -1,3 +1,3 @@
 import { signal } from "@preact/signals-react"
 
-export const showCreateProject = signal(true)
+export const showCreateProject = signal(false)

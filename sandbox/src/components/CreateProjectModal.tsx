@@ -1,9 +1,48 @@
+import { useState } from "react"
 import { Box, Dialog, Button, TextField } from "@mui/material"
 import { showCreateProject } from "../../signals/showCreateProject"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
+import { useUser } from "../../context/user"
+import { nanoid } from "nanoid"
 
-const CreateProjectModal = () => {
+const CreateProjectModal = ({ onCardUpdate }) => {
+    const [title, setTitle] = useState<string>("")
+    const [isPublic, setIsPublic] = useState<boolean>(true)
+    const user = useUser()
+
+    const createSandbox = async () => {
+        const post = await fetch("http://localhost:1337/api/sandboxes", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                data: {
+                    title,
+                    isPublic,
+                    uuid: nanoid(),
+                    owners: user?.username,
+                    type: "Lingo3D",
+                    description: ""
+                }
+            })
+        })
+        const res = await post.json()
+
+        // if (res.error) {
+        //     // setShow(true)
+        //     // setServerError(res.error.message)
+        //     return
+        // }
+
+        console.log(res)
+        setTitle("")
+        setIsPublic(true)
+        showCreateProject.value = false
+        onCardUpdate()
+    }
+
     return (
         <Dialog
             open={showCreateProject.value}
@@ -16,6 +55,8 @@ const CreateProjectModal = () => {
                     fullWidth
                     label="Title"
                     type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     sx={{
                         background: "#343740",
                         border: "none",
@@ -44,7 +85,8 @@ const CreateProjectModal = () => {
                     <FormControlLabel
                         control={
                             <Checkbox
-                                defaultChecked
+                                checked={isPublic}
+                                onChange={() => setIsPublic(!isPublic)}
                                 sx={{
                                     borderColor: "#c1c1c1 !important",
                                     color: "#c1c1c1 !important",
@@ -63,9 +105,11 @@ const CreateProjectModal = () => {
                     />
                 </Box>
                 <Button
+                    disabled={title ? false : true}
                     variant="contained"
                     className="w-full"
                     sx={{ paddingY: "10px !important" }}
+                    onClick={() => createSandbox()}
                 >
                     Create
                 </Button>
