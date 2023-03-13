@@ -3,6 +3,7 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import TextField from "@mui/material/TextField"
 import { setToken } from "../../api/auth/js-cookie"
+import { Button } from "@mui/material"
 
 type Inputs = {
     username: string
@@ -52,14 +53,40 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({ s
 
     return (
         <>
-            <div className="text-[22px]">Welcome</div>
-            <div>Log in so you can participate in the forum</div>
+            <div className="text-[22px] text-[#c1c1c1]">Welcome</div>
+            <div className='text-[#c1c1c1]'>Log in so you can participate in the forum</div>
             <Controller
                 control={control}
                 name="username"
                 rules={{ required: true }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField fullWidth inputRef={ref} value={value} onChange={onChange} label="Username" error={!!errors.username} />
+                    <TextField fullWidth 
+                    inputRef={ref} value={value} 
+                    onChange={onChange} 
+                    label="Username" 
+                    error={!!errors.username} 
+                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                    '&:hover': {
+                        borderColor: '#c1c1c1 !important',
+                      }, 
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#c1c1c1 !important',
+                        borderWidth: '1px !important',
+                        borderStyle: 'solid !important',
+                      },
+                    }} 
+                    InputLabelProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                    />
+                    
                 )}
             />
             {errors.username && <span>{errors.username.message}</span>}
@@ -68,19 +95,47 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({ s
                 name="password"
                 rules={{ required: true, minLength: 6 }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField fullWidth inputRef={ref} label="Password" type="password" value={value} onChange={onChange} error={!!errors.password} />
+                    <TextField fullWidth 
+                    inputRef={ref} 
+                    label="Password" 
+                    type="password" 
+                    value={value} 
+                    onChange={onChange} 
+                    error={!!errors.password} 
+                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                    '&:hover': {
+                        borderColor: '#c1c1c1 !important',
+                      }, 
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#c1c1c1 !important',
+                        borderWidth: '1px !important',
+                        borderStyle: 'solid !important',
+                      },
+                    }} 
+                    InputLabelProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                    />
                 )}
             />
             {errors.password && errors.password.type === "minLength" && <span>Minimum password length is 6 charachters</span>}
             {show ? <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">{serverError}</span> : null}
-            <div className="w-full text-[#293ab9] cursor-pointer">Forgot password?</div>
+            <div className="w-full text-[#1876d1] cursor-pointer">Forgot password?</div>
 
-            <button className="bg-[#293ab9] text-[#F4F4F9] px-4 py-3 w-full rounded" onClick={handleSubmit(loginUser)}>
-                LOG IN
-            </button>
+            <Button variant="contained"  className="w-full" sx={{paddingY: '10px !important'}} onClick={handleSubmit(loginUser)}>
+                Log in
+            </Button>
             <div className="w-full">
-                Don't have an account?{" "}
-                <span onClick={() => setDisplayRegister(true)} className="pointer-cursor text-[#293ab9] font-semibold underline cursor-pointer">
+                <span className='text-[#c1c1c1]'>Don't have an account? &nbsp;</span>
+                
+                <span onClick={() => setDisplayRegister(true)} className="pointer-cursor text-[#1876d1]   cursor-pointer">
                     Sign up
                 </span>
             </div>

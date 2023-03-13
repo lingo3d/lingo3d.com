@@ -2,6 +2,7 @@ import { useState, useRef } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import TextField from "@mui/material/TextField"
 import { setToken } from "../../api/auth/js-cookie"
+import { Button } from "@mui/material"
 
 type Inputs = {
     email: string
@@ -61,14 +62,42 @@ export default function SignUp() {
 
     return (
         <>
-            <div className="text-[22px]">Create your account</div>
-            <div>Enter your desired username and password</div>
+            <div className="text-[22px] text-[#c1c1c1]">Create your account</div>
+            <div className='text-[#c1c1c1]'>Enter your desired username and password</div>
             <Controller
                 control={control}
                 name="email"
                 rules={{ required: true }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField fullWidth inputRef={ref} label="Email" type="email" value={value} onChange={onChange} error={!!errors.username} />
+                    <TextField 
+                    fullWidth 
+                    inputRef={ref} 
+                    label="Email" 
+                    type="email" 
+                    value={value} 
+                    onChange={onChange} 
+                    error={!!errors.username} 
+                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                    '&:hover': {
+                        borderColor: '#c1c1c1 !important',
+                      }, 
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#c1c1c1 !important',
+                        borderWidth: '1px !important',
+                        borderStyle: 'solid !important',
+                      },
+                    }} 
+                    InputLabelProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                    />
                 )}
             />
             <Controller
@@ -76,7 +105,35 @@ export default function SignUp() {
                 name="username"
                 rules={{ required: true }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField fullWidth inputRef={ref} label="Username" type="text" value={value} onChange={onChange} error={!!errors.username} />
+                    <TextField 
+                    fullWidth 
+                    inputRef={ref} 
+                    label="Username" 
+                    type="text" 
+                    value={value} 
+                    onChange={onChange} 
+                    error={!!errors.username} 
+                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                    '&:hover': {
+                        borderColor: '#c1c1c1 !important',
+                      }, 
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#c1c1c1 !important',
+                        borderWidth: '1px !important',
+                        borderStyle: 'solid !important',
+                      },
+                    }} 
+                    InputLabelProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                    />
                 )}
             />
             <Controller
@@ -84,7 +141,35 @@ export default function SignUp() {
                 name="password"
                 rules={{ required: true, minLength: 6 }}
                 render={({ field: { onChange, value, ref } }) => (
-                    <TextField fullWidth inputRef={ref} label="Password" type="password" value={value} onChange={onChange} error={!!errors.password} />
+                    <TextField 
+                    fullWidth 
+                    inputRef={ref} 
+                    label="Password" 
+                    type="password" 
+                    value={value} 
+                    onChange={onChange} 
+                    error={!!errors.password} 
+                    sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                    '&:hover': {
+                        borderColor: '#c1c1c1 !important',
+                      }, 
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#c1c1c1 !important',
+                        borderWidth: '1px !important',
+                        borderStyle: 'solid !important',
+                      },
+                    }} 
+                    InputLabelProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                      InputProps={{
+                        sx: {
+                          color: '#c1c1c1',
+                        },
+                      }}
+                    />
                 )}
             />
             {errors.password && errors.password.type === "minLength" && <span>Minimum password length is 6 charachters</span>}
@@ -109,15 +194,35 @@ export default function SignUp() {
                         value={value}
                         onChange={onChange}
                         error={!!errors.passwordConfirm}
+                        sx={{background:'#343740', border: 'none', borderRadius: '4px', 
+                        '&:hover': {
+                            borderColor: '#c1c1c1 !important',
+                          }, 
+                          '&:hover .MuiOutlinedInput-notchedOutline': {
+                            borderColor: '#c1c1c1 !important',
+                            borderWidth: '1px !important',
+                            borderStyle: 'solid !important',
+                          },
+                        }} 
+                        InputLabelProps={{
+                            sx: {
+                              color: '#c1c1c1',
+                            },
+                          }}
+                          InputProps={{
+                            sx: {
+                              color: '#c1c1c1',
+                            },
+                          }}
                     />
                 )}
             />
             {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
 
             {show ? <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">{serverError}</span> : null}
-            <button className="bg-[#293ab9] text-[#F4F4F9] px-4 py-3 w-full rounded" onClick={handleSubmit(registerUser)}>
-                SIGN UP
-            </button>
+            <Button variant="contained"  className="w-full" sx={{paddingY: '10px !important'}} onClick={handleSubmit(registerUser)}>
+                Sign in
+            </Button>
         </>
     )
 }

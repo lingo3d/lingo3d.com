@@ -17,7 +17,7 @@ const Form = () => {
 
     return showLogin.value ? (
         <Dialog onClose={handleCloseClick} open={showLogin.value} className="w-screen h-full absolute top-0 left-0 flex flex-col justify-center items-center">
-            <Box className="flex flex-col justify-center items-center p-6 gap-y-4">
+            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#292B32]">
                 <img src={logoSignup} width={120} height={22} alt="logo" />
 
                 {displayRegister ? <Register /> : <Login setDisplayRegister={setDisplayRegister} />}
