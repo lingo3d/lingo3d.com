@@ -135,7 +135,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({ s
             <div className="w-full">
                 <span className='text-[#c1c1c1]'>Don't have an account? &nbsp;</span>
                 
-                <span onClick={() => setDisplayRegister(true)} className="pointer-cursor text-[#1876d1]   cursor-pointer">
+                <span onClick={() => setDisplayRegister(true)} className="pointer-cursor text-[#1876d1] underline cursor-pointer">
                     Sign up
                 </span>
             </div>
