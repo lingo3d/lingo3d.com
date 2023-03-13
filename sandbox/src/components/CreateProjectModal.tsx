@@ -6,47 +6,53 @@ import Checkbox from "@mui/material/Checkbox"
 import { useUser } from "../../context/user"
 import { nanoid } from "nanoid"
 
+type CreateProjectModal = {
+    onCardUpdate: () => void
+}
+
 const CreateProjectModal = ({ onCardUpdate }) => {
     const [title, setTitle] = useState<string>("")
     const [isPublic, setIsPublic] = useState<boolean>(true)
+    const [error, setError] = useState("")
     const user = useUser()
 
     const createSandbox = async () => {
-        const post = await fetch("http://localhost:1337/api/sandboxes", {
-            headers: {
-                "Content-Type": "application/json"
-            },
-            method: "POST",
-            body: JSON.stringify({
-                data: {
-                    title,
-                    isPublic,
-                    uuid: nanoid(),
-                    owners: user?.username,
-                    type: "Lingo3D",
-                    description: ""
-                }
+        try {
+            const post = await fetch("http://localhost:1337/api/sandboxes", {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    data: {
+                        title,
+                        isPublic,
+                        uuid: nanoid(),
+                        owners: user?.username,
+                        type: "Lingo3D",
+                        description: ""
+                    }
+                })
             })
-        })
-        const res = await post.json()
-
-        // if (res.error) {
-        //     // setShow(true)
-        //     // setServerError(res.error.message)
-        //     return
-        // }
-
-        console.log(res)
-        setTitle("")
-        setIsPublic(true)
-        showCreateProject.value = false
-        onCardUpdate()
+            const res = await post.json()
+            if (res.error) {
+                setError(res.error.message)
+                return
+            }
+            setTitle("")
+            setIsPublic(true)
+            showCreateProject.value = false
+            onCardUpdate()
+        } catch (error) {
+            alert("smth went wrong")
+            console.log(error)
+        }
     }
 
     return (
         <Dialog
             open={showCreateProject.value}
-            onClose={() => (showCreateProject.value = false)}
+            onClose={() => (setError(""), (showCreateProject.value = false))}
             className="w-screen h-full absolute top-0 left-0 flex flex-col justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#292B32] textColor min-w-[280px]">
@@ -104,6 +110,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                         sx={{ margin: 0 }}
                     />
                 </Box>
+                {error && <Box className="text-red-500">{error}</Box>}
                 <Button
                     disabled={title ? false : true}
                     variant="contained"
