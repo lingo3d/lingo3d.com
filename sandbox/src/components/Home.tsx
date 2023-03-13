@@ -27,7 +27,6 @@ const Home = () => {
 
         fetchSandboxes()
     }, [cardsUpdated])
-    console.log(sandboxes)
 
     return (
         <Box className="flex flex-col gap-y-6 md:gap-y-8">
@@ -66,6 +65,7 @@ const Home = () => {
                                 <Sandbox
                                     key={sandbox.id}
                                     title={sandbox.attributes.title}
+                                    description={sandbox.attributes.description}
                                 />
                             )
                         })}

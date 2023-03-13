@@ -1,8 +1,13 @@
 import { useState } from "react"
-import { Box, Dialog, Button, TextField } from "@mui/material"
+import {
+    Box,
+    Dialog,
+    Button,
+    TextField,
+    Checkbox,
+    FormControlLabel
+} from "@mui/material"
 import { showCreateProject } from "../../signals/showCreateProject"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Checkbox from "@mui/material/Checkbox"
 import { useUser } from "../../context/user"
 import { nanoid } from "nanoid"
 
@@ -12,6 +17,7 @@ type CreateProjectModal = {
 
 const CreateProjectModal = ({ onCardUpdate }) => {
     const [title, setTitle] = useState<string>("")
+    const [description, setDescription] = useState<string>("")
     const [isPublic, setIsPublic] = useState<boolean>(true)
     const [error, setError] = useState("")
     const user = useUser()
@@ -30,7 +36,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                         uuid: nanoid(),
                         owners: user?.username,
                         type: "Lingo3D",
-                        description: ""
+                        description: description
                     }
                 })
             })
@@ -40,11 +46,12 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                 return
             }
             setTitle("")
+            setDescription("")
             setIsPublic(true)
             showCreateProject.value = false
             onCardUpdate()
         } catch (error) {
-            alert("smth went wrong")
+            alert(error)
             console.log(error)
         }
     }
@@ -63,6 +70,40 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    inputProps={{ maxLength: 25 }}
+                    sx={{
+                        background: "#343740",
+                        border: "none",
+                        borderRadius: "4px",
+                        "&:hover": {
+                            borderColor: "#c1c1c1 !important"
+                        },
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#c1c1c1 !important",
+                            borderWidth: "1px !important",
+                            borderStyle: "solid !important"
+                        }
+                    }}
+                    InputLabelProps={{
+                        sx: {
+                            color: "#c1c1c1"
+                        }
+                    }}
+                    InputProps={{
+                        sx: {
+                            color: "#c1c1c1"
+                        }
+                    }}
+                />
+                <TextField
+                    label="What is this project about?"
+                    multiline
+                    fullWidth
+                    rows={2}
+                    maxRows={4}
+                    inputProps={{ maxLength: 70 }}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     sx={{
                         background: "#343740",
                         border: "none",
@@ -110,9 +151,10 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                         sx={{ margin: 0 }}
                     />
                 </Box>
+
                 {error && <Box className="text-red-500">{error}</Box>}
                 <Button
-                    disabled={title ? false : true}
+                    disabled={title && description ? false : true}
                     variant="contained"
                     className="w-full"
                     sx={{ paddingY: "10px !important" }}
