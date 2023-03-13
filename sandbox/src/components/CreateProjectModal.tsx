@@ -63,7 +63,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
             className="w-screen h-full absolute top-0 left-0 flex flex-col justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#292B32] textColor min-w-[280px]">
-                <Box className="text-[22px]">Create Your Project</Box>
+                <Box className="text-[22px] py-2">Create Your Project</Box>
                 <TextField
                     fullWidth
                     label="Title"
@@ -99,7 +99,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                     label="What is this project about?"
                     multiline
                     fullWidth
-                    rows={2}
+                    rows={3}
                     maxRows={4}
                     inputProps={{ maxLength: 70 }}
                     value={description}
