@@ -70,7 +70,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    inputProps={{ maxLength: 25 }}
+                    inputProps={{ maxLength: 40 }}
                     sx={{
                         background: "#343740",
                         border: "none",
@@ -101,7 +101,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
                     fullWidth
                     rows={3}
                     maxRows={4}
-                    inputProps={{ maxLength: 70 }}
+                    inputProps={{ maxLength: 100 }}
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     sx={{
@@ -154,7 +154,7 @@ const CreateProjectModal = ({ onCardUpdate }) => {
 
                 {error && <Box className="text-red-500">{error}</Box>}
                 <Button
-                    disabled={title && description ? false : true}
+                    disabled={title ? false : true}
                     variant="contained"
                     className="w-full"
                     sx={{ paddingY: "10px !important" }}
