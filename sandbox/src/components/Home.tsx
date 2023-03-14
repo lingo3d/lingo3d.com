@@ -45,11 +45,12 @@ const Home = () => {
                             size="small"
                             className="md:min-w-[105px]"
                             startIcon={<AddIcon />}
-                            onClick={
-                                user
-                                    ? () => (showCreateProject.value = true)
-                                    : () => (showLogin.value = true)
-                            }
+                            onClick={() => (showCreateProject.value = true)}
+                            // onClick={
+                            //     user
+                            //         ? () => (showCreateProject.value = true)
+                            //         : () => (showLogin.value = true)
+                            // }
                         >
                             Create
                         </Button>

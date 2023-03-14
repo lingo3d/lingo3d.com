@@ -10,6 +10,7 @@ import {
 import { showCreateProject } from "../../signals/showCreateProject"
 import { useUser } from "../../context/user"
 import { nanoid } from "nanoid"
+import { getTokenFromLocalCookie } from "../api/auth/js-cookie"
 
 type CreateProjectModal = {
     onCardUpdate: () => void
@@ -26,7 +27,8 @@ const CreateProjectModal = ({ onCardUpdate }) => {
         try {
             const post = await fetch("http://localhost:1337/api/sandboxes", {
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getTokenFromLocalCookie()}`
                 },
                 method: "POST",
                 body: JSON.stringify({
