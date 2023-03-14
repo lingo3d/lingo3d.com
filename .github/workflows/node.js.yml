@@ -13,7 +13,7 @@ jobs:
     runs-on: self-hosted
     defaults:
       run:
-        working-directory: ./forum-backend
+        working-directory: ./backend
         shell: bash
 
     strategy:
@@ -29,45 +29,35 @@ jobs:
       id: filter
       with: 
         filters: |
-          forum-backend:
-            - 'forum-backend/**'
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       if: steps.filter.outputs.forum-backend == 'true'
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'yarn'
-#         cache-dependency-path: './forum-backend/yarn.lock'
+          backend:
+            - 'backend/**'
     - name: install deps
-      if: steps.filter.outputs.forum-backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: yarn install --frozen-lockfile
-    - name: create env file
-      if: steps.filter.outputs.forum-backend == 'true'
+    - name: load env variables
+      if: steps.filter.outputs.backend == 'true'
       run: |
-              touch .env
-              echo HOST=${{ secrets.HOST }} >> .env
-              echo PORT=${{ secrets.PORT }} >> .env
-              echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
-              echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
-              echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
-              echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
-    - name: build app
-      if: steps.filter.outputs.forum-backend == 'true'
-      run: NODE_ENV=production yarn build
+          echo "export HOST=${{ secrets.HOST }}" >> $GITHUB_ENV
+          echo "export PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
+          echo "export APP_KEYS=${{ secrets.APP_KEYS }}" >> $GITHUB_ENV
+          echo "export API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> $GITHUB_ENV
+          echo "export JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+          echo "export ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> $GITHUB_ENV
+    - name: Build Strapi app
+      run: |
+          source $GITHUB_ENV
+          NODE_ENV=production yarn build
     - name: turn on app
-      if: steps.filter.outputs.forum-backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
-    - name: remove existing env file
-      if: steps.filter.outputs.forum-backend == 'true'
-      run:  rm .env
     
-  build_frontend:
+  build_forum:
     name: build_frontend
     needs: build_backend
     runs-on: self-hosted
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: ./forum
 
     strategy:
       matrix:
@@ -82,35 +72,26 @@ jobs:
       id: filter
       with: 
         filters: |
-          frontend:
-            - 'frontend/**'
-#     - name: Use Node.js ${{ matrix.node-version }}
-#       if: steps.filter.outputs.frontend == 'true'
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: ${{ matrix.node-version }}
-#         cache: 'yarn'
-#         cache-dependency-path: './frontend/yarn.lock'
+          forum:
+            - 'forum/**'
     - name: install deps --frozen-lockfile
-      if: steps.filter.outputs.frontend == 'true'
+      if: steps.filter.outputs.forum == 'true'
       run: yarn install --frozen-lockfile
-    - name: create env file
-      if: steps.filter.outputs.frontend == 'true'
+    - name: load env variables
+      if: steps.filter.outputs.forum == 'true'
       run: |
-              touch .env.local
-              echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
-              echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
-              echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
-              echo CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }} >> .env.local
-              echo CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} >> .env.local
-              echo CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }} >> .env.local
-              echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env.local
-    - name: build app
-      if: steps.filter.outputs.frontend == 'true'
-      run: yarn build
+          echo "export NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }}" >> $GITHUB_ENV
+          echo "export NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> $GITHUB_ENV
+          echo "export JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }}" >> $GITHUB_ENV
+          echo "export CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> $GITHUB_ENV
+          echo "export CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> $GITHUB_ENV
+          echo "export CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> $GITHUB_ENV
+          echo "export CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }}" >> $GITHUB_ENV
+    - name: Build Forum app
+      run: |
+          source $GITHUB_ENV
+          yarn build
     - name: start app
-      if: steps.filter.outputs.frontend == 'true'
+      if: steps.filter.outputs.forum == 'true'
       run: pm2 startOrReload ecosystem.config.js
-    - name: remove existing env file
-      if: steps.filter.outputs.frontend == 'true'
-      run: rm .env.local
+
