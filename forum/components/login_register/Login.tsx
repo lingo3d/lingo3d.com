@@ -80,17 +80,19 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         onChange={onChange}
                         label="Username"
                         error={!!errors.username}
+                        variant="standard"
                         sx={{
-                            background: "#f4f4f9",
-                            border: "none",
-                            borderRadius: "4px",
-                            "&:hover": {
-                                borderColor: "#f4f4f9 !important"
+                            "& .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
                             },
-                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "#f4f4f9 !important",
-                                borderWidth: "1px !important",
-                                borderStyle: "solid !important"
+                            "&:hover .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
+                            },
+                            "&.Mui-focused .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
+                            },
+                            "& .MuiInputBase-input": {
+                                paddingBottom: "8px !important"
                             }
                         }}
                         InputLabelProps={{
@@ -120,17 +122,19 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         value={value}
                         onChange={onChange}
                         error={!!errors.password}
+                        variant="standard"
                         sx={{
-                            background: "#f4f4f9",
-                            border: "none",
-                            borderRadius: "4px",
-                            "&:hover": {
-                                borderColor: "#f4f4f9 !important"
+                            "& .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
                             },
-                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "#f4f4f9 !important",
-                                borderWidth: "1px !important",
-                                borderStyle: "solid !important"
+                            "&:hover .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
+                            },
+                            "&.Mui-focused .MuiInput-underline:before": {
+                                borderBottomColor: "#f4f4f9 !important"
+                            },
+                            "& .MuiInputBase-input": {
+                                paddingBottom: "8px !important"
                             }
                         }}
                         InputLabelProps={{

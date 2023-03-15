@@ -76,17 +76,19 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         onChange={onChange}
                         label="Username"
                         error={!!errors.username}
+                        variant="standard"
                         sx={{
-                            background: "#343740",
-                            border: "none",
-                            borderRadius: "4px",
-                            "&:hover": {
-                                borderColor: "#c1c1c1 !important"
+                            "& .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
                             },
-                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "#c1c1c1 !important",
-                                borderWidth: "1px !important",
-                                borderStyle: "solid !important"
+                            "&:hover .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
+                            },
+                            "&.Mui-focused .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
+                            },
+                            "& .MuiInputBase-input": {
+                                paddingBottom: "8px !important"
                             }
                         }}
                         InputLabelProps={{
@@ -99,6 +101,29 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                                 color: "#c1c1c1"
                             }
                         }}
+                        // sx={{
+                        //     background: "#343740",
+                        //     border: "none",
+                        //     borderRadius: "4px",
+                        //     "&:hover": {
+                        //         borderColor: "#c1c1c1 !important"
+                        //     },
+                        //     "&:hover .MuiOutlinedInput-notchedOutline": {
+                        //         borderColor: "#c1c1c1 !important",
+                        //         borderWidth: "1px !important",
+                        //         borderStyle: "solid !important"
+                        //     }
+                        // }}
+                        // InputLabelProps={{
+                        //     sx: {
+                        //         color: "#c1c1c1"
+                        //     }
+                        // }}
+                        // InputProps={{
+                        //     sx: {
+                        //         color: "#c1c1c1"
+                        //     }
+                        // }}
                     />
                 )}
             />
@@ -116,17 +141,19 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         value={value}
                         onChange={onChange}
                         error={!!errors.password}
+                        variant="standard"
                         sx={{
-                            background: "#343740",
-                            border: "none",
-                            borderRadius: "4px",
-                            "&:hover": {
-                                borderColor: "#c1c1c1 !important"
+                            "& .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
                             },
-                            "&:hover .MuiOutlinedInput-notchedOutline": {
-                                borderColor: "#c1c1c1 !important",
-                                borderWidth: "1px !important",
-                                borderStyle: "solid !important"
+                            "&:hover .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
+                            },
+                            "&.Mui-focused .MuiInput-underline:before": {
+                                borderBottomColor: "#c1c1c1 !important"
+                            },
+                            "& .MuiInputBase-input": {
+                                paddingBottom: "8px !important"
                             }
                         }}
                         InputLabelProps={{
@@ -139,6 +166,29 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                                 color: "#c1c1c1"
                             }
                         }}
+                        // sx={{
+                        //     background: "#343740",
+                        //     border: "none",
+                        //     borderRadius: "4px",
+                        //     "&:hover": {
+                        //         borderColor: "#c1c1c1 !important"
+                        //     },
+                        //     "&:hover .MuiOutlinedInput-notchedOutline": {
+                        //         borderColor: "#c1c1c1 !important",
+                        //         borderWidth: "1px !important",
+                        //         borderStyle: "solid !important"
+                        //     }
+                        // }}
+                        // InputLabelProps={{
+                        //     sx: {
+                        //         color: "#c1c1c1"
+                        //     }
+                        // }}
+                        // InputProps={{
+                        //     sx: {
+                        //         color: "#c1c1c1"
+                        //     }
+                        // }}
                     />
                 )}
             />
