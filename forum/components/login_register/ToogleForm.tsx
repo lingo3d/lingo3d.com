@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Box from "@mui/material/Box"
 import Dialog from "@mui/material/Dialog"
 import Image from "next/image"
-import logoSignup from "../../public/logo_blue_signup.png"
+import logoSignup from "../../public/logo_blue2_signup.png"
 import Login from "./Login"
 import Register from "./Register"
 import { showLogin } from "../../signals/showLogin"
@@ -22,7 +22,7 @@ const Form = () => {
             open={showLogin.value}
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
-            <Box className="flex flex-col justify-center items-center p-6 gap-y-4">
+            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
                 <Image src={logoSignup} width={120} height={22} alt="logo" />
 
                 {displayRegister ? (

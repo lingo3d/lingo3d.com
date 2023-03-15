@@ -41,12 +41,12 @@ export default function SignUp() {
                         "Content-Type": "application/json"
                     },
                     method: "POST",
-                    body: JSON.stringify({data: {
-                        password: data.password,
-                        email: data.email,
-                        username: data.username
-                    }
-                       
+                    body: JSON.stringify({
+                        data: {
+                            password: data.password,
+                            email: data.email,
+                            username: data.username
+                        }
                     })
                 }
             )
@@ -70,8 +70,12 @@ export default function SignUp() {
 
     return (
         <>
-            <div className="text-[22px]">Create your account</div>
-            <div>Enter your desired username and password</div>
+            <div className="text-[22px] text-[#f4f4f9]">
+                Create your account
+            </div>
+            <div className="text-[#f4f4f9]">
+                Enter your desired username and password
+            </div>
             <Controller
                 control={control}
                 name="email"
@@ -84,7 +88,30 @@ export default function SignUp() {
                         type="email"
                         value={value}
                         onChange={onChange}
-                        error={!!errors.username}
+                        error={!!errors.email}
+                        sx={{
+                            background: "#f4f4f9",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#f4f4f9 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#f4f4f9 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
                     />
                 )}
             />
@@ -101,6 +128,29 @@ export default function SignUp() {
                         value={value}
                         onChange={onChange}
                         error={!!errors.username}
+                        sx={{
+                            background: "#f4f4f9",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#f4f4f9 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#f4f4f9 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
                     />
                 )}
             />
@@ -117,6 +167,29 @@ export default function SignUp() {
                         value={value}
                         onChange={onChange}
                         error={!!errors.password}
+                        sx={{
+                            background: "#f4f4f9",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#f4f4f9 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#f4f4f9 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
                     />
                 )}
             />
@@ -147,6 +220,29 @@ export default function SignUp() {
                         value={value}
                         onChange={onChange}
                         error={!!errors.passwordConfirm}
+                        sx={{
+                            background: "#f4f4f9",
+                            border: "none",
+                            borderRadius: "4px",
+                            "&:hover": {
+                                borderColor: "#f4f4f9 !important"
+                            },
+                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                borderColor: "#f4f4f9 !important",
+                                borderWidth: "1px !important",
+                                borderStyle: "solid !important"
+                            }
+                        }}
+                        InputLabelProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
+                        InputProps={{
+                            sx: {
+                                color: "#86a1d8"
+                            }
+                        }}
                     />
                 )}
             />
@@ -157,12 +253,18 @@ export default function SignUp() {
                     {serverError}
                 </span>
             ) : null}
-            <button
-                className="bg-[#293ab9] text-[#F4F4F9] px-4 py-3 w-full rounded"
+            <Button
+                variant="contained"
+                fullWidth
+                sx={{
+                    paddingY: "10px !important",
+                    background: "#86a1d8 !important",
+                    color: "#f4f4f9"
+                }}
                 onClick={handleSubmit(registerUser)}
             >
-                SIGN UP
-            </button>
+                Sign Up
+            </Button>
         </>
     )
 }
