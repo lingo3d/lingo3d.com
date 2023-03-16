@@ -20,7 +20,9 @@ const Home = () => {
 
     useEffect(() => {
         async function fetchSandboxes() {
-            const response = await fetch("http://localhost:1337/api/sandboxes")
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/sandboxes`
+            )
             const data = await response.json()
             setSandboxes(data.data)
         }
@@ -60,7 +62,7 @@ const Home = () => {
                         Sandboxes
                     </h2>
                     <div className="flex flex-wrap justify-start">
-                        {sandboxes.map((sandbox) => {
+                        {sandboxes.map((sandbox: any) => {
                             return (
                                 <Sandbox
                                     key={sandbox.id}

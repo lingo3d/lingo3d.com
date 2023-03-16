@@ -12,11 +12,11 @@ import { useUser } from "../../context/user"
 import { nanoid } from "nanoid"
 import { getTokenFromLocalCookie } from "../api/auth/js-cookie"
 
-type CreateProjectModal = {
+type CreateProjectModalType = {
     onCardUpdate: () => void
 }
 
-const CreateProjectModal = ({ onCardUpdate }) => {
+const CreateProjectModal = ({ onCardUpdate }: CreateProjectModalType) => {
     const [title, setTitle] = useState<string>("")
     const [description, setDescription] = useState<string>("")
     const [isPublic, setIsPublic] = useState<boolean>(true)
@@ -25,23 +25,27 @@ const CreateProjectModal = ({ onCardUpdate }) => {
 
     const createSandbox = async () => {
         try {
-            const post = await fetch("http://localhost:1337/api/sandboxes", {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${getTokenFromLocalCookie()}`
-                },
-                method: "POST",
-                body: JSON.stringify({
-                    data: {
-                        title,
-                        isPublic,
-                        uuid: nanoid(),
-                        owners: user?.username,
-                        type: "Lingo3D",
-                        description: description
-                    }
-                })
-            })
+            const post = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/sandboxes`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${getTokenFromLocalCookie()}`
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        data: {
+                            title,
+                            isPublic,
+                            uuid: nanoid(),
+                            //@ts-ignore
+                            owners: user?.username,
+                            type: "Lingo3D",
+                            description: description
+                        }
+                    })
+                }
+            )
             const res = await post.json()
             if (res.error) {
                 setError(res.error.message)

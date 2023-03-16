@@ -15,7 +15,7 @@ export function Provider({ children }: any) {
 
                 try {
                     const res = await fetch(
-                        `http://localhost:1337/api/users/me/`,
+                        `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/users/me/`,
                         {
                             headers: {
                                 "Content-Type": "application/json",

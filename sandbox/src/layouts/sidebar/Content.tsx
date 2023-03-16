@@ -19,8 +19,13 @@ import { showCreateProject } from "../../../signals/showCreateProject"
 import { useUser } from "../../../context/user"
 import { unsetToken as logout } from "../../api/auth/js-cookie"
 
+type User = {
+    username: string
+}
+
 const Content = () => {
-    const user = useUser()
+    //@ts-ignore
+    const user: User = useUser()
 
     return (
         <Box className="flex flex-col justify-between items-center h-full w-full">

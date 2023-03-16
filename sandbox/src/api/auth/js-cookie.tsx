@@ -1,12 +1,6 @@
 import Cookies from "js-cookie"
-// import { User } from "../../../types"
 
-// type Data = {
-//     jwt: string
-//     user: User
-// }
-
-export const setToken = (data) => {
+export const setToken = (data: any) => {
     if (typeof window === "undefined") return
 
     Cookies.set("jwt", data.jwt)
