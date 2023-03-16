@@ -37,15 +37,14 @@ jobs:
     - name: load env variables
       if: steps.filter.outputs.backend == 'true'
       run: |
-          echo "export HOST=${{ secrets.HOST }}" >> $GITHUB_ENV
-          echo "export PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
-          echo "export APP_KEYS=${{ secrets.APP_KEYS }}" >> $GITHUB_ENV
-          echo "export API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> $GITHUB_ENV
-          echo "export JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
-          echo "export ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> $GITHUB_ENV
+          export HOST=${{ secrets.HOST }}
+          export PORT=${{ secrets.PORT }}
+          export APP_KEYS=${{ secrets.APP_KEYS }}
+          export API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}
+          export JWT_SECRET=${{ secrets.JWT_SECRET }}
+          export ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}
     - name: Build Strapi app
       run: |
-          source $GITHUB_ENV
           NODE_ENV=production yarn build
     - name: turn on app
       if: steps.filter.outputs.backend == 'true'
@@ -80,13 +79,13 @@ jobs:
     - name: load env variables
       if: steps.filter.outputs.forum == 'true'
       run: |
-          echo "export NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }}" >> $GITHUB_ENV
-          echo "export NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> $GITHUB_ENV
-          echo "export JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }}" >> $GITHUB_ENV
-          echo "export CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}" >> $GITHUB_ENV
-          echo "export CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}" >> $GITHUB_ENV
-          echo "export CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}" >> $GITHUB_ENV
-          echo "export CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }}" >> $GITHUB_ENV
+          export NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }}
+          export NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          export JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }}
+          export CLOUDINARY_CLOUD_NAME=${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          export CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }}
+          export CLOUDINARY_API_SECRET=${{ secrets.CLOUDINARY_API_SECRET }}
+          export CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }}
     - name: Build Forum app
       run: |
           source $GITHUB_ENV
