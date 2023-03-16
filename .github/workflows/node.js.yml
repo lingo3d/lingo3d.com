@@ -34,21 +34,29 @@ jobs:
     - name: install deps
       if: steps.filter.outputs.backend == 'true'
       run: yarn install --frozen-lockfile
-    - name: load env variables
+    - name: create env file
       if: steps.filter.outputs.backend == 'true'
-      env: 
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          APP_KEYS: ${{ secrets.APP_KEYS }}
-          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+      run: |
+          touch .env
+          echo HOST=${{ secrets.HOST }} >> .env
+          echo PORT=${{ secrets.PORT }} >> .env
+          echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
+          echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
+          echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
+          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+          echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+          echo AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} >> .env
     - name: Build Strapi app
+      if: steps.filter.outputs.backend == 'true'
       run: |
           NODE_ENV=production yarn build
     - name: turn on app
       if: steps.filter.outputs.backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
+    - name: remove existing env file
+      if: steps.filter.outputs.backend == 'true'
+      run: rm .env
+      
     
   build_forum:
     name: build_frontend
@@ -76,21 +84,24 @@ jobs:
     - name: install deps --frozen-lockfile
       if: steps.filter.outputs.forum == 'true'
       run: yarn install --frozen-lockfile
-    - name: load env variables
+    - name: create env file
       if: steps.filter.outputs.forum == 'true'
-      env: 
-          NEXT_PUBLIC_STRAPI_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_URL }}
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-          JWT_SECRET_GOOGLE: ${{ secrets.JWT_SECRET_GOOGLE }}
-          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
-    - name: Build Forum app
       run: |
-          source $GITHUB_ENV
+          touch .env.local
+          echo NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }} >> .env.local
+          echo NEXT_PUBLIC_GOOGLE_CLIENT=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT }} >> .env.local
+          echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
+          echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
+          echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
+    - name: Build Forum app
+      if: steps.filter.outputs.forum == 'true'
+      run: |
           yarn build
     - name: start app
       if: steps.filter.outputs.forum == 'true'
       run: pm2 startOrReload ecosystem.config.js
+    - name: remove existing env file
+      if: steps.filter.outputs.forum == 'true'
+      run: rm .env.local
+      
 
