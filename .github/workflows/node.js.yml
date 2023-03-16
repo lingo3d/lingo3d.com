@@ -37,12 +37,12 @@ jobs:
     - name: load env variables
       if: steps.filter.outputs.backend == 'true'
       env: 
-         HOST: ${{ secrets.HOST }}
-         PORT: ${{ secrets.PORT }}
-         APP_KEYS: ${{ secrets.APP_KEYS }}
-         API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
-         JWT_SECRET: ${{ secrets.JWT_SECRET }}
-         ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          APP_KEYS: ${{ secrets.APP_KEYS }}
+          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
     - name: Build Strapi app
       run: |
           NODE_ENV=production yarn build
@@ -79,13 +79,13 @@ jobs:
     - name: load env variables
       if: steps.filter.outputs.forum == 'true'
       env: 
-         NEXT_PUBLIC_STRAPI_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_URL }}
-         NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
-         JWT_SECRET_GOOGLE: ${{ secrets.JWT_SECRET_GOOGLE }}
-         CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-         CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
-         CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
-         CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
+          NEXT_PUBLIC_STRAPI_URL: ${{ secrets.NEXT_PUBLIC_STRAPI_URL }}
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+          JWT_SECRET_GOOGLE: ${{ secrets.JWT_SECRET_GOOGLE }}
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
     - name: Build Forum app
       run: |
           source $GITHUB_ENV
