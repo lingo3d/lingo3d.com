@@ -35,7 +35,7 @@ export default function SignUp() {
     const registerUser: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
             const submitData = await fetch(
-                `${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/local/register`,
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
                 {
                     headers: {
                         "Content-Type": "application/json"

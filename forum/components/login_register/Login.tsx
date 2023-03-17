@@ -7,6 +7,8 @@ import Button from "@mui/material/Button"
 import GoogleIcon from "@mui/icons-material/Google"
 import { signIn as googleSignIn } from "next-auth/react"
 import { setToken } from "../../pages/api/auth/js-cookie"
+import { showResetPassword } from "../../signals/showResetPassword"
+import { showLogin } from "../../signals/showLogin"
 
 type Inputs = {
     username: string
@@ -158,7 +160,13 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                     {serverError}
                 </span>
             ) : null}
-            <div className="w-full text-[#1876d1] cursor-pointer">
+            <div
+                className="w-full text-[#1876d1] cursor-pointer"
+                onClick={() => {
+                    showLogin.value = false
+                    showResetPassword.value = true
+                }}
+            >
                 Forgot password?
             </div>
 
