@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { NextPage, GetServerSideProps } from "next"
 import { Response } from "../../types"
-import NavSection from "../../components/navSection"
+import NavSection from "../../components/pageNavigation"
 import ThreadOverview from "../../components/ThreadOverview"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import Pagination from "@mui/material/Pagination"

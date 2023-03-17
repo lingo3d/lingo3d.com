@@ -105,6 +105,7 @@ const viewThread: NextPage<{
                         username={data.data.attributes.username}
                         createdAt={data.data.attributes.createdAt.split("T")[0]}
                         tags={data.data.attributes.tags}
+                        category={data.data.attributes.category}
                     />
                 </Box>
                 <TopPost

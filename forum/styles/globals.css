@@ -96,6 +96,10 @@ body {
 .css-m9glnp-MuiPaper-root-MuiDialog-paper {
     background-color: transparent !important;
 }
+/* .css-1uronhq {
+    height: 100% !important;
+    width: 100% !important;
+} */
 
 @media only screen and (min-width: 1200px) {
     .MuiAppBar-root {

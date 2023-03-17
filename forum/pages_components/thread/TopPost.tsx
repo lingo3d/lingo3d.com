@@ -14,7 +14,6 @@ import EditIcon from "@mui/icons-material/Edit"
 import SaveIcon from "@mui/icons-material/Save"
 import ClearIcon from "@mui/icons-material/Clear"
 import RichTextEditor from "../../components/RichTextEditor"
-
 import { ActivateReply } from "../../pages/thread/[...id]"
 
 type TopPostProps = {
@@ -149,7 +148,7 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
                         ) : (
                             <div className="flex cursor-pointer">
                                 <EditIcon className="mx-[5px]" />
-                                <div>Edit</div>
+                                {/* <div>Edit</div> */}
                             </div>
                         )}
                     </div>
@@ -157,15 +156,17 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
                 {/* <ShareIcon className="mx-[5px]"  /> 
                 <ThumbUpIcon className="mx-[5px]" />
                 <BookmarkIcon className="mx-[5px]" /> */}
-                <ReplyIcon
-                    className="mx-[5px] cursor-pointer"
-                    onClick={() =>
-                        activateReply(
-                            data.data.attributes.description,
-                            data.data.attributes.username
-                        )
-                    }
-                />
+                {!editMode && (
+                    <ReplyIcon
+                        className="mx-[5px] cursor-pointer"
+                        onClick={() =>
+                            activateReply(
+                                data.data.attributes.description,
+                                data.data.attributes.username
+                            )
+                        }
+                    />
+                )}
             </div>
             {/* <div className="flex mt-[20px]">
                 <ThumbUpIcon className="w-[16px] h-[16px] mr-[5px]" />

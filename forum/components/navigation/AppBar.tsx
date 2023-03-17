@@ -75,7 +75,6 @@ export default function Nav() {
                         <Box
                             sx={{
                                 width: "200px",
-                                height: "200px",
                                 position: "relative",
                                 cursor: "pointer"
                             }}

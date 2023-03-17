@@ -3,7 +3,7 @@ import { Box } from "@mui/material"
 import Home from "./components/Home"
 import Navbar from "./layouts/navbar/index"
 import SideNav from "./layouts/sidebar/index"
-import NavSection from "./components/login_register/index"
+import AuthModal from "./components/authModal/index"
 import { Provider } from "../context/user"
 
 const theme = createTheme({
@@ -19,7 +19,7 @@ function App() {
         <ThemeProvider theme={theme}>
             <Provider>
                 <Box className="w-full h-full flex">
-                    <NavSection />
+                    <AuthModal />
                     <SideNav />
                     <main className="flex-1 flex flex-col h-screen max-w-[1080px] mx-auto">
                         <Navbar />

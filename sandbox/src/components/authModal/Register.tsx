@@ -1,8 +1,8 @@
 import { useState, useRef } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import TextField from "@mui/material/TextField"
-import Button from "@mui/material/Button"
-import { setToken } from "../../pages/api/auth/js-cookie"
+import { setToken } from "../../api/auth/js-cookie"
+import { Button } from "@mui/material"
 
 type Inputs = {
     email: string
@@ -35,7 +35,7 @@ export default function SignUp() {
     const registerUser: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
             const submitData = await fetch(
-                `http://localhost:1337/api/auth/local/register`,
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
                 {
                     headers: {
                         "Content-Type": "application/json"
@@ -48,7 +48,6 @@ export default function SignUp() {
                     })
                 }
             )
-
             const res = await (submitData as Response).json()
 
             if (res.error) {
@@ -59,19 +58,19 @@ export default function SignUp() {
 
             setToken(res)
         } catch (error) {
-            console.log(error)
             alert(
                 "There was an error connecting to the server. Please try again later."
             )
+            console.log(error)
         }
     }
 
     return (
         <>
-            <div className="text-[22px] text-[#f4f4f9]">
+            <div className="text-[22px] text-[#c1c1c1]">
                 Create your account
             </div>
-            <div className="text-[#f4f4f9]">
+            <div className="text-[#c1c1c1]">
                 Enter your desired username and password
             </div>
             <Controller
@@ -86,17 +85,17 @@ export default function SignUp() {
                         type="email"
                         value={value}
                         onChange={onChange}
-                        error={!!errors.email}
+                        error={!!errors.username}
                         variant="standard"
                         sx={{
                             "& .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&:hover .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&.Mui-focused .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "& .MuiInputBase-input": {
                                 paddingBottom: "8px !important"
@@ -104,12 +103,12 @@ export default function SignUp() {
                         }}
                         InputLabelProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                         InputProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                     />
@@ -131,13 +130,13 @@ export default function SignUp() {
                         variant="standard"
                         sx={{
                             "& .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&:hover .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&.Mui-focused .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "& .MuiInputBase-input": {
                                 paddingBottom: "8px !important"
@@ -145,12 +144,12 @@ export default function SignUp() {
                         }}
                         InputLabelProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                         InputProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                     />
@@ -172,13 +171,13 @@ export default function SignUp() {
                         variant="standard"
                         sx={{
                             "& .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&:hover .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&.Mui-focused .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "& .MuiInputBase-input": {
                                 paddingBottom: "8px !important"
@@ -186,12 +185,12 @@ export default function SignUp() {
                         }}
                         InputLabelProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                         InputProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                     />
@@ -227,13 +226,13 @@ export default function SignUp() {
                         variant="standard"
                         sx={{
                             "& .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&:hover .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "&.Mui-focused .MuiInput-underline:before": {
-                                borderBottomColor: "#f4f4f9 !important"
+                                borderBottomColor: "#c1c1c1 !important"
                             },
                             "& .MuiInputBase-input": {
                                 paddingBottom: "8px !important"
@@ -241,12 +240,12 @@ export default function SignUp() {
                         }}
                         InputLabelProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                         InputProps={{
                             sx: {
-                                color: "#86a1d8"
+                                color: "#c1c1c1"
                             }
                         }}
                     />
@@ -261,15 +260,11 @@ export default function SignUp() {
             ) : null}
             <Button
                 variant="contained"
-                fullWidth
-                sx={{
-                    paddingY: "10px !important",
-                    background: "#86a1d8 !important",
-                    color: "#f4f4f9"
-                }}
+                className="w-full"
+                sx={{ paddingY: "10px !important", marginTop: "10px" }}
                 onClick={handleSubmit(registerUser)}
             >
-                Sign Up
+                Sign in
             </Button>
         </>
     )

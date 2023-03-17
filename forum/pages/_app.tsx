@@ -6,7 +6,7 @@ import Head from "next/head"
 import Loader from "../components/Loader"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
-import Modal from "../components/login_register"
+import AuthModal from "../components/authModal"
 import ResetPassword from "../components/ResetPassword"
 import Navigation from "../components/navigation/index"
 
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Provider>
                 <ResetPassword />
                 <Navigation />
-                <Modal />
+                <AuthModal />
                 {loading && <Loader />}
                 <ErrorBoundary>
                     <div className="px-[35px] md:px-[70px] lg:px-[220px] mt-[94px]">

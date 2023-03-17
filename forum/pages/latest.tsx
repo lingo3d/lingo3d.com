@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { NextPage, GetStaticProps } from "next"
 import { Response } from "../types"
 import ThreadOverview from "../components/ThreadOverview"
-import NavSection from "../components/navSection"
+import NavSection from "../components/pageNavigation"
 import { Box } from "@mui/material"
 import Pagination from "@mui/material/Pagination"
 

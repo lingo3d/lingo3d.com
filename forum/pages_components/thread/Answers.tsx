@@ -183,12 +183,14 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                 {/* <ShareIcon className="mx-[5px]" />
                 <ThumbUpIcon className="mx-[5px]" />
                 <BookmarkIcon className="mx-[5px]" /> */}
-                <ReplyIcon
-                    className="mx-[5px] cursor-pointer"
-                    onClick={() =>
-                        activateReply(answer.answer, answer.username)
-                    }
-                />
+                {!editMode && (
+                    <ReplyIcon
+                        className="mx-[5px] cursor-pointer"
+                        onClick={() =>
+                            activateReply(answer.answer, answer.username)
+                        }
+                    />
+                )}
             </div>
             {/* <div className="flex mt-[20px]">
                 <ThumbUpIcon className="w-[16px] h-[16px] mr-[5px]" />

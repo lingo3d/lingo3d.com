@@ -4,12 +4,22 @@ import PersonIcon from "@mui/icons-material/Person"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
 import Box from "@mui/material/Box"
+import CategoryIcon from "@mui/icons-material/Category"
+import { useRouter } from "next/router"
 
 const Metadata: React.FC<{
     username: string
     createdAt: string
     tags: string[] | null
-}> = ({ username, createdAt, tags }) => {
+    category: string | null
+}> = ({ username, createdAt, tags, category }) => {
+    const router = useRouter()
+    const handleChange = () => {
+        router.push(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
+        )
+    }
+
     return (
         <div className="flex flex-col textColor1 mt-[5px]">
             <Box className="flex  textColor1 ">
@@ -23,8 +33,19 @@ const Metadata: React.FC<{
                     <div className="text-[13px] ml-[4px]">{createdAt}</div>
                 </div>
             </Box>
+            {category && (
+                <Box className="flex justify-start items-end mt-[10px]">
+                    <CategoryIcon sx={{ width: "20px", height: "20px" }} />
+                    <div
+                        className="text-[13px] ml-[4px] cursor-pointer"
+                        onClick={() => handleChange()}
+                    >
+                        {category}
+                    </div>
+                </Box>
+            )}
             {tags && (
-                <div className="flex flex-wrap justify-start items-end mt-[10px]">
+                <Box className="flex flex-wrap justify-start items-end mt-[10px]">
                     <LocalOfferIcon sx={{ width: "20px", height: "20px" }} />
                     {tags?.map((m, i) => (
                         <Link
@@ -39,7 +60,7 @@ const Metadata: React.FC<{
                             </div>
                         </Link>
                     ))}
-                </div>
+                </Box>
             )}
         </div>
     )

@@ -8,9 +8,7 @@ type Inputs = {
     email: string
 }
 
-const ResetPassword: React.FC<{
-    setDisplayRegister: (display: boolean) => void
-}> = ({ setDisplayRegister }) => {
+const ResetPassword: React.FC<{}> = () => {
     const [show, setShow] = useState(false)
     const [serverError, setServerError] = useState("")
 
