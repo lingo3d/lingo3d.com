@@ -29,8 +29,6 @@ const viewThread: NextPage<{
     const replyareaRef = useRef<null | HTMLDivElement>(null)
     const user: User | undefined = useUser()
 
-    console.log(data, "i am data")
-
     const handleChange = (output: string) => {
         setAnswer(output)
     }

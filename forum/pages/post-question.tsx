@@ -109,6 +109,9 @@ const UploadThread: NextPage = () => {
                         <option value="react api">React api</option>
                         <option value="vue api">Vue api</option>
                         <option value="animation">Animation</option>
+                        <option value="asset management">
+                            Asset Management
+                        </option>
                         <option value="material">Material</option>
                         <option value="networking">Networking</option>
                         <option value="physics">Physics</option>
