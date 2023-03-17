@@ -264,6 +264,7 @@ export default function SignUp() {
                 fullWidth
                 sx={{
                     paddingY: "10px !important",
+                    marginTop: "10px",
                     background: "#86a1d8 !important",
                     color: "#f4f4f9"
                 }}
