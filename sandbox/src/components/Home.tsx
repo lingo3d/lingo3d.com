@@ -27,7 +27,7 @@ const Home = () => {
             setSandboxes(data.data)
         }
 
-        // fetchSandboxes()
+        fetchSandboxes()
     }, [cardsUpdated])
 
     return (
