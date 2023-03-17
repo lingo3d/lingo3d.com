@@ -261,7 +261,7 @@ export default function SignUp() {
             <Button
                 variant="contained"
                 className="w-full"
-                sx={{ paddingY: "10px !important" }}
+                sx={{ paddingY: "10px !important", marginTop: "10px" }}
                 onClick={handleSubmit(registerUser)}
             >
                 Sign in

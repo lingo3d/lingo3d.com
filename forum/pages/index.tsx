@@ -1,6 +1,6 @@
 import { NextPage, GetStaticProps } from "next"
 import { Response } from "../types"
-import NavSection from "../components/navSection"
+import NavSection from "../components/pageNavigation"
 import Tags from "../pages_components/index/Tags"
 import Body from "../pages_components/index/Body"
 import { useWidth } from "../hooks/useWindowWidth"

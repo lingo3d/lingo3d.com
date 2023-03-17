@@ -6,7 +6,7 @@ import Login from "./Login"
 import Register from "./Register"
 import { showLogin } from "../../../signals/showLogin"
 
-const Form = () => {
+const AuthModal = () => {
     const [displayRegister, setDisplayRegister] = useState<boolean>(false)
 
     const handleCloseClick = (e: any) => {
@@ -34,4 +34,4 @@ const Form = () => {
     ) : null
 }
 
-export default Form
+export default AuthModal

@@ -5,6 +5,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
 import Box from "@mui/material/Box"
 import CategoryIcon from "@mui/icons-material/Category"
+import { useRouter } from "next/router"
 
 const Metadata: React.FC<{
     username: string
@@ -12,6 +13,13 @@ const Metadata: React.FC<{
     tags: string[] | null
     category: string | null
 }> = ({ username, createdAt, tags, category }) => {
+    const router = useRouter()
+    const handleChange = () => {
+        router.push(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
+        )
+    }
+
     return (
         <div className="flex flex-col textColor1 mt-[5px]">
             <Box className="flex  textColor1 ">
@@ -28,13 +36,12 @@ const Metadata: React.FC<{
             {category && (
                 <Box className="flex justify-start items-end mt-[10px]">
                     <CategoryIcon sx={{ width: "20px", height: "20px" }} />
-                    <Link
-                        href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`}
+                    <div
+                        className="text-[13px] ml-[4px] cursor-pointer"
+                        onClick={() => handleChange()}
                     >
-                        <div className="text-[13px] ml-[4px] cursor-pointer">
-                            {category}
-                        </div>
-                    </Link>
+                        {category}
+                    </div>
                 </Box>
             )}
             {tags && (
