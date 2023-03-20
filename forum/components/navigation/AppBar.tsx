@@ -62,7 +62,7 @@ export default function Nav() {
     }
 
     return (
-        <Box>
+        <div className="my-custom-app-bar">
             <AppBar component="nav" elevation={0}>
                 <Toolbar
                     sx={{
@@ -179,6 +179,6 @@ export default function Nav() {
                     </Box>
                 </Toolbar>
             </AppBar>
-        </Box>
+        </div>
     )
 }
