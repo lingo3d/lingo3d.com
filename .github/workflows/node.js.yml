@@ -160,8 +160,8 @@ jobs:
     - name: create env file
       if: steps.filter.outputs.sandbox == 'true'
       run: |
-          touch .env.local
-          echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
+          touch .env
+          echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env
     - name: Build Sandbox app
       if: steps.filter.outputs.sandbox == 'true'
       run: |
@@ -171,6 +171,6 @@ jobs:
       run: pm2 startOrReload ecosystem.config.js
     - name: remove existing env file
       if: steps.filter.outputs.forum == 'true'
-      run: rm .env.local
+      run: rm .env
          
 
