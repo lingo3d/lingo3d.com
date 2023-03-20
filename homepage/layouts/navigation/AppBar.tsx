@@ -49,93 +49,92 @@ export default function Nav() {
     }
 
     return (
-        <Box>
-            <AppBar
-                component="nav"
-                elevation={0}
+        <AppBar
+            component="nav"
+            elevation={0}
+            sx={{
+                background: "transparent"
+            }}
+        >
+            <Toolbar
                 sx={{
-                    background: "transparent"
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
                 }}
             >
-                <Toolbar
+                <Box
                     sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center"
+                        width: "200px",
+                        height: "200px",
+                        position: "relative"
                     }}
                 >
-                    <Box
+                    <Image
+                        ref={logo1Ref}
+                        src="/logo_full_name.png"
+                        alt="company background"
+                        width={120}
+                        height={50}
+                        style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            opacity: logo1Opacity,
+                            transition: "opacity 0.5s ease-in-out"
+                        }}
+                    />
+                    <Image
+                        ref={logo2Ref}
+                        src="/logo_trademark.png"
+                        alt="company background"
+                        width={60}
+                        height={60}
+                        style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            opacity: logo2Opacity,
+                            transition: "opacity 0.5s ease-in-out"
+                        }}
+                    />
+                </Box>
+                <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                    <Button
+                        key="home"
                         sx={{
-                            width: "200px",
-                            height: "200px",
-                            position: "relative"
+                            color: "#fff",
+                            paddingRight: "30px",
+                            fontSize: "14px"
                         }}
                     >
-                        <Image
-                            ref={logo1Ref}
-                            src="/logo_full_name.png"
-                            alt="company background"
-                            width={120}
-                            height={50}
-                            style={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                opacity: logo1Opacity,
-                                transition: "opacity 0.5s ease-in-out"
-                            }}
-                        />
-                        <Image
-                            ref={logo2Ref}
-                            src="/logo_trademark.png"
-                            alt="company background"
-                            width={60}
-                            height={60}
-                            style={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                opacity: logo2Opacity,
-                                transition: "opacity 0.5s ease-in-out"
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
-                        <Button
-                            key="home"
-                            sx={{
-                                color: "#fff",
-                                paddingRight: "30px",
-                                fontSize: "14px"
-                            }}
-                        >
-                            Home
-                        </Button>
-                        <Button
-                            key="forum"
-                            onClick={() => handleRouterChange()}
-                            sx={{
-                                color: "#fff",
-                                paddingRight: "30px",
-                                fontSize: "14px"
-                            }}
-                        >
-                            Forum
-                        </Button>
-                        <Button
-                            key="contact"
-                            sx={{
-                                color: "#fff",
-                                paddingRight: "30px",
-                                fontSize: "14px"
-                            }}
-                        >
-                            Contact
-                        </Button>
-                    </Box>
-                    {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                        Home
+                    </Button>
+                    <Button
+                        key="forum"
+                        onClick={() => handleRouterChange()}
+                        sx={{
+                            color: "#fff",
+                            paddingRight: "30px",
+                            fontSize: "14px"
+                        }}
+                    >
+                        Forum
+                    </Button>
+                    <Button
+                        key="contact"
+                        sx={{
+                            color: "#fff",
+                            paddingRight: "30px",
+                            fontSize: "14px"
+                        }}
+                    >
+                        Contact
+                    </Button>
+                </Box>
+                {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navItems.map((item) => (
                             <Button
                                 key={item}
@@ -149,8 +148,7 @@ export default function Nav() {
                             </Button>
                         ))}
                     </Box> */}
-                </Toolbar>
-            </AppBar>
-        </Box>
+            </Toolbar>
+        </AppBar>
     )
 }
