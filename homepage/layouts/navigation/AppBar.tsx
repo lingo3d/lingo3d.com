@@ -107,7 +107,7 @@ export default function Nav() {
                         >
                             Home
                         </Button>
-                        <Link href="http://localhost:3000" target="_blank">
+                        <Link href="http://0.0.0.0:3000" target="_blank">
                             <Button
                                 key="forum"
                                 sx={{
