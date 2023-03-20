@@ -62,7 +62,11 @@ export default function Nav() {
     }
 
     return (
-        <div className="my-custom-app-bar">
+        <div
+            className="my-custom-app-bar css-5ltjrz-MuiPaper-root-MuiAppBar-root
+        css-1hc7nu0-MuiPaper-root-MuiAppBar-root
+        css-m9glnp-MuiPaper-root-MuiDialog-paper"
+        >
             <AppBar component="nav" elevation={0}>
                 <Toolbar
                     sx={{
