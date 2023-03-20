@@ -2,6 +2,7 @@ import React, { forwardRef } from "react"
 import Icp from "@/components/Icp"
 import Partners from "@/components/Partners"
 
+//
 const ChildComponent = forwardRef(
     (props, ref: React.ForwardedRef<HTMLElement>) => {
         return (
