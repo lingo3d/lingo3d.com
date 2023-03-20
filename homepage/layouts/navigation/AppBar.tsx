@@ -27,6 +27,8 @@ export default function Nav() {
         }
     }, [])
 
+    //
+
     useEffect(() => {
         if (!logo1Ref.current) return
         if (!logo2Ref.current) return
