@@ -168,7 +168,7 @@ jobs:
           yarn build
     - name: start app
       if: steps.filter.outputs.sandbox == 'true'
-      run: pm2 startOrReload ecosystem.config.js
+      run: pm2 startOrReload ecosystem.config.cjs
     - name: remove existing env file
       if: steps.filter.outputs.forum == 'true'
       run: rm .env
