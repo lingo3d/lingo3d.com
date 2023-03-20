@@ -7,6 +7,8 @@ const Context = createContext(undefined)
 export function Provider({ children }: any) {
     const [userData, setUserData] = useState()
 
+    //
+
     useEffect(() => {
         const getUserData = async () => {
             const user = !!getTokenFromLocalCookie()
