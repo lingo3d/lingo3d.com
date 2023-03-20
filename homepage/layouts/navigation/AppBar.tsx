@@ -5,10 +5,12 @@ import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 // const navItems = ["Home", "Forum", "Contact"]
 
 export default function Nav() {
+    const router = useRouter()
     const [scrollY, setScrollY] = useState(0)
     const fadeStart = 100
     const logo1Ref = useRef<HTMLImageElement | null>(null)
@@ -27,8 +29,6 @@ export default function Nav() {
         }
     }, [])
 
-    //
-
     useEffect(() => {
         if (!logo1Ref.current) return
         if (!logo2Ref.current) return
@@ -41,6 +41,12 @@ export default function Nav() {
             setLogo2Opacity(0)
         }
     }, [scrollY])
+
+    const handleRouterChange = () => {
+        router.push(
+            "http://ec2-43-192-125-79.cn-northwest-1.compute.amazonaws.com.cn:3000"
+        )
+    }
 
     return (
         <Box>
@@ -107,19 +113,17 @@ export default function Nav() {
                         >
                             Home
                         </Button>
-                        <Link href="0.0.0.0:3000" target="_blank">
-                            <Button
-                                key="forum"
-                                sx={{
-                                    color: "#fff",
-                                    paddingRight: "30px",
-                                    fontSize: "14px"
-                                }}
-                            >
-                                Forum
-                            </Button>
-                        </Link>
-
+                        <Button
+                            key="forum"
+                            onClick={() => handleRouterChange()}
+                            sx={{
+                                color: "#fff",
+                                paddingRight: "30px",
+                                fontSize: "14px"
+                            }}
+                        >
+                            Forum
+                        </Button>
                         <Button
                             key="contact"
                             sx={{
