@@ -12,6 +12,8 @@ import { useParallax } from "@/hooks/useParallax"
 export default function Home() {
     const [footer, setFooter] = useState<HTMLElement | null>(null)
 
+    //
+
     const {
         el,
         status,
