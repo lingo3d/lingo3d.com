@@ -89,17 +89,8 @@ body {
     left: 50%;
     right: 50%;
     transform: translate(-50%, -50%);
-}
-
-.css-5ltjrz-MuiPaper-root-MuiAppBar-root,
-.css-1hc7nu0-MuiPaper-root-MuiAppBar-root,
-.css-m9glnp-MuiPaper-root-MuiDialog-paper {
     background-color: transparent !important;
 }
-/* .css-1uronhq {
-    height: 100% !important;
-    width: 100% !important;
-} */
 
 @media only screen and (min-width: 1200px) {
     .my-custom-app-bar .MuiAppBar-root {
