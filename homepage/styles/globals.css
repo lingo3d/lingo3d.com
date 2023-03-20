@@ -100,7 +100,7 @@ html {
     border-top: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.MuiAppBar-root {
+.my-custom-app-bar .MuiAppBar-root {
     max-width: 1550px !important;
     max-height: 40px !important;
     top: 50px;
@@ -118,13 +118,13 @@ html {
 } */
 
 @media only screen and (min-width: 1200px) {
-    .MuiAppBar-root {
+    .my-custom-app-bar .MuiAppBar-root .MuiAppBar-root {
         max-width: 1350px !important;
     }
 }
 
 @media only screen and (min-width: 1500px) {
-    .MuiAppBar-root {
+    .my-custom-app-bar .MuiAppBar-root {
         max-width: 1550px !important;
     }
 }
