@@ -32,6 +32,8 @@ export default function SignUp() {
     const password = useRef({})
     password.current = watch("password", "")
 
+    //
+
     const registerUser: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
             const submitData = await fetch(
