@@ -53,6 +53,7 @@ jobs:
     - name: turn on app
       if: steps.filter.outputs.backend == 'true'
       env:
+          NODE_ENV: production
           HOST: ${{ secrets.HOST }}
           PORT: ${{ secrets.PORT }}
           APP_KEYS: ${{ secrets.APP_KEYS }}
