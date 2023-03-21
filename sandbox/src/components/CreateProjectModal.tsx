@@ -26,7 +26,7 @@ const CreateProjectModal = ({ onCardUpdate }: CreateProjectModalType) => {
     const createSandbox = async () => {
         try {
             const post = await fetch(
-                `${import.meta.env.NEXT_PUBLIC_STRAPI_URL}/api/sandboxes`,
+                `${import.meta.env.VITE_PUBLIC_STRAPI_URL}/api/sandboxes`,
                 {
                     headers: {
                         "Content-Type": "application/json",

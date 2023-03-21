@@ -23,7 +23,7 @@ const Home = () => {
     useEffect(() => {
         async function fetchSandboxes() {
             const response = await fetch(
-                `${import.meta.env.NEXT_PUBLIC_STRAPI_URL}/api/sandboxes`
+                `${import.meta.env.VITE_PUBLIC_STRAPI_URL}/api/sandboxes`
             )
             const data = await response.json()
             setSandboxes(data.data)

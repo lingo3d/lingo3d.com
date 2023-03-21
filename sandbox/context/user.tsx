@@ -18,7 +18,7 @@ export function Provider({ children }: any) {
                 try {
                     const res = await fetch(
                         `${
-                            import.meta.env.NEXT_PUBLIC_STRAPI_URL
+                            import.meta.env.VITE_PUBLIC_STRAPI_URL
                         }/api/users/me/`,
                         {
                             headers: {

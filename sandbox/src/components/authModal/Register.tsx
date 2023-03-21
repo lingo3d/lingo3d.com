@@ -36,7 +36,7 @@ export default function SignUp() {
         try {
             const submitData = await fetch(
                 `${
-                    import.meta.env.NEXT_PUBLIC_STRAPI_URL
+                    import.meta.env.VITE_PUBLIC_STRAPI_URL
                 }/api/auth/local/register`,
                 {
                     headers: {
