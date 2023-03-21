@@ -161,7 +161,7 @@ jobs:
       if: steps.filter.outputs.sandbox == 'true'
       run: |
           touch .env
-          echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env
+          echo VITE_PUBLIC_STRAPI_URL=${{ secrets.VITE_PUBLIC_STRAPI_URL }} >> .env
     - name: Build Sandbox app
       if: steps.filter.outputs.sandbox == 'true'
       run: |
