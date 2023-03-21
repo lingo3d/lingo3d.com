@@ -156,7 +156,17 @@ export default function Nav() {
                             <>
                                 <Avatar
                                     onClick={(e) => handleClick(e)}
-                                    className="cursor-pointer w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] bg-[#86A1D8] inline-flex"
+                                    sx={{
+                                        cursor: "pointer",
+                                        width: "30px",
+                                        height: "30px",
+                                        backgroundColor: "#86A1D8",
+                                        display: "inline-flex",
+                                        "@media (min-width: 640px)": {
+                                            width: "35px",
+                                            height: "35px"
+                                        }
+                                    }}
                                 />
 
                                 <Menu

@@ -30,7 +30,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
     const loginUser: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
             const submitData = await fetch(
-                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
+                `${import.meta.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local`,
                 {
                     headers: {
                         "Content-Type": "application/json"
