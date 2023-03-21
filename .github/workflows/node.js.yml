@@ -6,8 +6,8 @@ name: Node.js CI
 on:
   push:
     branches: [ "master" ]
-#     paths-ignore:
-#       - '**.yml'
+    paths-ignore:
+      - '**.yml'
 
 jobs:
   build_backend:
