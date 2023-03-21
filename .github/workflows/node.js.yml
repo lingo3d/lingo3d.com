@@ -22,20 +22,20 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         clean: false
-#     - uses: dorny/paths-filter@v2
-#       id: filter
-#       with: 
-#         filters: |
-#           backend:
-#             - 'backend/**'
-#     - name: install deps
-#       if: steps.filter.outputs.backend == 'true'
-#       run: yarn install --frozen-lockfile
+    - uses: actions/checkout@v3
+      with:
+        clean: false
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with: 
+        filters: |
+          backend:
+            - 'backend/**'
+    - name: install deps
+      if: steps.filter.outputs.backend == 'true'
+      run: yarn install --frozen-lockfile
     - name: create env file
-#       if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: |
           touch .env
           echo HOST=${{ secrets.HOST }} >> .env
@@ -52,18 +52,18 @@ jobs:
           echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> $GITHUB_ENV
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
     - name: Build Strapi app
-#       if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: |
           NODE_ENV=production yarn build
 #     - name: turn on app
 #       if: steps.filter.outputs.backend == 'true'
 #       run: HOST=${{ env.HOST }} PORT=${{ env.PORT }} APP_KEYS=${{ env.APP_KEYS }} API_TOKEN_SALT=${{ env.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ env.ADMIN_JWT_SECRET }} JWT_SECRET=${{ env.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ env.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 startOrReload ecosystem.config.js --update-env
     - name: turn on app
-#   if: steps.filter.outputs.backend == 'true'
+  if: steps.filter.outputs.backend == 'true'
       run: |
         pm2 startOrReload ecosystem.config.js --update-env
     - name: remove existing env file
-#       if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: rm .env
       
 #   build_homepage:
