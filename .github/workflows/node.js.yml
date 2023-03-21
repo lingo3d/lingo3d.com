@@ -52,7 +52,16 @@ jobs:
           NODE_ENV=production yarn build
     - name: turn on app
       if: steps.filter.outputs.backend == 'true'
-      run: HOST=${{ secrets.HOST }} PORT=${{ secrets.PORT }} APP_KEYS=${{ secrets.APP_KEYS }} API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} JWT_SECRET=${{ secrets.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ secrets.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 startOrReload ecosystem.config.js --update-env
+      env:
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          APP_KEYS: ${{ secrets.APP_KEYS }}
+          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
+          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_ACCESS_SECRET: ${{ secrets.AWS_ACCESS_SECRET }}
+      run: pm2 startOrReload ecosystem.config.js --update-env
     - name: remove existing env file
       if: steps.filter.outputs.backend == 'true'
       run: rm .env
