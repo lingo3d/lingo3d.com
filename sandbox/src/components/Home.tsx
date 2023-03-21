@@ -20,12 +20,17 @@ const Home = () => {
 
     useEffect(() => {
         async function fetchSandboxes() {
-            const response = await fetch(
-                `${import.meta.env.VITE_PUBLIC_STRAPI_URL}/api/sandboxes`
-            )
-            const data = await response.json()
-            console.log(data)
-            setSandboxes(data.data)
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_PUBLIC_STRAPI_URL}/api/sandboxes`
+                )
+                const data = await response.json()
+                console.log(data)
+                setSandboxes(data.data)
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
         }
 
         fetchSandboxes()
