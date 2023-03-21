@@ -35,7 +35,7 @@ jobs:
 #       if: steps.filter.outputs.backend == 'true'
       run: yarn install --frozen-lockfile
     - name: test
-      if: steps.filter.outputs.backend == 'true'
+#       if: steps.filter.outputs.backend == 'true'
       run: echo "i am changed"
     - name: create env file
 #       if: steps.filter.outputs.backend == 'true'
@@ -48,19 +48,35 @@ jobs:
           echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
           echo NODE_ENV=production >> $GITHUB_ENV
-          echo HOST=${{ secrets.HOST }} >> $GITHUB_ENV
-          echo PORT=${{ secrets.PORT }} >> $GITHUB_ENV
-          echo APP_KEYS=${{ secrets.APP_KEYS }} >> $GITHUB_ENV
-          echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> $GITHUB_ENV
-          echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> $GITHUB_ENV
-          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> $GITHUB_ENV
+          echo "action_state=yellow" >> $GITHUB_ENV
+          echo "HOST=${{ secrets.HOST }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
+          echo "APP_KEYS=${{ secrets.APP_KEYS }}" >> $GITHUB_ENV
+          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> $GITHUB_ENV
+          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> $GITHUB_ENV
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+    - name: Use the value
+      run: echo "${{ env.HOST }}"
     - name: Build Strapi app
 #       if: steps.filter.outputs.backend == 'true'
       run: |
           NODE_ENV=production yarn build
-    - name: turn on app
+#     - name: turn on app
 #       if: steps.filter.outputs.backend == 'true'
-      run: HOST=${{ env.HOST }} PORT=${{ env.PORT }} APP_KEYS=${{ env.APP_KEYS }} API_TOKEN_SALT=${{ env.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ env.ADMIN_JWT_SECRET }} JWT_SECRET=${{ env.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ env.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 startOrReload ecosystem.config.js --update-env
+#       run: HOST=${{ env.HOST }} PORT=${{ env.PORT }} APP_KEYS=${{ env.APP_KEYS }} API_TOKEN_SALT=${{ env.API_TOKEN_SALT }} ADMIN_JWT_SECRET=${{ env.ADMIN_JWT_SECRET }} JWT_SECRET=${{ env.JWT_SECRET }} AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} AWS_ACCESS_SECRET=${{ env.AWS_ACCESS_SECRET }} NODE_ENV=production pm2 startOrReload ecosystem.config.js --update-env
+    - name: turn on app
+#   if: steps.filter.outputs.backend == 'true'
+      run: |
+        pm2 startOrReload ecosystem.config.js --update-env \
+        --env NODE_ENV=production \
+        --env HOST=${{ env.HOST }} \
+        --env PORT=${{ env.PORT }} \
+        --env APP_KEYS=${{ env.APP_KEYS }} \
+        --env API_TOKEN_SALT=${{ env.API_TOKEN_SALT }} \
+        --env ADMIN_JWT_SECRET=${{ env.ADMIN_JWT_SECRET }} \
+        --env JWT_SECRET=${{ env.JWT_SECRET }} \
+        --env AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }} \
+        --env AWS_ACCESS_SECRET=${{ env.AWS_ACCESS_SECRET }}
     - name: remove existing env file
 #       if: steps.filter.outputs.backend == 'true'
       run: rm .env
