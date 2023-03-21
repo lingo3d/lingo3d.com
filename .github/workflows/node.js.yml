@@ -34,6 +34,9 @@ jobs:
     - name: install deps
       if: steps.filter.outputs.backend == 'true'
       run: yarn install --frozen-lockfile
+    - name: test
+      if: steps.filter.outputs.backend == 'true'
+      run: echo "i am changed"
     - name: create env file
       if: steps.filter.outputs.backend == 'true'
       run: |
@@ -44,13 +47,13 @@ jobs:
           echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
           echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
-          echo "NODE_ENV=production" >> $GITHUB_ENV
-          echo "HOST=${{ secrets.HOST }}" >> $GITHUB_ENV
-          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
-          echo "APP_KEYS=${{ secrets.APP_KEYS }}" >> $GITHUB_ENV
-          echo "API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }}" >> $GITHUB_ENV
-          echo "ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }}" >> $GITHUB_ENV
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> $GITHUB_ENV
+          echo NODE_ENV=production >> $GITHUB_ENV
+          echo HOST=${{ secrets.HOST }} >> $GITHUB_ENV
+          echo PORT=${{ secrets.PORT }} >> $GITHUB_ENV
+          echo APP_KEYS=${{ secrets.APP_KEYS }} >> $GITHUB_ENV
+          echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> $GITHUB_ENV
+          echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> $GITHUB_ENV
+          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> $GITHUB_ENV
     - name: Build Strapi app
       if: steps.filter.outputs.backend == 'true'
       run: |
