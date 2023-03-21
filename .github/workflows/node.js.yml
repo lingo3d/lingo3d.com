@@ -170,7 +170,7 @@ jobs:
       if: steps.filter.outputs.sandbox == 'true'
       run: pm2 startOrReload ecosystem.config.cjs
     - name: remove existing env file
-      if: steps.filter.outputs.forum == 'true'
+      if: steps.filter.outputs.sandbox == 'true'
       run: rm .env
          
 
