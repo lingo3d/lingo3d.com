@@ -71,6 +71,7 @@ const Parallax = ({
                         muted
                         playsInline
                         loop
+                        disablePictureInPicture
                         data-src="city.mp4"
                         style={{
                             objectFit: "cover",

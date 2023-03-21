@@ -36,6 +36,7 @@ export const HeroVideo = () => {
             playsInline
             loop
             autoPlay
+            disablePictureInPicture
             className="h-screen w-full object-cover opacity-50 top-0 left-0 absolute"
             src="software.mp4"
             ref={videoRef}

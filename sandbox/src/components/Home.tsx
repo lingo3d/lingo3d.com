@@ -18,8 +18,6 @@ const Home = () => {
         setCardsUpdated(cardsUpdated + 1)
     }
 
-    //
-
     useEffect(() => {
         async function fetchSandboxes() {
             const response = await fetch(
