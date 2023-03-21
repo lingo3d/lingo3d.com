@@ -26,6 +26,7 @@ const Home = () => {
                 `${import.meta.env.VITE_PUBLIC_STRAPI_URL}/api/sandboxes`
             )
             const data = await response.json()
+            console.log(data)
             setSandboxes(data.data)
         }
 
