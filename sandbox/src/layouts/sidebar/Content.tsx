@@ -29,7 +29,10 @@ const Content = () => {
 
     return (
         <Box className="flex flex-col justify-between items-center h-full w-full">
-            <List className="flex flex-col gap-y-4 pt-8 w-full">
+            <List
+                className="flex flex-col gap-y-4 w-full"
+                sx={{ paddingTop: "16px !important" }}
+            >
                 {user ? (
                     <Box className="w-full flex justify-start items-center gap-x-2 px-3">
                         <Avatar

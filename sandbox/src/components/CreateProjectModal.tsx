@@ -66,6 +66,11 @@ const CreateProjectModal = ({ onCardUpdate }: CreateProjectModalType) => {
         <Dialog
             open={showCreateProject.value}
             onClose={() => (setError(""), (showCreateProject.value = false))}
+            sx={{
+                "& .MuiDialog-paper": {
+                    height: "auto !important"
+                }
+            }}
             className="w-screen h-full absolute top-0 left-0 flex flex-col justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#292B32] textColor min-w-[280px]">

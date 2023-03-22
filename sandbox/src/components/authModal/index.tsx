@@ -20,6 +20,11 @@ const AuthModal = () => {
             onClose={handleCloseClick}
             open={showLogin.value}
             className="w-screen h-full absolute top-0 left-0 flex flex-col justify-center items-center"
+            sx={{
+                "& .MuiDialog-paper": {
+                    height: "auto !important"
+                }
+            }}
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#292B32]">
                 <img src={logoSignup} width={120} height={22} alt="logo" />

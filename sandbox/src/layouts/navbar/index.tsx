@@ -27,7 +27,10 @@ const Nav = () => {
                 </div>
             )}
             <div className="flex-1 px-4">
-                <SearchBar placeholder="Find your project" />
+                <SearchBar
+                    className="searchbar"
+                    placeholder="Find your project"
+                />
             </div>
             {/* <div className="w-[28px] h-[28px]">
                 <AddIcon sx={{ width: "100%", height: "100%" }} />

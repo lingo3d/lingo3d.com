@@ -10,6 +10,12 @@ export default function LeftDrawer() {
                 open={showDrawer.value}
                 className="w-64"
                 onClose={() => (showDrawer.value = false)}
+                sx={{
+                    "& .MuiDrawer-paper": {
+                        top: "70px",
+                        height: "calc(100% - 70px)"
+                    }
+                }}
                 classes={{
                     paper: "w-64"
                 }}
