@@ -22,41 +22,24 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         clean: false
-#     - uses: dorny/paths-filter@v2
-#       id: filter
-#       with: 
-#         filters: |
-#           backend:
-#             - 'backend/**'
-#     - name: install deps
-#       if: steps.filter.outputs.backend == 'true'
-#       run: yarn install --frozen-lockfile
-#     - name: create env file
-#       if: steps.filter.outputs.backend == 'true'
-#       run: |
-#           touch .env
-#           echo HOST=${{ secrets.HOST }} >> .env
-#           echo PORT=${{ secrets.PORT }} >> .env
-#           echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
-#           echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
-#           echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
-#           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
-#     - name: Build Strapi app
-# #       if: steps.filter.outputs.backend == 'true'
-#       run: |
-#           NODE_ENV=production yarn build
+    - uses: actions/checkout@v3
+      with:
+        clean: false
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with: 
+        filters: |
+          backend:
+            - 'backend/**'
+    - name: install deps
+      if: steps.filter.outputs.backend == 'true'
+      run: yarn install --frozen-lockfile
     - name: Build Strapi app
-#       if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: ./build.sh
     - name: turn on app
-#       if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
-#     - name: remove existing env file
-#       if: steps.filter.outputs.backend == 'true'
-#       run: rm .env
       
 #   build_homepage:
 #     name: build_homepage
@@ -90,49 +73,36 @@ jobs:
 #       if: steps.filter.outputs.homepage == 'true'
 #       run: pm2 startOrReload ecosystem.config.js   
       
-#   build_forum:
-#     name: build_frontend
-#     needs: [build_backend, build_homepage]
-#     runs-on: self-hosted
-#     defaults:
-#       run:
-#         working-directory: ./forum
-#     strategy:
-#       matrix:
-#         node-version: [16.x]
-#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-#     steps:
-#     - uses: actions/checkout@v3
-#       with:
-#         clean: false
-#     - uses: dorny/paths-filter@v2
-#       id: filter
-#       with: 
-#         filters: |
-#           forum:
-#             - 'forum/**'
-#     - name: install deps --frozen-lockfile
-#       if: steps.filter.outputs.forum == 'true'
-#       run: yarn install --frozen-lockfile
-#     - name: create env file
-#       if: steps.filter.outputs.forum == 'true'
-#       run: |
-#           touch .env.local
-#           echo NEXT_PUBLIC_GOOGLE_CLIENT_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }} >> .env.local
-#           echo NEXT_PUBLIC_GOOGLE_CLIENT=${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT }} >> .env.local
-#           echo NEXT_PUBLIC_STRAPI_URL=${{ secrets.NEXT_PUBLIC_STRAPI_URL }} >> .env.local
-#           echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env.local
-#           echo JWT_SECRET_GOOGLE=${{ secrets.JWT_SECRET_GOOGLE }} >> .env.local
-#     - name: Build Forum app
-#       if: steps.filter.outputs.forum == 'true'
-#       run: |
-#           yarn build
-#     - name: start app
-#       if: steps.filter.outputs.forum == 'true'
-#       run: pm2 startOrReload ecosystem.config.js
-#     - name: remove existing env file
-#       if: steps.filter.outputs.forum == 'true'
-#       run: rm .env.local
+  build_forum:
+    name: build_frontend
+    needs: build_backend
+    runs-on: self-hosted
+    defaults:
+      run:
+        working-directory: ./forum
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        clean: false
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with: 
+        filters: |
+          forum:
+            - 'forum/**'
+    - name: install deps --frozen-lockfile
+      if: steps.filter.outputs.forum == 'true'
+      run: yarn install --frozen-lockfile
+    - name: Build Strapi app
+      if: steps.filter.outputs.forum == 'true'
+      run: ./build.sh
+    - name: turn on app
+      if: steps.filter.outputs.forum == 'true'
+      run: pm2 startOrReload ecosystem.config.js
       
 #   build_sandbox:
 #     name: build_sandbox
