@@ -36,18 +36,21 @@ jobs:
       run: yarn install --frozen-lockfile
     - name: create env file
 #       if: steps.filter.outputs.backend == 'true'
-      run: |
-          touch .env
-          echo HOST=${{ secrets.HOST }} >> .env
-          echo PORT=${{ secrets.PORT }} >> .env
-          echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
-          echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
-          echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
-          echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+#       run: |
+#           touch .env
+#           echo HOST=${{ secrets.HOST }} >> .env
+#           echo PORT=${{ secrets.PORT }} >> .env
+#           echo APP_KEYS=${{ secrets.APP_KEYS }} >> .env
+#           echo API_TOKEN_SALT=${{ secrets.API_TOKEN_SALT }} >> .env
+#           echo ADMIN_JWT_SECRET=${{ secrets.ADMIN_JWT_SECRET }} >> .env
+#           echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env
+#     - name: Build Strapi app
+# #       if: steps.filter.outputs.backend == 'true'
+#       run: |
+#           NODE_ENV=production yarn build
     - name: Build Strapi app
 #       if: steps.filter.outputs.backend == 'true'
-      run: |
-          NODE_ENV=production yarn build
+      run: ./build.sh
     - name: turn on app
 #       if: steps.filter.outputs.backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
