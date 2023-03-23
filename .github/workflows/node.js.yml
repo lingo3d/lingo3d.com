@@ -54,9 +54,9 @@ jobs:
     - name: turn on app
 #       if: steps.filter.outputs.backend == 'true'
       run: pm2 startOrReload ecosystem.config.js
-    - name: remove existing env file
+#     - name: remove existing env file
 #       if: steps.filter.outputs.backend == 'true'
-      run: rm .env
+#       run: rm .env
       
 #   build_homepage:
 #     name: build_homepage
