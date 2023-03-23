@@ -43,9 +43,7 @@ export default function Nav() {
     }, [scrollY])
 
     const handleRouterChange = () => {
-        router.push(
-            "http://ec2-43-192-125-79.cn-northwest-1.compute.amazonaws.com.cn:3000"
-        )
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}`)
     }
 
     return (
