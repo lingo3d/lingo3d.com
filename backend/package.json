@@ -36,6 +36,7 @@
         "singleQuote": false
     },
     "devDependencies": {
+        "@strapi/provider-email-sendgrid": "^4.8.2",
         "vault-env": "^5.0.0-beta.2"
     }
 }
