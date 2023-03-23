@@ -31,9 +31,9 @@ jobs:
 #         filters: |
 #           backend:
 #             - 'backend/**'
-    - name: install deps
+#     - name: install deps
 #       if: steps.filter.outputs.backend == 'true'
-      run: yarn install --frozen-lockfile
+#       run: yarn install --frozen-lockfile
     - name: create env file
 #       if: steps.filter.outputs.backend == 'true'
 #       run: |
