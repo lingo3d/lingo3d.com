@@ -7,8 +7,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-// const navItems = ["Home", "Forum", "Contact"]
-
 export default function Nav() {
     const router = useRouter()
     const [scrollY, setScrollY] = useState(0)
