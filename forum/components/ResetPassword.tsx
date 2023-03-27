@@ -3,6 +3,8 @@ import { Dialog, Button, TextField, Box } from "@mui/material"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import { showResetPassword } from "../signals/showResetPassword"
+import Image from "next/image"
+import padlock from "../public/padlock_2.png"
 
 type Inputs = {
     email: string
@@ -64,10 +66,20 @@ const ResetPassword: React.FC<{}> = () => {
             open={showResetPassword.value}
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
-            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b] min-w-[350px]">
-                <div className="text-[#f4f4f9]">
-                    Enter your emaill to reset your password
+            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
+                <Image src={padlock} width={72} height={72} alt="padlock" />
+                <div className="text-[#f4f4f9] font-semibold">
+                    Trouble logging in?
                 </div>
+                <div>
+                    <div className="text-[#f4f4f9] text-center">
+                        Enter your email and we'll send
+                    </div>
+                    <div className="text-[#f4f4f9] text-center">
+                        you a link to get back into your account
+                    </div>
+                </div>
+
                 <Controller
                     control={control}
                     name="email"
