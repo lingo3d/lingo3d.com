@@ -44,7 +44,11 @@ const ResetPassword: React.FC<{}> = () => {
                 }
             )
             const res = await submitData.json()
-
+            console.log(
+                JSON.stringify({
+                    email: data.email
+                })
+            )
             console.log(res)
 
             if (res.error) {

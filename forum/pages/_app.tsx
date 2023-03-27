@@ -12,6 +12,7 @@ import Navigation from "../components/navigation/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
     const [loading, setLoading] = useState(false)
+
     Router.events.on("routeChangeStart", (url) => {
         setLoading(true)
     })
@@ -30,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <AuthModal />
                 {loading && <Loader />}
                 <ErrorBoundary>
-                    <div className="px-[35px] md:px-[70px] lg:px-[220px] 2xl:px-[80px] mt-[94px] max-w-[1550px] mx-auto">
+                    <div className="px-[35px] md:px-[70px] lg:px-[220px] 2xl:px-[80px] mt-[94px] max-w-[1550px] mx-auto min-h-screen">
                         <Component className="px-[35px]" {...pageProps} />
                     </div>
                 </ErrorBoundary>
