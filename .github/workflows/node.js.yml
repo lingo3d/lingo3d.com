@@ -31,14 +31,16 @@ jobs:
         filters: |
           backend:
             - 'backend/**'
+          strapi_updater:
+            - '.strapi-updater.json'
     - name: install deps
-      if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true' && steps.filter.outputs.strapi_updater == 'false'
       run: yarn install --frozen-lockfile
     - name: Build Strapi app
-      if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true' && steps.filter.outputs.strapi_updater == 'false'
       run: ./build.sh
     - name: turn on app
-      if: steps.filter.outputs.backend == 'true'
+      if: steps.filter.outputs.backend == 'true' && steps.filter.outputs.strapi_updater == 'false'
       run: pm2 startOrReload ecosystem.config.js
       
   build_homepage:
