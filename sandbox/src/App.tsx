@@ -23,7 +23,7 @@ function App() {
                     <SideNav />
                     <main className="flex-1 flex flex-col h-screen max-w-[1080px] 2xl:max-w-[70%] mx-auto">
                         <Navbar />
-                        <div className="flex-1 bg-[#121316] px-8 py-8 overflow-y-scroll">
+                        <div className="flex-1 bg-[#121316] px-8 py-8 scroll-box">
                             <Home />
                         </div>
                     </main>

@@ -35,3 +35,17 @@ html {
 .MuiListItemButton-gutters:hover {
     background: rgba(255, 255, 255, 0.2) !important;
 }
+
+.scroll-box {
+    overflow-y: scroll;
+}
+
+.scroll-box::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0;
+}
+
+.scroll-box {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
