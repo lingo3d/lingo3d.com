@@ -32,7 +32,7 @@ const ResetPassword: React.FC<{}> = () => {
     const resetPassword: SubmitHandler<Inputs> = async (data: Inputs) => {
         try {
             const submitData = await fetch(
-                `http://localhost:1337/api/auth/forgot-password`,
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/forgot-password`,
                 {
                     headers: {
                         "Content-Type": "application/json"
