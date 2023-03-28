@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { Box, TextField, Button } from "@mui/material"
 import logoSignup from "../public/logo_blue2_signup.png"
+import { showPassChangedModal } from "../signals/showPassChangedModal"
 
 type Inputs = {
     password: string
@@ -35,35 +36,44 @@ const NewPassword: NextPage<{}> = () => {
     const changePassword: SubmitHandler<Inputs> = async (data: Inputs) => {
         console.log(data)
         console.log(router.query.code)
-        // try {
-        //     const submitData = await fetch(
-        //         `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/local/register`,
-        //         {
-        //             headers: {
-        //                 "Content-Type": "application/json"
-        //             },
-        //             method: "POST",
-        //             body: JSON.stringify({
-        //                 password: data.password,
-        //             })
-        //         }
-        //     )
+        console.log(process.env.NEXT_PUBLIC_STRAPI_URL)
+        try {
+            const submitData = await fetch(
+                `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/reset-password`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        code: router.query.code,
+                        password: data.password,
+                        passwordConfirmation: data.passwordConfirm
+                    })
+                }
+            )
 
-        //     const res = await submitData.json()
+            const res = await submitData.json()
+            console.log(res)
+            if (res.error) {
+                setShow(true)
+                setServerError(res.error.message)
+                return
+            }
 
-        //     if (res.error) {
-        //         setShow(true)
-        //         setServerError(res.error.message)
-        //         return
-        //     }
+            showPassChangedModal.value = true
+            return
+            // if (res.ok) {
+            //     showPassChangedModal.value = true
+            // }
 
-        //     setToken(res)
-        // } catch (error) {
-        //     console.log(error)
-        //     alert(
-        //         "There was an error connecting to the server. Please try again later."
-        //     )
-        // }
+            // setToken(res)
+        } catch (error) {
+            console.log(error)
+            // alert(
+            //     "There was an error connecting to the server. Please try again later."
+            // )
+        }
     }
 
     return (
@@ -118,7 +128,9 @@ const NewPassword: NextPage<{}> = () => {
                     )}
                 />
                 {errors.password && errors.password.type === "minLength" && (
-                    <span>Minimum password length is 6 charachters</span>
+                    <span className="text-[#d32f2f]">
+                        Minimum password length is 6 charachters
+                    </span>
                 )}
                 <Controller
                     control={control}
@@ -173,7 +185,9 @@ const NewPassword: NextPage<{}> = () => {
                     )}
                 />
                 {errors.passwordConfirm && (
-                    <p>{errors.passwordConfirm.message}</p>
+                    <p className="text-[#d32f2f]">
+                        {errors.passwordConfirm.message}
+                    </p>
                 )}
 
                 {show ? (

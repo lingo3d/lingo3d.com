@@ -8,6 +8,8 @@ import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
 import AuthModal from "../components/authModal"
 import ForgotPassModal from "../components/ForgotPassModal"
+import PassChanged from "../components/PassChanged"
+import PassChangeSent from "../components/PassSent"
 import Navigation from "../components/navigation/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -27,6 +29,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <Provider>
                 <ForgotPassModal />
+                <PassChangeSent />
+                <PassChanged />
                 <Navigation />
                 <AuthModal />
                 {loading && <Loader />}

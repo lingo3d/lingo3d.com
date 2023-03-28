@@ -3,6 +3,7 @@ import { Dialog, Button, TextField, Box } from "@mui/material"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import { showForgotPassModal } from "../signals/showForgotPassModal"
+import { showPassSentModal } from "../signals/showPassSentModal"
 import Image from "next/image"
 import padlock from "../public/padlock_2.png"
 
@@ -44,17 +45,16 @@ const ForgotPassModal: React.FC<{}> = () => {
                 }
             )
             const res = await submitData.json()
-            console.log(
-                JSON.stringify({
-                    email: data.email
-                })
-            )
-            console.log(res)
 
             if (res.error) {
                 setShow(true)
                 setServerError(res.error.message)
                 return
+            }
+
+            if (res.ok) {
+                showForgotPassModal.value = false
+                showPassSentModal.value = true
             }
         } catch (error) {
             alert(
