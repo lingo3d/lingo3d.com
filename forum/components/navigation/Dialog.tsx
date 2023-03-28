@@ -15,7 +15,7 @@ import { TransitionProps } from "@mui/material/transitions"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@mui/material"
-import { showLogin } from "../../signals/showLogin"
+import { showAuthModal } from "../../signals/showAuthModal"
 import { useUser } from "../../context/user"
 import { User } from "../../types"
 import Avatar from "@mui/material/Avatar"
@@ -110,7 +110,7 @@ export default function FullScreenDialog() {
                         <>
                             <Button
                                 key="Login"
-                                onClick={() => (showLogin.value = true)}
+                                onClick={() => (showAuthModal.value = true)}
                                 sx={{
                                     color: "#fff",
                                     // paddingRight: "30px",

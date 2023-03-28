@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import { showLogin } from "../../signals/showLogin"
+import { showAuthModal } from "../../signals/showAuthModal"
 import { useUser } from "../../context/user"
 import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
 import AppBar from "@mui/material/AppBar"
@@ -141,7 +141,7 @@ export default function Nav() {
                             <>
                                 <Button
                                     key="Login"
-                                    onClick={() => (showLogin.value = true)}
+                                    onClick={() => (showAuthModal.value = true)}
                                     sx={{
                                         color: "#fff",
                                         paddingRight: "30px",

@@ -7,7 +7,7 @@ import Loader from "../components/Loader"
 import ErrorBoundary from "../components/errors/ErrorBoundary"
 import "../styles/globals.css"
 import AuthModal from "../components/authModal"
-import ResetPassword from "../components/ResetPassword"
+import ForgotPassModal from "../components/ForgotPassModal"
 import Navigation from "../components/navigation/index"
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>Lingo3D forum</title>
             </Head>
             <Provider>
-                <ResetPassword />
+                <ForgotPassModal />
                 <Navigation />
                 <AuthModal />
                 {loading && <Loader />}

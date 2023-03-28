@@ -7,8 +7,8 @@ import Button from "@mui/material/Button"
 import GoogleIcon from "@mui/icons-material/Google"
 import { signIn as googleSignIn } from "next-auth/react"
 import { setToken } from "../../pages/api/auth/js-cookie"
-import { showResetPassword } from "../../signals/showResetPassword"
-import { showLogin } from "../../signals/showLogin"
+import { showForgotPassModal } from "../../signals/showForgotPassModal"
+import { showAuthModal } from "../../signals/showAuthModal"
 
 type Inputs = {
     username: string
@@ -80,7 +80,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         inputRef={ref}
                         value={value}
                         onChange={onChange}
-                        label="Username"
+                        label="Username or Email"
                         error={!!errors.username}
                         variant="standard"
                         sx={{
@@ -163,8 +163,8 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
             <div
                 className="w-full text-[#1876d1] cursor-pointer"
                 onClick={() => {
-                    showLogin.value = false
-                    showResetPassword.value = true
+                    showAuthModal.value = false
+                    showForgotPassModal.value = true
                 }}
             >
                 Forgot password?

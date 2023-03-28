@@ -2,7 +2,7 @@ import React from "react"
 import { Dialog, Button, TextField, Box } from "@mui/material"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
-import { showResetPassword } from "../signals/showResetPassword"
+import { showForgotPassModal } from "../signals/showForgotPassModal"
 import Image from "next/image"
 import padlock from "../public/padlock_2.png"
 
@@ -10,13 +10,13 @@ type Inputs = {
     email: string
 }
 
-const ResetPassword: React.FC<{}> = () => {
+const ForgotPassModal: React.FC<{}> = () => {
     const [show, setShow] = useState(false)
     const [serverError, setServerError] = useState("")
 
     const handleCloseClick = (e: any) => {
         e.preventDefault()
-        showResetPassword.value = false
+        showForgotPassModal.value = false
     }
 
     const {
@@ -67,7 +67,7 @@ const ResetPassword: React.FC<{}> = () => {
     return (
         <Dialog
             onClose={handleCloseClick}
-            open={showResetPassword.value}
+            open={showForgotPassModal.value}
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
@@ -149,4 +149,4 @@ const ResetPassword: React.FC<{}> = () => {
     )
 }
 
-export default ResetPassword
+export default ForgotPassModal
