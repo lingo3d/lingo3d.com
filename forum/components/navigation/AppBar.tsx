@@ -27,6 +27,8 @@ export default function Nav() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
 
+    console.log("user", user)
+
     useEffect(() => {
         const cb = () => {
             setScrollY(window.scrollY)

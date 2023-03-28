@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect, useContext } from "react"
 import Cookies from "js-cookie"
-import { getTokenFromLocalCookie } from "../pages/api/auth/js-cookie"
+import {
+    getTokenFromLocalCookie,
+    unsetToken
+} from "../pages/api/auth/js-cookie"
 
 const Context = createContext(undefined)
 
@@ -23,13 +26,16 @@ export function Provider({ children }: any) {
                             }
                         }
                     )
+
                     const data = await res.json()
+                    if (data.error) {
+                        unsetToken()
+                    }
+
                     setUserData(data)
                 } catch (error) {
                     // unsetToken() without the page refresh if server is down and cookies are still set
-                    Cookies.remove("id")
-                    Cookies.remove("username")
-                    Cookies.remove("jwt")
+                    unsetToken()
                     return
                 }
             }
