@@ -198,7 +198,9 @@ export default function SignUp() {
                 )}
             />
             {errors.password && errors.password.type === "minLength" && (
-                <span>Minimum password length is 6 charachters</span>
+                <span className="text-[#d32f2f]">
+                    Minimum password length is 6 charachters
+                </span>
             )}
             <Controller
                 control={control}
@@ -252,7 +254,11 @@ export default function SignUp() {
                     />
                 )}
             />
-            {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
+            {errors.passwordConfirm && (
+                <p className="text-[#d32f2f]">
+                    {errors.passwordConfirm.message}
+                </p>
+            )}
 
             {show ? (
                 <span className="w-full text-center text-red-900 border-[1px] border-red-900 rounded py-2">
