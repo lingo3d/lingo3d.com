@@ -9,13 +9,22 @@ type Data = {
 export const setToken = (data: Data) => {
     if (typeof window === "undefined") return
 
-    Cookies.set("jwt", data.jwt)
-    Cookies.set("username", data.user.username)
-    Cookies.set("id", data.user.id.toString())
-
-    if (Cookies.get("username")) {
-        window.location.reload()
+    if (data.user.confirmed === false) {
+        Cookies.set("email", data.user.email)
+        return window.location.assign("/verify-email")
     }
+
+    // Cookies.set("jwt", data.jwt)
+    // Cookies.set("username", data.user.username)
+    // Cookies.set("id", data.user.id.toString())
+    // Cookies.set("confirmed", data.user.confirmed.toString())
+
+    // if (Cookies.get("confirmed") === "true") {
+    //     return window.location.reload()
+    // }
+    // if (Cookies.get("confirmed") === "false") {
+    //     return window.location.assign("/verify-email")
+    // }
 }
 
 export const unsetToken = () => {
@@ -26,5 +35,5 @@ export const unsetToken = () => {
 }
 
 export const getTokenFromLocalCookie = () => {
-    return Cookies.get("jwt")
+    return Cookies.get("confirmed") === "true" ? true : false
 }

@@ -2,7 +2,6 @@ import React from "react"
 import { Dialog, Button, Box } from "@mui/material"
 import Image from "next/image"
 import success from "../public/success_2.png"
-import { showPassChangedModal } from "../signals/showPassChangedModal"
 
 const EmailConfirmationRedirection: React.FC<{}> = () => {
     const handleCloseClick = () => {

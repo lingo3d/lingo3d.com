@@ -13,6 +13,7 @@ export function Provider({ children }: any) {
     useEffect(() => {
         const getUserData = async () => {
             const user = !!getTokenFromLocalCookie()
+            console.log(user)
             if (user) {
                 const token = getTokenFromLocalCookie()
 
@@ -28,9 +29,12 @@ export function Provider({ children }: any) {
                     )
 
                     const data = await res.json()
-                    if (data.error) {
-                        unsetToken()
-                    }
+
+                    console.log(data)
+
+                    // if (data.error) {
+                    //     unsetToken()
+                    // }
 
                     setUserData(data)
                 } catch (error) {

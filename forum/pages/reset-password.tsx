@@ -34,9 +34,6 @@ const NewPassword: NextPage<{}> = () => {
     password.current = watch("password", "")
 
     const changePassword: SubmitHandler<Inputs> = async (data: Inputs) => {
-        console.log(data)
-        console.log(router.query.code)
-        console.log(process.env.NEXT_PUBLIC_STRAPI_URL)
         try {
             const submitData = await fetch(
                 `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/auth/reset-password`,
@@ -54,7 +51,6 @@ const NewPassword: NextPage<{}> = () => {
             )
 
             const res = await submitData.json()
-            console.log(res)
             if (res.error) {
                 setShow(true)
                 setServerError(res.error.message)
