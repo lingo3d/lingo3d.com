@@ -36,7 +36,7 @@ const VerifyEmail: React.FC<{}> = () => {
         <Box className="w-screen h-full absolute top-0 left-0 flex justify-center items-center">
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
                 <Image src={verify} width={100} height={100} alt="verify" />
-                <div className="text-[#f4f4f9] text-[35px] font-semibold">
+                <div className="text-[#f4f4f9] text-[35px] font-semibold tracking-wider">
                     Verify your email address
                 </div>
                 <div className="mt-[22px]">

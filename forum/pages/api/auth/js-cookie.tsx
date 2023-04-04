@@ -14,26 +14,25 @@ export const setToken = (data: Data) => {
         return window.location.assign("/verify-email")
     }
 
-    // Cookies.set("jwt", data.jwt)
-    // Cookies.set("username", data.user.username)
-    // Cookies.set("id", data.user.id.toString())
-    // Cookies.set("confirmed", data.user.confirmed.toString())
+    Cookies.set("jwt", data.jwt)
+    Cookies.set("username", data.user.username)
+    Cookies.set("id", data.user.id.toString())
+    Cookies.set("confirmed", data.user.confirmed.toString())
 
-    // if (Cookies.get("confirmed") === "true") {
-    //     return window.location.reload()
-    // }
-    // if (Cookies.get("confirmed") === "false") {
-    //     return window.location.assign("/verify-email")
-    // }
+    if (Cookies.get("username")) {
+        window.location.reload()
+    }
 }
 
 export const unsetToken = () => {
     Cookies.remove("id")
     Cookies.remove("username")
     Cookies.remove("jwt")
-    window.location.assign("/")
+    Cookies.remove("confirmed")
+    Cookies.remove("email")
+    window.location.reload()
 }
 
 export const getTokenFromLocalCookie = () => {
-    return Cookies.get("confirmed") === "true" ? true : false
+    return Cookies.get("jwt")
 }

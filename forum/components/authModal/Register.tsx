@@ -51,8 +51,6 @@ export default function SignUp() {
 
             const res = await (submitData as Response).json()
 
-            console.log(res)
-
             if (res.error) {
                 setShow(true)
                 setServerError(res.error.message)

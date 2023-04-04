@@ -29,13 +29,6 @@ export function Provider({ children }: any) {
                     )
 
                     const data = await res.json()
-
-                    console.log(data)
-
-                    // if (data.error) {
-                    //     unsetToken()
-                    // }
-
                     setUserData(data)
                 } catch (error) {
                     // unsetToken() without the page refresh if server is down and cookies are still set
