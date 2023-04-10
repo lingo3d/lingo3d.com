@@ -68,13 +68,13 @@ const NewPassword: NextPage<{}> = () => {
     }
 
     return (
-        <Box className="h-screen flex flex-col justify-start items-center">
-            <Box className="w-full max-w-[650px] flex flex-col justify-center items-center bg-[#081f4b] p-6 mt-[25px] gap-y-2">
+        <Box className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center">
+            <Box className="max-w-[600px] max-h-[355px] flex flex-col justify-center items-center bg-[#081f4b] p-[25px] mt-[25px]">
                 <Image src={logoSignup} width={120} height={22} alt="logo" />
                 <div className="text-[22px] text-[#f4f4f9] mt-[15px]">
                     Reset your password
                 </div>
-                <div className="text-[#f4f4f9] w-full text-start mt-[15px]">
+                <div className="text-[#f4f4f9] text-[16px] w-full text-start mt-[15px]">
                     Enter your desired username and password
                 </div>
                 <Controller

@@ -6,8 +6,8 @@ import { showPassChangedModal } from "../signals/showPassChangedModal"
 
 const PassChanged: React.FC<{}> = () => {
     const handleCloseClick = () => {
-        showPassChangedModal.value = false
         window.location.assign("/")
+        showPassChangedModal.value = false
     }
 
     return (
@@ -18,17 +18,12 @@ const PassChanged: React.FC<{}> = () => {
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
                 <Image src={success} width={72} height={72} alt="success" />
-                <div className="text-[#f4f4f9] font-semibold">
+                <div className="text-[#f4f4f9] text-[22px] text-center font-semibold">
                     Password successfully changed
                 </div>
-                <div className="mt-[22px]">
-                    <div className="text-[#f4f4f9] text-center">
-                        Your password has been successfully changed. Please log
-                        in with your new password.
-                    </div>
-                    {/* <div className="text-[#f4f4f9] text-center">
-                        to edit your password
-                    </div> */}
+                <div className="text-[#f4f4f9] text-center mt-[22px]">
+                    Your password has been successfully changed. Please log in
+                    with your new password.
                 </div>
                 <Button
                     variant="contained"

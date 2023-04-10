@@ -4,11 +4,12 @@
 
 body,
 html {
-    font-size: 1.8rem;
+    /* font-size: 1.8rem; */
     line-height: 2.4rem;
     box-sizing: border-box;
     background-color: black;
     font-family: "Graphie", sans-serif;
+    min-height: 100vh;
 }
 
 @font-face {
