@@ -4,6 +4,8 @@ import Home from "./components/Home"
 import Navbar from "./layouts/navbar/index"
 import SideNav from "./layouts/sidebar/index"
 import AuthModal from "./components/authModal/index"
+import ForgotPassModal from "./components/ForgotPassModal"
+import PassChangeSent from "./components/PassSent"
 import { Provider } from "../context/user"
 
 const theme = createTheme({
@@ -20,6 +22,8 @@ function App() {
             <Provider>
                 <Box className="w-full h-full flex">
                     <AuthModal />
+                    <ForgotPassModal />
+                    <PassChangeSent />
                     <SideNav />
                     <main className="flex-1 flex flex-col h-screen max-w-[1080px] 2xl:max-w-[70%] mx-auto">
                         <Navbar />

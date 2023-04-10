@@ -4,6 +4,8 @@ import { useState } from "react"
 import TextField from "@mui/material/TextField"
 import { setToken } from "../../api/auth/js-cookie"
 import { Button } from "@mui/material"
+import { showLogin } from "../../../signals/showLogin"
+import { showForgotPassModal } from "../../../signals/showForgotPassModal"
 
 type Inputs = {
     username: string
@@ -200,7 +202,13 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                     {serverError}
                 </span>
             ) : null}
-            <div className="w-full text-[#1876d1] cursor-pointer">
+            <div
+                className="w-full text-[#1876d1] cursor-pointer"
+                onClick={() => {
+                    showLogin.value = false
+                    showForgotPassModal.value = true
+                }}
+            >
                 Forgot password?
             </div>
 
