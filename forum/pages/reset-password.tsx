@@ -1,5 +1,5 @@
 import { useState, useRef } from "react"
-import { NextPage, GetStaticProps } from "next"
+import { NextPage } from "next"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
@@ -59,16 +59,11 @@ const NewPassword: NextPage<{}> = () => {
 
             showPassChangedModal.value = true
             return
-            // if (res.ok) {
-            //     showPassChangedModal.value = true
-            // }
-
-            // setToken(res)
         } catch (error) {
             console.log(error)
-            // alert(
-            //     "There was an error connecting to the server. Please try again later."
-            // )
+            alert(
+                "There was an error connecting to the server. Please try again later."
+            )
         }
     }
 

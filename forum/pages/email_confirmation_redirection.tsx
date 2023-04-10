@@ -5,7 +5,6 @@ import success from "../public/success_2.png"
 
 const EmailConfirmationRedirection: React.FC<{}> = () => {
     const handleCloseClick = () => {
-        // showPassChangedModal.value = false
         window.location.assign("/")
     }
 
