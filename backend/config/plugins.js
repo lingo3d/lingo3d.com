@@ -6,8 +6,8 @@ module.exports = ({ env }) => ({
           apiKey: env('SENDGRID_API_KEY'),
         },
         settings: {
-          defaultFrom: 'pecevgligor@gmail.com',
-          defaultReplyTo: 'pecevgligor@gmail.com',
+          defaultFrom: 'gligor@lingo3d.com',
+          defaultReplyTo: 'gligor@lingo3d.com',
         },
       },
     },
