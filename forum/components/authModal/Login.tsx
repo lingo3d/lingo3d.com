@@ -53,7 +53,9 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                 if (
                     res.error.message === "Your account email is not confirmed"
                 ) {
-                    return window.location.assign("/verify-email")
+                    return window.location.assign(
+                        "http://localhost:3500/verify-email"
+                    )
                 }
 
                 setShow(true)

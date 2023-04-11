@@ -11,7 +11,7 @@ export const setToken = (data: Data) => {
 
     if (data.user.confirmed === false) {
         Cookies.set("email", data.user.email)
-        return window.location.assign("/verify-email")
+        return window.location.assign("http://localhost:3500/verify-email")
     }
 
     Cookies.set("jwt", data.jwt)

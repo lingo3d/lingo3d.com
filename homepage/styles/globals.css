@@ -12,11 +12,6 @@ html {
     min-height: 100vh;
 }
 
-.glow {
-    color: #fff;
-    text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
-}
-
 @font-face {
     font-family: "Graphie";
     src: url("/fonts/100-graphie.woff2") format("woff2"),

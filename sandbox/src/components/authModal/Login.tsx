@@ -6,7 +6,6 @@ import { setToken } from "../../api/auth/js-cookie"
 import { Button } from "@mui/material"
 import { showLogin } from "../../../signals/showLogin"
 import { showForgotPassModal } from "../../../signals/showForgotPassModal"
-import Cookies from "js-cookie"
 
 type Inputs = {
     username: string
@@ -47,21 +46,21 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
             )
 
             const res = await submitData.json()
-            console.log(res)
-            // if (res.error) {
-            //     if (
-            //         res.error.message === "Your account email is not confirmed"
-            //     ) {
-            //         Cookies.set("email", res.user.email)
-            //         return window.location.assign(
-            //             "http://localhost:3500/verify-email"
-            //         )
-            //     }
-            //     setShow(true)
-            //     setServerError(res.error.message)
-            //     return
-            // }
-            // setToken(res)
+            if (res.error) {
+                if (
+                    res.error.message === "Your account email is not confirmed"
+                ) {
+                    return window.location.assign(
+                        `${
+                            import.meta.env.VITE_PUBLIC_LINGO_HOMEPAGE
+                        }/verify-email`
+                    )
+                }
+                setShow(true)
+                setServerError(res.error.message)
+                return
+            }
+            setToken(res)
         } catch (error) {
             alert(
                 "There was an error connecting to the server. Please try again later."
@@ -86,7 +85,7 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                         inputRef={ref}
                         value={value}
                         onChange={onChange}
-                        label="Username"
+                        label="Username or Email"
                         error={!!errors.username}
                         variant="standard"
                         sx={{

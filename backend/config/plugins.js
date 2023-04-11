@@ -10,5 +10,5 @@ module.exports = ({ env }) => ({
           defaultReplyTo: 'gligor@lingo3d.com',
         },
       },
-    },
+    }
   });

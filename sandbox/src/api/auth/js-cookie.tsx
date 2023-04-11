@@ -5,7 +5,9 @@ export const setToken = (data: any) => {
 
     if (data.user.confirmed === false) {
         Cookies.set("email", data.user.email)
-        return window.location.assign("http://localhost:3500/verify-email")
+        return window.location.assign(
+            `${import.meta.env.VITE_PUBLIC_LINGO_HOMEPAGE}/verify-email`
+        )
     }
 
     Cookies.set("jwt", data.jwt)
