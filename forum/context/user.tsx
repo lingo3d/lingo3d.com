@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useContext } from "react"
-import Cookies from "js-cookie"
 import {
     getTokenFromLocalCookie,
     unsetToken
@@ -31,7 +30,6 @@ export function Provider({ children }: any) {
                     const data = await res.json()
                     setUserData(data)
                 } catch (error) {
-                    // unsetToken() without the page refresh if server is down and cookies are still set
                     unsetToken()
                     return
                 }
