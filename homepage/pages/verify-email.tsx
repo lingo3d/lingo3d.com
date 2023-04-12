@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Button, Box } from "@mui/material"
 import Image from "next/image"
-import verify from "../public/verify.png"
+import verify from "../public/padlock_2.png"
 import Cookies from "js-cookie"
 import { useWindowWidth } from "@react-hook/window-size"
 import Link from "next/link"
@@ -40,7 +40,7 @@ const VerifyEmail: React.FC<{}> = () => {
     return (
         <Box className="w-screen h-full absolute top-0 left-0 flex justify-center items-center">
             {windowWidth! > 629 ? (
-                <Link href="http://localhost:3500">
+                <Link href="/">
                     <Image
                         src="/logo_full_name.png"
                         alt="company background"
@@ -54,7 +54,7 @@ const VerifyEmail: React.FC<{}> = () => {
                     />
                 </Link>
             ) : (
-                <Link href="http://localhost:3500">
+                <Link href="/">
                     <Image
                         src="/logo_trademark.png"
                         alt="company background"

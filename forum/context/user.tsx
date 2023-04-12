@@ -12,7 +12,6 @@ export function Provider({ children }: any) {
     useEffect(() => {
         const getUserData = async () => {
             const user = !!getTokenFromLocalCookie()
-            console.log(user)
             if (user) {
                 const token = getTokenFromLocalCookie()
 

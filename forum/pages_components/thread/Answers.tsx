@@ -104,7 +104,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
             className="mt-[25px] textColor2 borderBottom pb-4"
         >
             <div className="flex justify-between items-center textColor1 bg-[#081F4B] p-2">
-                <div>cnone</div>
+                <div>{data.data.attributes.createdAt.split("T")[0]}</div>
                 <div className="flex">
                     <div>#{index + 2}</div>
                     {/* <MoreVertIcon /> */}
