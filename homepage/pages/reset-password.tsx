@@ -68,8 +68,8 @@ const NewPassword: NextPage<{}> = () => {
     }
 
     return (
-        <Box className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center">
-            <Box className="max-w-[600px] max-h-[355px] flex flex-col justify-center items-center bg-[#081f4b] p-[25px] mt-[25px]">
+        <Box className="w-full h-full absolute top-0 left-0 flex flex-col justify-center items-center p-[25px]">
+            <Box className="w-full max-w-[600px] flex flex-col justify-center items-center bg-[#081f4b] p-[25px] mt-[25px]">
                 <Image src={logoSignup} width={120} height={22} alt="logo" />
                 <div className="text-[22px] text-[#f4f4f9] mt-[15px]">
                     Reset your password
@@ -191,7 +191,7 @@ const NewPassword: NextPage<{}> = () => {
                     fullWidth
                     sx={{
                         paddingY: "10px !important",
-                        marginTop: "10px",
+                        marginTop: "25px",
                         background: "#86a1d8 !important",
                         color: "#f4f4f9"
                     }}

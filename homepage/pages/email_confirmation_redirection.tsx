@@ -9,8 +9,8 @@ const EmailConfirmationRedirection: React.FC<{}> = () => {
     }
 
     return (
-        <Box className="w-full h-full absolute top-0 left-0 flex justify-center items-center">
-            <Box className=" max-w-[330px] max-h-[345px] flex flex-col justify-start items-center p-[24px] gap-y-4 bg-[#081f4b]">
+        <Box className="w-full h-full absolute top-0 left-0 flex justify-center items-center p-[25px]">
+            <Box className="w-full max-w-[400px] flex flex-col justify-start items-center p-[24px] gap-y-4 bg-[#081f4b]">
                 <Image src={success} width={72} height={72} alt="success" />
                 <div className="text-[#f4f4f9]  text-[22px]">
                     Email Confirmed

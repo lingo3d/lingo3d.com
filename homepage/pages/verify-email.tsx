@@ -3,12 +3,16 @@ import { Button, Box } from "@mui/material"
 import Image from "next/image"
 import verify from "../public/verify.png"
 import Cookies from "js-cookie"
+import { useWindowWidth } from "@react-hook/window-size"
+import Link from "next/link"
 
 const VerifyEmail: React.FC<{}> = () => {
     const [email, setEmail] = useState<string | undefined>("")
+    const width = useWindowWidth()
+    const [windowWidth, setWindowWidth] = useState<number | null>(null)
 
     useEffect(() => {
-        console.log(Cookies.get("email"))
+        setWindowWidth(width)
         setEmail(Cookies.get("email"))
     }, [])
 
@@ -35,9 +39,39 @@ const VerifyEmail: React.FC<{}> = () => {
 
     return (
         <Box className="w-screen h-full absolute top-0 left-0 flex justify-center items-center">
-            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
+            {windowWidth! > 629 ? (
+                <Link href="http://localhost:3500">
+                    <Image
+                        src="/logo_full_name.png"
+                        alt="company background"
+                        width={120}
+                        height={50}
+                        style={{
+                            position: "absolute",
+                            top: "5%",
+                            left: "5%"
+                        }}
+                    />
+                </Link>
+            ) : (
+                <Link href="http://localhost:3500">
+                    <Image
+                        src="/logo_trademark.png"
+                        alt="company background"
+                        width={60}
+                        height={60}
+                        style={{
+                            position: "absolute",
+                            top: "3%",
+                            left: "5%"
+                        }}
+                    />
+                </Link>
+            )}
+
+            <Box className="flex flex-col justify-center items-center p-6 m-6 gap-y-4 bg-[#081f4b]">
                 <Image src={verify} width={100} height={100} alt="verify" />
-                <div className="text-[#f4f4f9] text-[35px] font-semibold tracking-wider">
+                <div className="text-[#f4f4f9] text-[30px] sm:text-[35px] font-semibold text-center tracking-wider">
                     Verify your email address
                 </div>
                 <div className="mt-[22px]">
