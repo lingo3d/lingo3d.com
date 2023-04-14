@@ -1,14 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  // basePath: '/forum',
+  assetPrefix: process.env.NEXT_PUBLIC_BASE_URL || "",
   async redirects() {
       return [
-          // {
-          //     source: '/',
-          //     destination: '/forum',
-          //     basePath: false,
-          //     permanent: false
-          // },
           {
             source: '/categories',
             destination: '/',

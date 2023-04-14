@@ -1,8 +1,8 @@
 import React from "react"
 import Box from "@mui/material/Box"
 import { Response } from "../../../types"
-import Latest from "./Latest/index"
-import Categories from "./Categories/index"
+import Latest from "./latest/index"
+import Categories from "./categories/index"
 import { useWidth } from "../../../hooks/useWindowWidth"
 
 const Body: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {

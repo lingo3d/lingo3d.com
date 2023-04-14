@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps } from "next"
 import { Response } from "../types"
 import NavSection from "../components/pageNavigation"
 import Tags from "../pages_components/index/Tags"
-import Body from "../pages_components/index/Body"
+import Body from "../pages_components/index/body"
 import { useWidth } from "../hooks/useWindowWidth"
 
 const Home: NextPage<{ latestPosts: Response }> = ({ latestPosts }) => {
