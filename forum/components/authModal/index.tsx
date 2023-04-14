@@ -23,7 +23,11 @@ const AuthModal = () => {
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
-                <Image src={logoSignup} width={120} height={22} alt="logo" />
+                <img
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_blue2_signup.png`}
+                    style={{ width: "120px", height: "22px" }}
+                    alt="logo"
+                />
 
                 {displayRegister ? (
                     <Register />

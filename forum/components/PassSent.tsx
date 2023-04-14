@@ -16,7 +16,11 @@ const PassChangeSent: React.FC<{}> = () => {
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
-                <Image src={success} width={72} height={72} alt="success" />
+                <Image
+                    src="/success_2.png"
+                    style={{ width: "72px", height: "72px" }}
+                    alt="success"
+                />
                 <div className="mt-[22px]">
                     <div className="text-[#f4f4f9] text-center">
                         We've sent you an email to edit your password. Please

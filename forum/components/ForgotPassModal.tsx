@@ -4,8 +4,6 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import { useState } from "react"
 import { showForgotPassModal } from "../signals/showForgotPassModal"
 import { showPassSentModal } from "../signals/showPassSentModal"
-import Image from "next/image"
-import padlock from "../public/padlock_2.png"
 
 type Inputs = {
     email: string
@@ -71,7 +69,11 @@ const ForgotPassModal: React.FC<{}> = () => {
             className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
-                <Image src={padlock} width={72} height={72} alt="padlock" />
+                <img
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/padlock_2.png`}
+                    style={{ width: "72px", height: "72px" }}
+                    alt="padlock"
+                />
                 <div className="text-[#f4f4f9] font-semibold">
                     Trouble logging in?
                 </div>

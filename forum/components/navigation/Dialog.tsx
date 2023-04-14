@@ -12,7 +12,6 @@ import ExploreOffIcon from "@mui/icons-material/ExploreOff"
 import Slide from "@mui/material/Slide"
 import Box from "@mui/material/Box"
 import { TransitionProps } from "@mui/material/transitions"
-import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@mui/material"
 import { showAuthModal } from "../../signals/showAuthModal"
@@ -71,10 +70,12 @@ export default function FullScreenDialog() {
                 }}
             >
                 <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
-                    <Image
-                        src="/logo_trademark.png"
-                        width={30}
-                        height={30}
+                    <img
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_trademark.png`}
+                        style={{
+                            width: "30px",
+                            height: "30px"
+                        }}
                         alt="logo"
                     />
                 </Link>

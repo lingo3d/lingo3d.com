@@ -5,7 +5,6 @@ import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
 import AppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
-import Image from "next/image"
 import Link from "next/link"
 import { User } from "../../types"
 import Avatar from "@mui/material/Avatar"
@@ -83,13 +82,13 @@ export default function Nav() {
                                 cursor: "pointer"
                             }}
                         >
-                            <Image
+                            <img
                                 ref={logo1Ref}
-                                src="/logo_full_name.png"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_full_name.png`}
                                 alt="company background"
-                                width={120}
-                                height={50}
                                 style={{
+                                    width: "120px",
+                                    height: "22.5px",
                                     position: "absolute",
                                     top: "50%",
                                     left: "50%",
@@ -98,13 +97,13 @@ export default function Nav() {
                                     transition: "opacity 0.5s ease-in-out"
                                 }}
                             />
-                            <Image
+                            <img
                                 ref={logo2Ref}
-                                src="/logo_trademark.png"
+                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_trademark.png`}
                                 alt="company background"
-                                width={50}
-                                height={50}
                                 style={{
+                                    width: "30px",
+                                    height: "30px",
                                     position: "absolute",
                                     top: "50%",
                                     left: "50%",

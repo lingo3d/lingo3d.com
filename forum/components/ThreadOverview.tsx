@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { ThreadOptions } from "../types"
 import profilePic from "../public/avatar2.png"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
@@ -23,9 +22,8 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
         <Box className="flex justify-between items-stretch borderTop py-2 textColor2">
             <Box className="flex justify-center items-center">
                 <div className="w-[40px] h-[40px]">
-                    <Image
-                        src={profilePic}
-                        // fill
+                    <img
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
                         className="rounded"
                         alt="profile image"
                     />

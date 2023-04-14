@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import Cookies from "js-cookie"
 import { ThreadOptions, ThreadAnswer, User } from "../../types"
-import profilePic from "../../public/avatar2.png"
 import PostReply from "./PostReply"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ThumbUpIcon from "@mui/icons-material/ThumbUp"
@@ -112,9 +110,8 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
             </div>
             <div className="flex justify-start items-center my-2">
                 <div className="w-[58px] h-[58px]">
-                    <Image
-                        src={profilePic}
-                        // fill
+                    <img
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
                         className="rounded"
                         alt="profile image"
                     />

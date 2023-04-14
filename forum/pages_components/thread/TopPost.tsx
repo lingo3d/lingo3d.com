@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import Image from "next/image"
 import Cookies from "js-cookie"
-import { Response, User, SingleThread } from "../../types"
-import profilePic from "../../public/avatar2.png"
+import { User, SingleThread } from "../../types"
 import ThumbUpIcon from "@mui/icons-material/ThumbUp"
 import MoreVertIcon from "@mui/icons-material/MoreVert"
 import ShareIcon from "@mui/icons-material/Share"
@@ -91,9 +89,8 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
             </div>
             <div className="flex justify-start items-center my-2">
                 <div className="w-[58px] h-[58px]">
-                    <Image
-                        src={profilePic}
-                        // fill
+                    <img
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
                         className="rounded"
                         alt="profile image"
                     />
