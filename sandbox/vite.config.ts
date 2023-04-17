@@ -7,5 +7,6 @@ export default defineConfig({
         react({
             jsxRuntime: "classic"
         })
-    ]
+    ],
+    base: "/sandbox/"
 })
