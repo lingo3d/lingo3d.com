@@ -8,7 +8,7 @@ import Button from "@mui/material/Button"
 const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
     return (
         <Box className="flex flex-col items-start flex-1">
-            <Link href="/latest">
+            <Link href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}>
                 <div className="text-[18px] textColor2 mt-[25px] mb-[10px] cursor-pointer">
                     Latest
                 </div>
@@ -18,7 +18,10 @@ const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
                     <ThreadLatest key={m.id} data={m} />
                 ))}
             </Box>
-            <Link href="/latest" className="self-end mt-[20px]">
+            <Link
+                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}
+                className="self-end mt-[20px]"
+            >
                 <Button
                     variant="contained"
                     sx={{

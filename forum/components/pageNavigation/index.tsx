@@ -45,7 +45,9 @@ export default function NavSection() {
 
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
-                            <Link href="/">
+                            <Link
+                                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/`}
+                            >
                                 <div
                                     className={`${
                                         active === "categories"
@@ -56,7 +58,9 @@ export default function NavSection() {
                                     Categories
                                 </div>
                             </Link>
-                            <Link href="/latest">
+                            <Link
+                                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}
+                            >
                                 <div
                                     className={`${
                                         active === "latest"
@@ -67,7 +71,9 @@ export default function NavSection() {
                                     Latest
                                 </div>
                             </Link>
-                            <Link href="/top">
+                            <Link
+                                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/top`}
+                            >
                                 <div
                                     className={`${
                                         active === "top"
@@ -82,7 +88,7 @@ export default function NavSection() {
                     </Box>
                     <Box className="flex justify-end w-full mt-[20px]">
                         <Link
-                            href="/post-question"
+                            href={`${process.env.NEXT_PUBLIC_BASE_PATH}/post-question`}
                             className={user ? "" : "pointer-events-none"}
                         >
                             <Button
@@ -122,7 +128,9 @@ export default function NavSection() {
                         <Box className="w-full flex justify-between items-center">
                             <SelectSection />
                             {user && (
-                                <Link href="/post-question">
+                                <Link
+                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH}/post-question`}
+                                >
                                     <AddIcon
                                         sx={{
                                             color: "#F4F4F9",
