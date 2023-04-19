@@ -89,6 +89,7 @@ typings/
 
 # vuepress build output
 .vuepress/dist
+./backend/.strapi-updater.json
 
 # Serverless directories
 .serverless/

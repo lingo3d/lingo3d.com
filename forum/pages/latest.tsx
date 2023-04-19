@@ -10,6 +10,8 @@ const Latest: NextPage<{ data: Response }> = ({ data }) => {
     const [latestData, setLatestData] = useState<Response>()
     const [pageIndex, setPageIndex] = useState(1)
 
+    //
+
     useEffect(() => {
         setLatestData(data)
         return () => {
