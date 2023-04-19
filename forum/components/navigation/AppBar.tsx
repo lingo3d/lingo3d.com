@@ -6,6 +6,7 @@ import AppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
 import Button from "@mui/material/Button"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { User } from "../../types"
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -22,6 +23,11 @@ export default function Nav() {
     const logo2Ref = useRef<HTMLImageElement | null>(null)
     const [logo1Opacity, setLogo1Opacity] = useState<number>(1)
     const [logo2Opacity, setLogo2Opacity] = useState<number>(0)
+    const [currentRoute, setCurrentRoute] = useState("")
+
+    const router = useRouter()
+    const isForumHome = router.asPath === "/forum"
+    const targetUrl = isForumHome ? "" : `${process.env.NEXT_PUBLIC_BASE_URL}/`
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
@@ -74,7 +80,7 @@ export default function Nav() {
                         alignItems: "center"
                     }}
                 >
-                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                    <Link href={targetUrl}>
                         <Box
                             sx={{
                                 width: "200px",

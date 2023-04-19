@@ -26,6 +26,8 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
     const [editDescription, setEditDescription] = useState("")
     const router = useRouter()
 
+    console.log(user, "i am the user")
+
     useEffect(() => {
         setInitialDescription(data.data.attributes.description)
         setEditDescription(data.data.attributes.description)
@@ -153,7 +155,7 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
                 {/* <ShareIcon className="mx-[5px]"  /> 
                 <ThumbUpIcon className="mx-[5px]" />
                 <BookmarkIcon className="mx-[5px]" /> */}
-                {!editMode && (
+                {!editMode && user && (
                     <ReplyIcon
                         className="mx-[5px] cursor-pointer"
                         onClick={() =>

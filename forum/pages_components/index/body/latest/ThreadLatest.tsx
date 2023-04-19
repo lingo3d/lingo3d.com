@@ -18,11 +18,10 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
                 <div className="flex-1 px-2 textColor1">
                     <Link
                         key={data.id}
-                        href={`thread/${data.id}/${data.attributes.title}`}
-                        as={`thread/${data.id}/${data.attributes.title.replace(
-                            / /g,
-                            "-"
-                        )}`}
+                        href={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${data.id}/${data.attributes.title}`}
+                        as={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${
+                            data.id
+                        }/${data.attributes.title.replace(/ /g, "-")}`}
                     >
                         <div className="text-[16px] cursor-pointer">
                             {data?.attributes.title}

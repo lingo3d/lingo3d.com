@@ -44,34 +44,35 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
                 </Link>
 
                 <div className="flex justify-start items-center gap-x-2 text-[13px] textColor1">
-                    <div>{data.attributes.username}</div>
                     {windowWidth! > 639 && (
-                        <Box className="flex flex-wrap items-center gap-x-1">
-                            {data.attributes.tags && (
-                                <LocalOfferIcon
-                                    fontSize="small"
-                                    sx={{ width: "10px", height: "10px" }}
-                                />
-                            )}
-                            {data.attributes.tags &&
-                                data.attributes.tags.map((m, i) => (
+                        <div>{data.attributes.username}</div>
+                    )}
+
+                    <Box className="flex flex-wrap items-center gap-x-1">
+                        {data.attributes.tags && (
+                            <LocalOfferIcon
+                                fontSize="small"
+                                sx={{ width: "10px", height: "10px" }}
+                            />
+                        )}
+                        {data.attributes.tags &&
+                            data.attributes.tags.map((m, i) =>
+                                query === m ? (
+                                    <div key={m} className="italic font-bold">
+                                        {m}
+                                    </div>
+                                ) : (
                                     <Link
                                         key={m}
                                         href={`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${m}`}
                                     >
-                                        <div
-                                            className={
-                                                query === m
-                                                    ? "italic font-bold"
-                                                    : "non-italic cursor-pointer"
-                                            }
-                                        >
+                                        <div className="non-italic cursor-pointer">
                                             {m}
                                         </div>
                                     </Link>
-                                ))}
-                        </Box>
-                    )}
+                                )
+                            )}
+                    </Box>
                 </div>
             </Box>
             <Box className="w-[45px] sm:w-auto borderLeft sm:border-0 textColor2 flex flex-col sm:flex-row sm:gap-x-2 lg:gap-x-8 justify-center items-center text-[13px] pl-2">

@@ -180,7 +180,7 @@ const Answer = ({ answer, index, data, user, activateReply }: AnswerProps) => {
                 {/* <ShareIcon className="mx-[5px]" />
                 <ThumbUpIcon className="mx-[5px]" />
                 <BookmarkIcon className="mx-[5px]" /> */}
-                {!editMode && (
+                {!editMode && user && (
                     <ReplyIcon
                         className="mx-[5px] cursor-pointer"
                         onClick={() =>

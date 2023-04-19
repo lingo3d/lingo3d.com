@@ -12,7 +12,9 @@ const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link href={`categories/${data[0]?.attributes.category}`}>
+                <Link
+                    href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${data[0]?.attributes.category}`}
+                >
                     <Box className="flex justify-between items-center py-2">
                         <div className="textColor2 text-[22px] cursor-pointer">
                             {data[0]?.attributes.category

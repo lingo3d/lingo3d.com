@@ -13,7 +13,9 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link href={`/categories/${data[0]?.attributes.category}`}>
+                <Link
+                    href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${data[0]?.attributes.category}`}
+                >
                     <div className="flex justify-between items-center py-2">
                         <div className="textColor2 text-[22px]">
                             {data[0]?.attributes.category
@@ -28,11 +30,10 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
                 {top3.map((m, i) => (
                     <Link
                         key={m.id}
-                        href={`thread/${m.id}/${m.attributes.title}`}
-                        as={`thread/${m.id}/${m.attributes.title.replace(
-                            / /g,
-                            "-"
-                        )}`}
+                        href={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${m.id}/${m.attributes.title}`}
+                        as={`${process.env.NEXT_PUBLIC_BASE_URL}/thread/${
+                            m.id
+                        }/${m.attributes.title.replace(/ /g, "-")}`}
                     >
                         <div
                             key={m.id}
