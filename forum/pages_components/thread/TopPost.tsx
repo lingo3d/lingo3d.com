@@ -26,8 +26,6 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
     const [editDescription, setEditDescription] = useState("")
     const router = useRouter()
 
-    console.log(user, "i am the user")
-
     useEffect(() => {
         setInitialDescription(data.data.attributes.description)
         setEditDescription(data.data.attributes.description)

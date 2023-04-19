@@ -8,7 +8,7 @@ const PostReply: React.FC<{ user: string | null; text: string | null }> = ({
         <div className="mt-[10px] textColor2 borderBottom border rounded p-2 mb-4 ">
             <div className="text-[#fecc00] mb-2">{user} said</div>
             <div
-                className="textColor1 border rounded p-2"
+                className="text-[#AFC7ED] border rounded p-2 bg-[#1C365A]"
                 dangerouslySetInnerHTML={{
                     __html: text!
                 }}

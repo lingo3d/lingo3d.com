@@ -4,8 +4,8 @@ module.exports = {
   async redirects() {
       return [
           {
-            source: '/categories',
-            destination: '/',
+            source: process.env.NEXT_PUBLIC_BASE_PATH,
+            destination: '/forum',
             basePath: false,
             permanent: true,
           },
