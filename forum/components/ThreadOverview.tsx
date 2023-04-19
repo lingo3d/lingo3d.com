@@ -15,8 +15,6 @@ type ThreadOverviewProps = {
     query?: string
 }
 
-//
-
 const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
     const windowWidth = useWidth()
 
