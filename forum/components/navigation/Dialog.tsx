@@ -21,6 +21,7 @@ import Avatar from "@mui/material/Avatar"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
+import CustomLink from "../CustomLink"
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {
@@ -69,7 +70,7 @@ export default function FullScreenDialog() {
                     // marginTop: "50px"
                 }}
             >
-                <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                     <img
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_trademark.png`}
                         style={{
@@ -78,7 +79,7 @@ export default function FullScreenDialog() {
                         }}
                         alt="logo"
                     />
-                </Link>
+                </CustomLink>
 
                 <Box
                     sx={{

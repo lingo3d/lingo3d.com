@@ -4,6 +4,7 @@ import { cloneElement } from "react"
 
 interface CustomLinkProps extends React.PropsWithChildren<{}> {
     href: string
+    [x: string]: any
 }
 
 const CustomLink: React.FC<CustomLinkProps> = ({
@@ -17,19 +18,18 @@ const CustomLink: React.FC<CustomLinkProps> = ({
         event.preventDefault()
 
         if (typeof window !== "undefined") {
-            const prefix = process.env.NODE_ENV === "production" ? "/forum" : ""
-            const targetPathname = new URL(
-                prefix + href,
-                window.location.origin
-            ).pathname
-
-            console.log(window.location.origin, "i am window.location.origin")
-            console.log(href, "i am href")
+            const targetUrl = new URL(href)
+            const targetPathname = targetUrl.pathname
             console.log(targetPathname, "i am targetPathname")
-            console.log(router.pathname, "router.pathname")
 
-            if (router.pathname !== targetPathname) {
-                router.push(href)
+            const currentPathname =
+                process.env.NODE_ENV === "production"
+                    ? "/forum" + router.pathname
+                    : router.pathname
+            console.log(currentPathname, "i am currentPathname")
+
+            if (currentPathname !== targetPathname) {
+                router.push(targetPathname)
             }
         }
     }
@@ -38,13 +38,13 @@ const CustomLink: React.FC<CustomLinkProps> = ({
         return null
     }
 
-    const modifiedChildren = cloneElement(children, {
-        //@ts-ignore
-        onClick: handleClick,
-        href: href
-    })
+    const WrapperComponent: React.FC = (wrapperProps) => (
+        <div onClick={handleClick} {...wrapperProps}>
+            {children}
+        </div>
+    )
 
-    return <>{modifiedChildren}</>
+    return <WrapperComponent {...props} />
 }
 
 export default CustomLink

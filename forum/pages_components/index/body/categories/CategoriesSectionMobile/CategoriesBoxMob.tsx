@@ -3,6 +3,7 @@ import { ThreadOptions } from "../../../../../types"
 import Link from "next/link"
 import CommentIcon from "@mui/icons-material/Comment"
 import Box from "@mui/material/Box"
+import CustomLink from "../../../../../components/CustomLink"
 
 const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
     data
@@ -13,7 +14,7 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <Link
+                <CustomLink
                     href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${data[0]?.attributes.category}`}
                 >
                     <div className="flex justify-between items-center py-2">
@@ -25,7 +26,7 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
                         </div>
                         <CommentIcon className="textColor2" />
                     </div>
-                </Link>
+                </CustomLink>
 
                 {top3.map((m, i) => (
                     <Link
