@@ -12,6 +12,7 @@ import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
+import CustomLink from "../CustomLink"
 
 // const navItems = ["Home", "Forum", "Contact"]
 
@@ -24,10 +25,6 @@ export default function Nav() {
     const [logo1Opacity, setLogo1Opacity] = useState<number>(1)
     const [logo2Opacity, setLogo2Opacity] = useState<number>(0)
     const [currentRoute, setCurrentRoute] = useState("")
-
-    const router = useRouter()
-    const isForumHome = router.asPath === "/forum"
-    const targetUrl = isForumHome ? "" : `${process.env.NEXT_PUBLIC_BASE_URL}/`
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const open = Boolean(anchorEl)
@@ -80,7 +77,7 @@ export default function Nav() {
                         alignItems: "center"
                     }}
                 >
-                    <Link href={targetUrl}>
+                    <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                         <Box
                             sx={{
                                 width: "200px",
@@ -119,7 +116,7 @@ export default function Nav() {
                                 }}
                             />
                         </Box>
-                    </Link>
+                    </CustomLink>
 
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <Button
