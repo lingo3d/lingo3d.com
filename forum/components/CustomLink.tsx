@@ -1,4 +1,4 @@
-import React from "react"
+import React, { ReactElement } from "react"
 import { useRouter } from "next/router"
 import { cloneElement } from "react"
 
@@ -12,18 +12,22 @@ const CustomLink: React.FC<CustomLinkProps> = ({
     ...props
 }) => {
     const router = useRouter()
-    console.log(router.pathname, "router.pathname")
+
     const handleClick = (event: React.MouseEvent) => {
         event.preventDefault()
 
         if (typeof window !== "undefined") {
-            // Extract pathname from the absolute URL
-            const targetPathname = new URL(href, window.location.origin)
-                .pathname
+            const prefix = process.env.NODE_ENV === "production" ? "/forum" : ""
+            const targetPathname = new URL(
+                prefix + href,
+                window.location.origin
+            ).pathname
+
             console.log(window.location.origin, "i am window.location.origin")
             console.log(href, "i am href")
             console.log(targetPathname, "i am targetPathname")
-            // Navigate only if the target pathname is different
+            console.log(router.pathname, "router.pathname")
+
             if (router.pathname !== targetPathname) {
                 router.push(href)
             }
