@@ -1,10 +1,19 @@
+import React from "react"
 import { useRouter } from "next/router"
 import { cloneElement } from "react"
 
-const CustomLink = ({ href, children, ...props }) => {
+interface CustomLinkProps extends React.PropsWithChildren<{}> {
+    href: string
+}
+
+const CustomLink: React.FC<CustomLinkProps> = ({
+    href,
+    children,
+    ...props
+}) => {
     const router = useRouter()
     console.log(router.pathname, "router.pathname")
-    const handleClick = (event) => {
+    const handleClick = (event: React.MouseEvent) => {
         event.preventDefault()
 
         if (typeof window !== "undefined") {
@@ -21,8 +30,12 @@ const CustomLink = ({ href, children, ...props }) => {
         }
     }
 
-    // Clone children and add the handleClick function to the onClick property
+    if (!React.isValidElement(children)) {
+        return null
+    }
+
     const modifiedChildren = cloneElement(children, {
+        //@ts-ignore
         onClick: handleClick,
         href: href
     })
