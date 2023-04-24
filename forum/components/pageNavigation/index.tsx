@@ -47,7 +47,7 @@ export default function NavSection() {
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
                             <CustomLink
-                                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/`}
+                                href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}
                             >
                                 <div
                                     className={`${
@@ -60,7 +60,7 @@ export default function NavSection() {
                                 </div>
                             </CustomLink>
                             <CustomLink
-                                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}
+                                href={`${process.env.NEXT_PUBLIC_BASE_URL}/latest`}
                             >
                                 <div
                                     className={`${
@@ -131,7 +131,7 @@ export default function NavSection() {
                             <SelectSection />
                             {user && (
                                 <CustomLink
-                                    href={`${process.env.NEXT_PUBLIC_BASE_PATH}/post-question`}
+                                    href={`${process.env.NEXT_PUBLIC_BASE_URL}/post-question`}
                                 >
                                     <AddIcon
                                         sx={{

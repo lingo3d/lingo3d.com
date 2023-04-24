@@ -9,7 +9,7 @@ import CustomLink from "../../../../components/CustomLink"
 const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
     return (
         <Box className="flex flex-col items-start flex-1">
-            <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}>
+            <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_URL}/latest`}>
                 <div className="text-[18px] textColor2 mt-[25px] mb-[10px] cursor-pointer">
                     Latest
                 </div>
@@ -20,7 +20,7 @@ const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
                 ))}
             </Box>
             <CustomLink
-                href={`${process.env.NEXT_PUBLIC_BASE_PATH}/latest`}
+                href={`${process.env.NEXT_PUBLIC_BASE_URL}/latest`}
                 className="self-end mt-[20px]"
             >
                 <Button
