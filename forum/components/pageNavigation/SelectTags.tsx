@@ -21,7 +21,16 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({
     }, [])
 
     const handleChange = (tag: string) => {
-        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`)
+        const currentPathname =
+            process.env.NODE_ENV === "production"
+                ? "/forum" + router.pathname
+                : router.pathname
+
+        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`
+
+        if (currentPathname !== targetPathname) {
+            router.push(targetPathname)
+        }
     }
 
     return (

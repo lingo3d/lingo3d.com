@@ -20,13 +20,11 @@ const CustomLink: React.FC<CustomLinkProps> = ({
         if (typeof window !== "undefined") {
             const targetUrl = new URL(href)
             const targetPathname = targetUrl.pathname
-            console.log(targetPathname, "i am targetPathname")
 
             const currentPathname =
                 process.env.NODE_ENV === "production"
                     ? "/forum" + router.pathname
                     : router.pathname
-            console.log(currentPathname, "i am currentPathname")
 
             if (currentPathname !== targetPathname) {
                 router.push(targetPathname)

@@ -24,9 +24,16 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
     }, [router.asPath])
 
     const handleChange = (category: string) => {
-        router.push(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
-        )
+        const currentPathname =
+            process.env.NODE_ENV === "production"
+                ? "/forum" + router.pathname
+                : router.pathname
+
+        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
+
+        if (currentPathname !== targetPathname) {
+            router.push(targetPathname)
+        }
     }
 
     return (
