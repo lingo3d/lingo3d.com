@@ -29,7 +29,10 @@ const SelectCategory: React.FC<{ windowWidth: number | null }> = ({
                 ? "/forum" + router.pathname
                 : router.pathname
 
-        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
+        const targetUrl = new URL(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/categories/${category}`
+        )
+        const targetPathname = targetUrl.pathname
 
         if (currentPathname !== targetPathname) {
             router.push(targetPathname)

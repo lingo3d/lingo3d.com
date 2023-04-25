@@ -26,7 +26,9 @@ const SelectTags: React.FC<{ windowWidth: number | null }> = ({
                 ? "/forum" + router.pathname
                 : router.pathname
 
-        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`
+        const targetPathname = new URL(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/tags/${tag}`
+        ).pathname
 
         if (currentPathname !== targetPathname) {
             router.push(targetPathname)

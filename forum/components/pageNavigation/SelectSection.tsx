@@ -22,12 +22,13 @@ const SelectSection: React.FC = () => {
                 ? "/forum" + router.pathname
                 : router.pathname
 
-        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/${section}`
+        const targetPathname = new URL(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/${section}`
+        ).pathname
 
         if (currentPathname !== targetPathname) {
             router.push(targetPathname)
         }
-        // router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/${section}`)
     }
 
     return (
