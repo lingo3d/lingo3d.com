@@ -23,7 +23,7 @@ const ThreadOverview = ({ data, query }: ThreadOverviewProps) => {
             <Box className="flex justify-center items-center">
                 <div className="w-[40px] h-[40px]">
                     <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
+                        src="/avatar2.png"
                         className="rounded"
                         alt="profile image"
                     />

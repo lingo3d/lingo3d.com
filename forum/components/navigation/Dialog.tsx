@@ -70,16 +70,16 @@ export default function FullScreenDialog() {
                     // marginTop: "50px"
                 }}
             >
-                <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                     <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_trademark.png`}
+                        src="logo_trademark.png"
                         style={{
                             width: "30px",
                             height: "30px"
                         }}
                         alt="logo"
                     />
-                </CustomLink>
+                </Link>
 
                 <Box
                     sx={{

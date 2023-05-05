@@ -24,7 +24,7 @@ const AuthModal = () => {
         >
             <Box className="flex flex-col justify-center items-center p-8 gap-y-4 bg-[#081f4b] rounded-lg">
                 <img
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_blue2_signup.png`}
+                    src="/logo_blue2_signup.png"
                     style={{ width: "120px", height: "22px" }}
                     alt="logo"
                 />

@@ -70,7 +70,7 @@ const ForgotPassModal: React.FC<{}> = () => {
         >
             <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
                 <img
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/padlock_2.png`}
+                    src="/padlock_2.png"
                     style={{ width: "72px", height: "72px" }}
                     alt="padlock"
                 />

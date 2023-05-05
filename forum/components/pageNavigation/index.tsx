@@ -46,9 +46,7 @@ export default function NavSection() {
 
                         <>
                             <Divider className="w-[1px] h-[40px] text-[white] bg-white" />
-                            <CustomLink
-                                href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}
-                            >
+                            <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                                 <div
                                     className={`${
                                         active === "categories"
@@ -58,8 +56,8 @@ export default function NavSection() {
                                 >
                                     Categories
                                 </div>
-                            </CustomLink>
-                            <CustomLink
+                            </Link>
+                            <Link
                                 href={`${process.env.NEXT_PUBLIC_BASE_URL}/latest`}
                             >
                                 <div
@@ -71,9 +69,9 @@ export default function NavSection() {
                                 >
                                     Latest
                                 </div>
-                            </CustomLink>
+                            </Link>
 
-                            <CustomLink
+                            <Link
                                 href={`${process.env.NEXT_PUBLIC_BASE_URL}/top`}
                             >
                                 <div
@@ -85,11 +83,11 @@ export default function NavSection() {
                                 >
                                     Top
                                 </div>
-                            </CustomLink>
+                            </Link>
                         </>
                     </Box>
                     <Box className="flex justify-end w-full mt-[20px]">
-                        <CustomLink
+                        <Link
                             href={`${process.env.NEXT_PUBLIC_BASE_URL}/post-question`}
                             className={user ? "" : "pointer-events-none"}
                         >
@@ -114,7 +112,7 @@ export default function NavSection() {
                             >
                                 New
                             </Button>
-                        </CustomLink>
+                        </Link>
                     </Box>
                 </Box>
             )}
@@ -130,7 +128,7 @@ export default function NavSection() {
                         <Box className="w-full flex justify-between items-center">
                             <SelectSection />
                             {user && (
-                                <CustomLink
+                                <Link
                                     href={`${process.env.NEXT_PUBLIC_BASE_URL}/post-question`}
                                 >
                                     <AddIcon
@@ -142,7 +140,7 @@ export default function NavSection() {
                                             borderRadius: "4px"
                                         }}
                                     />
-                                </CustomLink>
+                                </Link>
                             )}
                         </Box>
                     </Box>

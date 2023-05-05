@@ -77,7 +77,7 @@ export default function Nav() {
                         alignItems: "center"
                     }}
                 >
-                    <CustomLink href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
+                    <Link href={`${process.env.NEXT_PUBLIC_BASE_URL}/`}>
                         <Box
                             sx={{
                                 width: "200px",
@@ -87,7 +87,7 @@ export default function Nav() {
                         >
                             <img
                                 ref={logo1Ref}
-                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_full_name.png`}
+                                src="/logo_full_name.png"
                                 alt="company background"
                                 style={{
                                     width: "120px",
@@ -102,7 +102,7 @@ export default function Nav() {
                             />
                             <img
                                 ref={logo2Ref}
-                                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_trademark.png`}
+                                src="/logo_trademark.png"
                                 alt="company background"
                                 style={{
                                     width: "30px",
@@ -116,7 +116,7 @@ export default function Nav() {
                                 }}
                             />
                         </Box>
-                    </CustomLink>
+                    </Link>
 
                     <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         <Button

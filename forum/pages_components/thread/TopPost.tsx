@@ -90,7 +90,7 @@ const TopPost: React.FC<TopPostProps> = ({ data, user, activateReply }) => {
             <div className="flex justify-start items-center my-2">
                 <div className="w-[58px] h-[58px]">
                     <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
+                        src="/avatar2.png"
                         className="rounded"
                         alt="profile image"
                     />

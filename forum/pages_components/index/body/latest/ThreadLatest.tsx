@@ -9,11 +9,7 @@ const ThreadLatest: React.FC<{ data: ThreadOptions }> = ({ data }) => {
         <Box className="borderTop py-2">
             <Box className="flex justify-start items-center mb-[5px]">
                 <div className="w-[40px] h-[40px]">
-                    <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH}/avatar2.png`}
-                        className="rounded"
-                        alt="profile"
-                    />
+                    <img src="/avatar2.png" className="rounded" alt="profile" />
                 </div>
                 <div className="flex-1 px-2 textColor1">
                     <Link

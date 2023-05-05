@@ -14,7 +14,7 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <CustomLink
+                <Link
                     href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${data[0]?.attributes.category}`}
                 >
                     <div className="flex justify-between items-center py-2">
@@ -26,7 +26,7 @@ const CategoriesBoxMob: React.FC<{ data: ThreadOptions[] | [] }> = ({
                         </div>
                         <CommentIcon className="textColor2" />
                     </div>
-                </CustomLink>
+                </Link>
 
                 {top3.map((m, i) => (
                     <Link

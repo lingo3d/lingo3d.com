@@ -13,7 +13,7 @@ const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
     else
         return (
             <Box className="mb-[25px] borderTop">
-                <CustomLink
+                <Link
                     href={`${process.env.NEXT_PUBLIC_BASE_URL}/categories/${data[0]?.attributes.category}`}
                 >
                     <Box className="flex justify-between items-center py-2">
@@ -28,7 +28,7 @@ const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
                             total
                         </div>
                     </Box>
-                </CustomLink>
+                </Link>
 
                 <Box className="py-2 textColor1 w-[90%] text-[16px]">
                     <div>{desc}</div>
