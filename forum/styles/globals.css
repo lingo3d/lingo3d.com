@@ -92,6 +92,10 @@ body {
     background-color: transparent !important;
 }
 
+.MuiDialog-paper {
+    background-color: transparent !important;
+}
+
 @media only screen and (min-width: 1200px) {
     .my-custom-app-bar .MuiAppBar-root {
         max-width: 1350px !important;

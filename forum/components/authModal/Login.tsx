@@ -174,21 +174,13 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                     {serverError}
                 </span>
             ) : null}
-            <div
-                className="w-full text-[#1876d1] cursor-pointer"
-                onClick={() => {
-                    showAuthModal.value = false
-                    showForgotPassModal.value = true
-                }}
-            >
-                Forgot password?
-            </div>
 
             <Button
                 variant="contained"
                 fullWidth
                 sx={{
                     paddingY: "10px !important",
+                    marginTop: "10px !important",
                     background: "#86a1d8 !important",
                     color: "#f4f4f9"
                 }}
@@ -196,15 +188,25 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
             >
                 Log in
             </Button>
-            <div className="w-full text-[#f4f4f9]">
-                Don't have an account?{" "}
-                <span
+            <div
+                className="w-full text-[#1876d1] cursor-pointer text-center"
+                onClick={() => {
+                    showAuthModal.value = false
+                    showForgotPassModal.value = true
+                }}
+            >
+                Forgot password?
+            </div>
+            <div className="w-full flex flex-col justify-center items-center">
+                <div className="text-[#f4f4f9]">Don't have an account yet?</div>
+                <div
                     onClick={() => setDisplayRegister(true)}
-                    className="pointer-cursor text-[#1876d1] font-semibold underline cursor-pointer"
+                    className="text-[#1876d1] font-semibold underline cursor-pointer"
                 >
                     Sign up
-                </span>
+                </div>
             </div>
+
             {/* <div className="w-full flex items-center">
                 <div className="flex-1 bg-gray-300 h-0.5"></div>
                 <div className="text-center mx-5 ">OR</div>

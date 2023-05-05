@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import { useForm, Controller, SubmitHandler } from "react-hook-form"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
@@ -11,7 +11,9 @@ type Inputs = {
     passwordConfirm: string
 }
 
-export default function SignUp() {
+const Register: React.FC<{
+    setDisplayRegister: (display: boolean) => void
+}> = ({ setDisplayRegister }) => {
     const [show, setShow] = useState(false)
     const [serverError, setServerError] = useState("")
 
@@ -278,6 +280,17 @@ export default function SignUp() {
             >
                 Sign Up
             </Button>
+            <div className="w-full flex flex-col justify-center items-center">
+                <div className="text-[#f4f4f9]">Already have an account?</div>
+                <div
+                    onClick={() => setDisplayRegister(false)}
+                    className="text-[#1876d1] font-semibold underline cursor-pointer"
+                >
+                    Log in
+                </div>
+            </div>
         </>
     )
 }
+
+export default Register

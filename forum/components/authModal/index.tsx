@@ -20,9 +20,9 @@ const AuthModal = () => {
         <Dialog
             onClose={handleCloseClick}
             open={showAuthModal.value}
-            className="w-screen h-full absolute top-0 left-0 flex justify-center items-center"
+            className="w-screen h-full absolute top-0 left-0 flex justify-center items-center rounded-lg bg-transparent"
         >
-            <Box className="flex flex-col justify-center items-center p-6 gap-y-4 bg-[#081f4b]">
+            <Box className="flex flex-col justify-center items-center p-8 gap-y-4 bg-[#081f4b] rounded-lg">
                 <img
                     src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo_blue2_signup.png`}
                     style={{ width: "120px", height: "22px" }}
@@ -30,7 +30,7 @@ const AuthModal = () => {
                 />
 
                 {displayRegister ? (
-                    <Register />
+                    <Register setDisplayRegister={setDisplayRegister} />
                 ) : (
                     <Login setDisplayRegister={setDisplayRegister} />
                 )}
