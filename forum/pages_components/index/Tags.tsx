@@ -19,18 +19,8 @@ const Tags = () => {
     ]
 
     const handleChangeRoute = (tag: string) => {
-        const currentPathname =
-            process.env.NODE_ENV === "production"
-                ? "/forum" + router.pathname
-                : router.pathname
-
         let param = tag.substring(1).toLocaleLowerCase().replaceAll(" ", "-")
-
-        const targetPathname = `${process.env.NEXT_PUBLIC_BASE_URL}/tags/${param}`
-
-        if (currentPathname !== targetPathname) {
-            router.push(targetPathname)
-        }
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/${param}`)
     }
 
     return (

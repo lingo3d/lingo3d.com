@@ -21,7 +21,6 @@ import Avatar from "@mui/material/Avatar"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import { unsetToken as logout } from "../../pages/api/auth/js-cookie"
-import CustomLink from "../CustomLink"
 
 const Transition = React.forwardRef(function Transition(
     props: TransitionProps & {

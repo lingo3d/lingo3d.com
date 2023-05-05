@@ -17,18 +17,7 @@ const SelectSection: React.FC = () => {
     }, [router.asPath])
 
     const handleChange = (section: string) => {
-        const currentPathname =
-            process.env.NODE_ENV === "production"
-                ? "/forum" + router.pathname
-                : router.pathname
-
-        const targetPathname = new URL(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/${section}`
-        ).pathname
-
-        if (currentPathname !== targetPathname) {
-            router.push(targetPathname)
-        }
+        router.push(`${process.env.NEXT_PUBLIC_BASE_URL}/${section}`)
     }
 
     return (

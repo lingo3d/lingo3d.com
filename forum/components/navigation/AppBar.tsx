@@ -12,7 +12,6 @@ import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
-import CustomLink from "../CustomLink"
 
 // const navItems = ["Home", "Forum", "Contact"]
 

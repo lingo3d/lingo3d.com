@@ -4,7 +4,6 @@ import Link from "next/link"
 import ThreadLatest from "./ThreadLatest"
 import { Response } from "../../../../types"
 import Button from "@mui/material/Button"
-import CustomLink from "../../../../components/CustomLink"
 
 const Latest: React.FC<{ latestPosts: Response }> = ({ latestPosts }) => {
     return (

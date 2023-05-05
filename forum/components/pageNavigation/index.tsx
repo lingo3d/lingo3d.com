@@ -11,7 +11,6 @@ import Divider from "@mui/material/Divider"
 import { useUser } from "../../context/user"
 import { User } from "../../types"
 import { useWidth } from "../../hooks/useWindowWidth"
-import CustomLink from "../CustomLink"
 
 export default function NavSection() {
     const windowWidth = useWidth()

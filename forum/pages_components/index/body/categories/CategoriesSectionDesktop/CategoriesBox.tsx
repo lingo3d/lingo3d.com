@@ -3,7 +3,6 @@ import { ThreadOptions } from "../../../../../types"
 import Link from "next/link"
 import CommentIcon from "@mui/icons-material/Comment"
 import Box from "@mui/material/Box"
-import CustomLink from "../../../../../components/CustomLink"
 
 const CategoriesBox: React.FC<{ data: ThreadOptions[] | []; desc: string }> = ({
     data,
