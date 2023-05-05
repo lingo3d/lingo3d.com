@@ -36,6 +36,10 @@ html {
     background: rgba(255, 255, 255, 0.2) !important;
 }
 
+.MuiDialog-paper {
+    background-color: transparent !important;
+}
+
 .scroll-box {
     overflow-y: scroll;
 }

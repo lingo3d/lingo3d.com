@@ -211,8 +211,20 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
                     {serverError}
                 </span>
             ) : null}
+
+            <Button
+                variant="contained"
+                className="w-full"
+                sx={{
+                    paddingY: "10px !important",
+                    marginTop: "10px !important"
+                }}
+                onClick={handleSubmit(loginUser)}
+            >
+                Log in
+            </Button>
             <div
-                className="w-full text-[#1876d1] cursor-pointer"
+                className="w-full text-[#1876d1] cursor-pointer text-center"
                 onClick={() => {
                     showLogin.value = false
                     showForgotPassModal.value = true
@@ -220,26 +232,17 @@ const Login: React.FC<{ setDisplayRegister: (display: boolean) => void }> = ({
             >
                 Forgot password?
             </div>
+            <div className="w-full flex flex-col justify-center items-center">
+                <div className="text-[#c1c1c1]">
+                    Don&apos;t have an account? &nbsp;
+                </div>
 
-            <Button
-                variant="contained"
-                className="w-full"
-                sx={{ paddingY: "10px !important" }}
-                onClick={handleSubmit(loginUser)}
-            >
-                Log in
-            </Button>
-            <div className="w-full">
-                <span className="text-[#c1c1c1]">
-                    Don't have an account? &nbsp;
-                </span>
-
-                <span
+                <div
                     onClick={() => setDisplayRegister(true)}
-                    className="pointer-cursor text-[#1876d1] underline cursor-pointer"
+                    className="text-[#1876d1] underline font-semibold cursor-pointer"
                 >
                     Sign up
-                </span>
+                </div>
             </div>
         </>
     )
